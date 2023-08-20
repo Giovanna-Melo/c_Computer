@@ -21,6 +21,21 @@ void menu_principal(void)
 
 }
 
+void menu_sobre(void)
+{
+        printf("\n");
+    printf("------------------------------------------------------------------------------\n");
+    printf("                                   MENU SOBRE                                 \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("|                                                                            |\n");
+    printf("|                               1. CRIAÇÃO                                   |\n");
+    printf("|                               2. INSTRUÇÕES                                |\n");
+    printf("|                               0. VOLTAR                                    |\n");
+    printf("|                                                                            |\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+}
+
 void menu_criacao(void) 
 {
     printf("\n");
@@ -85,6 +100,7 @@ int main(void)
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
     menu_principal();
+    menu_sobre();
     menu_criacao();
     menu_instrucoes();
     
