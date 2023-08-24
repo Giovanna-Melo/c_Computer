@@ -21,9 +21,44 @@ void menu_principal(void)
 
 }
 
+void menu_clientes(void)
+{
+    printf("\n");
+    
+    printf("------------------------------------------------------------------------------\n");
+    printf("                                 MENU CLIENTES                                \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                              1. CLIENTES PF                              {}\n");
+    printf("{}                              2. CLIENTES PJ                              {}\n");
+    printf("{}                              0. VOLTAR                                   {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+   
+}
+
+void padrao_crud(void)
+{
+    printf("\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                              1. CADASTRAR                                {}\n");
+    printf("{}                              2. EXIBIR                                   {}\n");
+    printf("{}                              3. ATUALIZAR                                {}\n");
+    printf("{}                              4. DELETAR                                  {}\n");
+    printf("{}                              0. VOLTAR                                   {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+
+}
 void menu_sobre(void)
 {
-        printf("\n");
+    printf("\n");
     printf("------------------------------------------------------------------------------\n");
     printf("                                   MENU SOBRE                                 \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
@@ -94,12 +129,21 @@ void menu_instrucoes(void)
     printf("|___________________________________________________________________________|\n");
 
 }
+
+// ADICIONAR A CADA MENU NO PROGRAMA PRINCIPAL DEPOIS DE TER PASSADO DA ETAPA DE NAVEGAÇÃO DOS MÓDULOS ANTES DA CHAMADA DO PADRAO_CRUD
+//    printf("\n");
+//    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+//    printf("{}                               MENU ALL NAMES                             {}\n");
+
+
 // Programa principal
 
 int main(void)
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
     menu_principal();
+    menu_clientes();
+    padrao_crud();
     menu_sobre();
     menu_criacao();
     menu_instrucoes();
