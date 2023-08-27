@@ -313,8 +313,6 @@ void cadastro_atendl(void)
     printf("\n");
 }
 
-//telas crud plano in módulo 2 atendimento
-//módulo funcionários and relatórios
 void exibe_atendl(void)
 {
     printf("\n");
@@ -362,6 +360,75 @@ void deleta_atendl(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
 }
+
+void cadastro_planos(void)
+{
+    printf("\n");
+    printf("------------------------------------------------------------------------------\n");
+    printf("                               CADASTRAR PLANOS                               \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                       CPF/CNPJ (somente números):                        {}\n");
+    printf("{}                       Quantidade de equipamentos:                        {}\n");
+    printf("{}                       Observações:                                       {}\n");
+    printf("{}                       Periodicidade:                                     {}\n");
+    printf("{}                       Data para visita:                                  {}\n");
+    printf("{}                       Flexibilidade de data:                             {}\n");
+    printf("{}                       Validade do plano (aaaa-mm-dd):                    {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("\n");
+}
+//Se anual data para visita marcar dia e mês, se mensal marcar dia, se semanal escrever o dia da semana  INSTRUÇÃO
+
+void exibe_planos(void)
+{
+    printf("\n");
+    printf("------------------------------------------------------------------------------\n");
+    printf("                                 EXIBIR PLANOS                                \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                    Digite o código de adesão de plano                    {}\n");
+    printf("{}                   para exibir (periodicidade+CPF/CNPJ):                  {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("\n");
+}
+
+void atualiza_planos(void)
+{
+    printf("\n");
+    printf("------------------------------------------------------------------------------\n");
+    printf("                               ATUALIZAR PLANOS                               \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                    Digite o código de adesão de plano                    {}\n");
+    printf("{}                  para atualizar (periodicidade+CPF/CNPJ):                {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("\n");
+}
+
+void deleta_planos(void)
+{
+    printf("\n");
+    printf("------------------------------------------------------------------------------\n");
+    printf("                                DELETAR PLANOS                                \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                    Digite o código de adesão de plano                    {}\n");
+    printf("{}                  para deletar (periodicidade+CPF/CNPJ):                  {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("\n");
+}
+
+//telas crud plano in módulo 2 atendimento
+//módulo funcionários and relatórios
 
 void menu_sobre(void)
 {
@@ -432,6 +499,7 @@ void menu_instrucoes(void)
     printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
     printf(")        19/08/2023.: TELA DE DESENVOLVIMENTO SIMULTÂNEO AO PROJETO         (\n");
     printf(")                                                                           (\n");
+    printf(")          Padronize uma forma de escrita;                                  (\n");//detalhar mais dps
     printf(")                                                                           (\n");    
     printf("|___________________________________________________________________________|\n");
 
@@ -467,6 +535,10 @@ int main(void)
     exibe_atendl();
     atualiza_atendl();
     deleta_atendl();
+    cadastro_planos();
+    exibe_planos();
+    atualiza_planos();
+    deleta_planos();
     padrao_crud();
     menu_sobre();
     menu_criacao();
