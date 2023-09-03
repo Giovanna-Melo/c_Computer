@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <locale.h>
-// Funções
+// Funcoes
 
 void menu_principal(void) 
 {
@@ -12,8 +11,8 @@ void menu_principal(void)
     printf("|                                                                            |\n");
     printf("|                               1. CLIENTES                                  |\n");
     printf("|                               2. ATENDIMENTOS                              |\n");
-    printf("|                               3. FUNCIONÁRIOS                              |\n");
-    printf("|                               4. RELATÓRIOS                                |\n");
+    printf("|                               3. FUNCIONARIOS                              |\n");
+    printf("|                               4. RELATORIOS                                |\n");
     printf("|                               5. SOBRE                                     |\n");
     printf("|                               0. SAIR                                      |\n");
     printf("|                                                                            |\n");
@@ -61,12 +60,12 @@ void menu_funcionarios(void)
 {
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                                MENU FUNCIONÁRIOS                             \n");
+    printf("                                MENU FUNCIONARIOS                             \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                              1. FUNCIONÁRIOS                             {}\n");
+    printf("{}                              1. FUNCIONARIOS                             {}\n");
     printf("{}                              2. EQUIPES                                  {}\n");
     printf("{}                              3. ZERAR CONTADORES                         {}\n");
     printf("{}                              0. VOLTAR                                   {}\n");
@@ -79,7 +78,7 @@ void menu_relatorios(void)
 {
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                                MENU RELATÓRIOS                               \n");
+    printf("                                MENU RELATORIOS                               \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
@@ -87,7 +86,7 @@ void menu_relatorios(void)
     printf("{}                              1. CLIENTES                                 {}\n");
     printf("{}                              2. ATENDIMENTOS                             {}\n");
     printf("{}                              3. PLANOS                                   {}\n");
-    printf("{}                              4. FUNCIONÁRIOS                             {}\n");
+    printf("{}                              4. FUNCIONARIOS                             {}\n");
     printf("{}                              5. EQUIPES                                  {}\n");
     printf("{}                              0. VOLTAR                                   {}\n");
     printf("{}                                                                          {}\n");
@@ -96,7 +95,6 @@ void menu_relatorios(void)
 }
 void padrao_crud(void)
 {
-    printf("\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                                                                          {}\n");
@@ -120,10 +118,10 @@ void cadastro_pf(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                       Nome:                                              {}\n");
-    printf("{}                       CPF (somente números):                             {}\n");
+    printf("{}                       CPF (somente numeros):                             {}\n");
     printf("{}                       E-mail:                                            {}\n");
-    printf("{}                       Telefone (somente números):                        {}\n");
-    printf("{}                       Endereço:                                          {}\n");
+    printf("{}                       Telefone (somente numeros):                        {}\n");
+    printf("{}                       Endereco:                                          {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -137,7 +135,7 @@ void exibe_pf(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente números):                      {}\n");
+    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -151,7 +149,7 @@ void atualiza_pf(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente números):                      {}\n");
+    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -165,7 +163,7 @@ void deleta_pf(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente números):                      {}\n");
+    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -180,10 +178,10 @@ void cadastro_pj(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                       Nome:                                              {}\n");
-    printf("{}                       CNPJ (somente números):                            {}\n");
+    printf("{}                       CNPJ (somente numeros):                            {}\n");
     printf("{}                       E-mail:                                            {}\n");
-    printf("{}                       Telefone (somente números):                        {}\n");
-    printf("{}                       Endereço:                                          {}\n");
+    printf("{}                       Telefone (somente numeros):                        {}\n");
+    printf("{}                       Endereco:                                          {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -197,7 +195,7 @@ void exibe_pj(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       Digite o CNPJ (somente números):                   {}\n");
+    printf("{}                       Digite o CNPJ (somente numeros):                   {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -211,7 +209,7 @@ void atualiza_pj(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       Digite o CNPJ (somente números):                   {}\n");
+    printf("{}                       Digite o CNPJ (somente numeros):                   {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -225,7 +223,7 @@ void deleta_pj(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       Digite o CNPJ (somente números):                   {}\n");
+    printf("{}                       Digite o CNPJ (somente numeros):                   {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -239,13 +237,13 @@ void cadastro_atendc(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       CPF (somente números):                             {}\n");
+    printf("{}                       CPF (somente numeros):                             {}\n");
     printf("{}                       Nome do equipamento:                               {}\n");
     printf("{}                       Marca:                                             {}\n");
     printf("{}                       Modelo:                                            {}\n");
-    printf("{}                       Número de série:                                   {}\n");
-    printf("{}                       Observações:                                       {}\n");
-    printf("{}                       Previsão de entrega:                               {}\n");
+    printf("{}                       Numero de serie:                                   {}\n");
+    printf("{}                       Observacoes:                                       {}\n");
+    printf("{}                       Previsao de entrega:                               {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -259,8 +257,8 @@ void exibe_atendc(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de atendimento                        {}\n");
-    printf("{}                   para exibir (situação+CPF+ordem):                      {}\n");
+    printf("{}                    Digite o codigo de atendimento                        {}\n");
+    printf("{}                   para exibir (situaaco+CPF+ordem):                      {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -274,8 +272,8 @@ void atualiza_atendc(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de atendimento                        {}\n");
-    printf("{}               para atualizar (situação+CPF/CNPJ+ordem):                  {}\n");
+    printf("{}                    Digite o codigo de atendimento                        {}\n");
+    printf("{}               para atualizar (situacao+CPF/CNPJ+ordem):                  {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -289,7 +287,7 @@ void deleta_atendc(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de atendimento                        {}\n");
+    printf("{}                    Digite o codigo de atendimento                        {}\n");
     printf("{}                  para deletar (periodicidade+CPF/CNPJ):                  {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
@@ -305,12 +303,12 @@ void cadastro_atendl(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       CPF/CNPJ (somente números):                        {}\n");
+    printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
     printf("{}                       Nome do equipamento:                               {}\n");
     printf("{}                       Marca:                                             {}\n");
     printf("{}                       Modelo:                                            {}\n");
-    printf("{}                       Número de série:                                   {}\n");
-    printf("{}                       Observações:                                       {}\n");
+    printf("{}                       Numero de serie:                                   {}\n");
+    printf("{}                       Observacoes:                                       {}\n");
     printf("{}                       Data de visita:                                    {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
@@ -326,8 +324,8 @@ void exibe_atendl(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de atendimento                        {}\n");
-    printf("{}                para exibir (situação+CPF/CNPJ+ordem):                    {}\n");
+    printf("{}                    Digite o codigo de atendimento                        {}\n");
+    printf("{}                para exibir (situacao+CPF/CNPJ+ordem):                    {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -342,8 +340,8 @@ void atualiza_atendl(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de atendimento                        {}\n");
-    printf("{}               para atualizar (situação+CPF/CNPJ+ordem):                  {}\n");
+    printf("{}                    Digite o codigo de atendimento                        {}\n");
+    printf("{}               para atualizar (situacao+CPF/CNPJ+ordem):                  {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -358,8 +356,8 @@ void deleta_atendl(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de atendimento                        {}\n");
-    printf("{}                para deletar (situação+CPF/CNPJ+ordem):                   {}\n");
+    printf("{}                    Digite o codigo de atendimento                        {}\n");
+    printf("{}                para deletar (situacao+CPF/CNPJ+ordem):                   {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -373,9 +371,9 @@ void cadastro_planos(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       CPF/CNPJ (somente números):                        {}\n");
+    printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
     printf("{}                       Quantidade de equipamentos:                        {}\n");
-    printf("{}                       Observações:                                       {}\n");
+    printf("{}                       Observacoes:                                       {}\n");
     printf("{}                       Periodicidade:                                     {}\n");
     printf("{}                       Data para visita:                                  {}\n");
     printf("{}                       Flexibilidade de data:                             {}\n");
@@ -384,7 +382,7 @@ void cadastro_planos(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
 }
-//Se anual data para visita marcar dia e mês, se mensal marcar dia, se semanal escrever o dia da semana  INSTRUÇÃO
+//Se anual data para visita marcar dia e mes, se mensal marcar dia, se semanal escrever o dia da semana  INSTRUCAO
 
 void exibe_planos(void)
 {
@@ -394,7 +392,7 @@ void exibe_planos(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de adesão de plano                    {}\n");
+    printf("{}                    Digite o codigo de adesao de plano                    {}\n");
     printf("{}                   para exibir (periodicidade+CPF/CNPJ):                  {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
@@ -409,7 +407,7 @@ void atualiza_planos(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de adesão de plano                    {}\n");
+    printf("{}                    Digite o codigo de adesao de plano                    {}\n");
     printf("{}                  para atualizar (periodicidade+CPF/CNPJ):                {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
@@ -424,7 +422,7 @@ void deleta_planos(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o código de adesão de plano                    {}\n");
+    printf("{}                    Digite o codigo de adesao de plano                    {}\n");
     printf("{}                  para deletar (periodicidade+CPF/CNPJ):                  {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
@@ -435,17 +433,17 @@ void cadastro_func(void)
 {
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                             CADASTRAR FUNCIONÁRIO                            \n");
+    printf("                             CADASTRAR FUNCIONARIO                            \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                       Nome:                                              {}\n");
-    printf("{}                       CPF (somente números):                             {}\n");
+    printf("{}                       CPF (somente numeros):                             {}\n");
     printf("{}                       E-mail:                                            {}\n");
-    printf("{}                       Telefone (somente números):                        {}\n");
-    printf("{}                       Endereço:                                          {}\n");
-    printf("{}                       Profissão:                                         {}\n");
-    printf("{}                       Salário:                                           {}\n");
+    printf("{}                       Telefone (somente numeros):                        {}\n");
+    printf("{}                       Endereco:                                          {}\n");
+    printf("{}                       Profissao:                                         {}\n");
+    printf("{}                       Salario:                                           {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -455,11 +453,11 @@ void exibe_func(void)
 {
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                               EXIBIR FUNCIONÁRIO                             \n");
+    printf("                               EXIBIR FUNCIONaRIO                             \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente números):                      {}\n");
+    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -469,11 +467,11 @@ void atualiza_func(void)
 {
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                            ATUALIZAR FUNCIONÁRIO                             \n");
+    printf("                            ATUALIZAR FUNCIONARIO                             \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente números):                      {}\n");
+    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -483,11 +481,11 @@ void deleta_func(void)
 {
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                             DELETAR FUNCIONÁRIO                              \n");
+    printf("                             DELETAR FUNCIONARIO                              \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente números):                      {}\n");
+    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -532,8 +530,8 @@ void atualiza_equipe(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}          Equipe:                                                         {}\n");
-    printf("{}          Digite o CPF do atual integrante (somente números):             {}\n");
-    printf("{}          Digite o CPF do novo integrante (somente números):              {}\n");
+    printf("{}          Digite o CPF do atual integrante (somente numeros):             {}\n");
+    printf("{}          Digite o CPF do novo integrante (somente numeros):              {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("\n");
@@ -589,7 +587,7 @@ void filtros_clientes(void)
     printf("| |                    |___________________________|                      | | \n");    
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                     FILTROS RELATÓRIO CLIENTES                        | | \n");
+    printf("| |                     FILTROS RELATORIO CLIENTES                        | | \n");
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
@@ -628,12 +626,12 @@ void filtros_atendimentos(void)
     printf("| |                    |___________________________|                      | | \n");    
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                   FILTROS RELATÓRIO ATENDIMENTOS                      | | \n");
+    printf("| |                   FILTROS RELATORIO ATENDIMENTOS                      | | \n");
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                1. ATENDIMENTOS CONCLUÍDOS                             | | \n"); 
-    printf("| |                2. ATENDIMENTOS IN LOCO CONCLUÍDOS                     | | \n");
+    printf("| |                1. ATENDIMENTOS CONCLUIDOS                             | | \n"); 
+    printf("| |                2. ATENDIMENTOS IN LOCO CONCLUIDOS                     | | \n");
     printf("| |                3. ATENDIMENTOS PENDENTES                              | | \n"); 
     printf("| |                4. ATENDIMENTOS IN LOCO PENDENTES                      | | \n");
     printf("| |                0. VOLTAR                                              | | \n"); 
@@ -669,7 +667,7 @@ void filtros_planos(void)
     printf("| |                    |___________________________|                      | | \n");    
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                       FILTROS RELATÓRIO PLANOS                        | | \n");
+    printf("| |                       FILTROS RELATORIO PLANOS                        | | \n");
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n"); 
@@ -710,12 +708,12 @@ void filtros_func(void)
     printf("| |                    |___________________________|                      | | \n");    
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                   FILTROS RELATÓRIO FUNCIONÁRIOS                      | | \n");
+    printf("| |                   FILTROS RELATORIO FUNCIONARIOS                      | | \n");
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n");
-    printf("| |                1. TODOS OS FUNCIONÁRIOS                               | | \n"); 
-    printf("| |                2. FUNCIONÁRIO DO MÊS                                  | | \n");
+    printf("| |                1. TODOS OS FUNCIONARIOS                               | | \n"); 
+    printf("| |                2. FUNCIONARIO DO MES                                  | | \n");
     printf("| |                0. VOLTAR                                              | | \n"); 
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n"); 
@@ -749,12 +747,12 @@ void filtros_equipes(void)
     printf("| |                    |___________________________|                      | | \n");    
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                     FILTROS RELATÓRIO EQUIPES                         | | \n"); 
+    printf("| |                     FILTROS RELATORIO EQUIPES                         | | \n"); 
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n");  
     printf("| |                1. TODAS AS EQUIPES                                    | | \n"); 
-    printf("| |                2. EQUIPE DO MÊS                                       | | \n");
+    printf("| |                2. EQUIPE DO MES                                       | | \n");
     printf("| |                0. VOLTAR                                              | | \n");
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n"); 
@@ -777,7 +775,7 @@ void filtros_equipes(void)
     printf("\n");
 }
 
-//módulo relatórios
+//modulo relatorios
 
 void menu_sobre(void)
 {
@@ -787,8 +785,8 @@ void menu_sobre(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                               1. CRIAÇÃO                                 {]\n");
-    printf("{}                               2. INSTRUÇÕES                              {}\n");
+    printf("{}                               1. CRIACAO                                 {]\n");
+    printf("{}                               2. INSTRUCOES                              {}\n");
     printf("{}                               0. VOLTAR                                  {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
@@ -798,25 +796,25 @@ void menu_criacao(void)
 {
     printf("\n");
     printf(" ___________________________________________________________________________\n");
-    printf("|                                 CRIAÇÃO                                   |\n");
+    printf("|                                 CRIACAO                                   |\n");
     printf(" ---------------------------------------------------------------------------\n");
     printf("|                                                                           |\n");
     printf(")                                                                           (\n");
-    printf(")     O c_Computer é um sistema de gestão para empresa de manutenção de     (\n");
+    printf(")     O c_Computer e um sistema de gestao para empresa de manutencao de     (\n");
     printf(")   computadores. Esse sistema foi desenvolvido em linguagem C e projeta    (\n");
-    printf(")    o registro de clientes, atendimentos e funcionários e a emissão de     (\n");
-    printf(")                                relatórios                                 (\n");
+    printf(")    o registro de clientes, atendimentos e funcionarios e a emissao de     (\n");
+    printf(")                                relatorios                                 (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
-    printf(")     *Projeto submetido à avaliação institucional, possuindo valor         (\n");
-    printf(")     acadêmico  para o componente curricular DCT1106 - Programação         (\n");
-    printf(")         do curso Sistemas de Informação da Universidade Federal           (\n");
-    printf(")               do Rio Grande do Norte Campus Caicó (CERES).                (\n");
+    printf(")     *Projeto submetido a avaliacao institucional, possuindo valor         (\n");
+    printf(")     academico  para o componente curricular DCT1106 - Programacao         (\n");
+    printf(")         do curso Sistemas de Informacao da Universidade Federal           (\n");
+    printf(")               do Rio Grande do Norte Campus Caico (CERES).                (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")               Desenvolvido por: Giovanna Kailany de Melo                  (\n");
     printf(")               Colaboradores:                                              (\n");
-    printf(")               Referências:                                                (\n");
+    printf(")               Referencias:                                                (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
@@ -842,32 +840,55 @@ void menu_instrucoes(void)
 {
     printf("\n");
     printf("_____________________________________________________________________________\n");
-    printf("|                                INSTRUÇÕES                                 |\n");
+    printf("|                                INSTRUCOES                                 |\n");
     printf("-----------------------------------------------------------------------------\n");
     printf("|                                                                           |\n");
     printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
-    printf(")        19/08/2023.: TELA DE DESENVOLVIMENTO SIMULTÂNEO AO PROJETO         (\n");
+    printf(")        19/08/2023.: TELA DE DESENVOLVIMENTO SIMULTANEO AO PROJETO         (\n");
     printf(")                                                                           (\n");
     printf(")          Padronize uma forma de escrita;                                  (\n");//detalhar mais dps
     printf(")          Por ter quantidade de integrantes definida no cadastro de        (\n");
-    printf(")          equipe, só é possível trocar um integrante por outro             (\n");
-    printf(")          funcionário ou deletar a equipe inteira.                         (\n");
+    printf(")          equipe, so e possivel trocar um integrante por outro             (\n");
+    printf(")          funcionario ou deletar a equipe inteira;                         (\n");
     printf(")                                                                           (\n");    
     printf("|___________________________________________________________________________|\n");
 
 }
 
-// ADICIONAR A CADA MENU NO PROGRAMA PRINCIPAL DEPOIS DE TER PASSADO DA ETAPA DE NAVEGAÇÃO DOS MÓDULOS ANTES DA CHAMADA DO PADRAO_CRUD
+// ADICIONAR A CADA MENU NO PROGRAMA PRINCIPAL DEPOIS DE TER PASSADO DA ETAPA DE NAVEGACAO DOS MODULOS ANTES DA CHAMADA DO PADRAO_CRUD
 //    printf("\n");
 //    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
-//    printf("{}                               MENU ALL NAMES                             {}\n");
+//    printf("{}                              MENU CLIENTES PF                            {}\n");
+
+//    printf("\n");
+//    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+//    printf("{}                              MENU CLIENTES PJ                            {}\n");
+
+//    printf("\n");
+//    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+//    printf("{}                              MENU ATENDIMENTO                            {}\n");
+
+//    printf("\n");
+//    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+//    printf("{}                          MENU ATENDIMENTO IN LOCO                        {}\n");
+
+//    printf("\n");
+//    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+//    printf("{}                                MENU PLANOS                               {}\n");
+
+//    printf("\n");
+//    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+//    printf("{}                             MENU FUNCIONARIOS                            {}\n");
+
+//    printf("\n");
+//    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+//    printf("{}                               MENU EQUIPES                               {}\n");
 
 
 // Programa principal
 
 int main(void)
 {
-    setlocale(LC_ALL, "Portuguese_Brazil");
     menu_principal();
     menu_clientes();
     cadastro_pf();
