@@ -1,0 +1,29 @@
+////////////RELATORIOS/////////////
+
+void f_clientes(void); 
+void f_atendimentos(void); 
+void f_planos(void); 
+void f_funcionarios(void); 
+void f_equipes(void);
+char menu_relatorios(void);
+//FUNCOES
+void todos_clientes_pf (void);
+void todos_clientes_pj (void);
+void atendimentos_concluidos (void);
+void atendimentos_loco_concluidos (void);
+void atendimentos_pendentes (void);
+void atendimentos_loco_pendentes (void);
+void planos_semanais (void);
+void planos_mensais (void);
+void planos_anuais (void);
+void planos_vencidos (void);
+void todos_funcionarios (void);
+void funcionario_do_mes (void);
+void todas_equipes (void);
+void equipe_do_mes (void);
+//TELAS
+char filtros_clientes(void);
+char filtros_atendimentos(void);
+char filtros_planos(void);
+char filtros_func(void);
+char filtros_equipes(void);
