@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "op_modulo_pf.h"
+#include "op_modulo_cli.h"
 #include "op_modulo_equipes.h"
 //#include "utilidades.h"
 
@@ -15,7 +15,7 @@ void modulo_equipes(void)
         printf("\n");
         printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
         printf("{}                               MENU EQUIPES                               {}\n");
-		op3 = padrao_crud();  //ja declarado em op_modulo_pf
+		op3 = padrao_crud();  //ja declarado em op_modulo_cli
 		switch(op3) 
         {
 			case '1': 	

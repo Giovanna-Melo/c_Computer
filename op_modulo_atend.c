@@ -1,13 +1,14 @@
 
-////////////////////////////////MODULO ATENDL///////////////////////////////////
+/////////////////////////////////MODULO ATENDC///////////////////////////////////
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "op_modulo_pf.h"
-#include "op_modulo_atendl.h"
+#include "op_modulo_cli.h"
+#include "op_modulo_atend.h"
+#include "op_modulo_planos.h"
 //#include "utilidades.h"
 
-void modulo_atendl(void) 
+void modulo_atend(void) 
 {
 	char op3;
 	do 
@@ -15,55 +16,77 @@ void modulo_atendl(void)
         system("clear||cls");
         printf("\n");
         printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
-        printf("{}                          MENU ATENDIMENTO IN LOCO                        {}\n");
-		op3 = padrao_crud(); //ja declarado em op_modulo_pf
+        printf("{}                              MENU ATENDIMENTO                            {}\n");	
+		op3 = padrao_crud(); //ja declarado em op_modulo_cli
 		switch(op3) 
         {
 			case '1': 	
-            cadastro_atendl();
+            cadastro_atend();
             break;
 			case '2': 	
-            exibe_atendl();
+            exibe_atend();
             break;
 			case '3': 	
-            atualiza_atendl();
+            atualiza_atend();
             break;
 			case '4': 	
-            deleta_atendl();
+            deleta_atend();
             break;
 		} 		
 	} while (op3 != '0');
 }
 
+char menu_atendimentos(void)
+{
+    char op2;
+    system("clear||cls");
+    printf("\n");
+    printf("------------------------------------------------------------------------------\n");
+    printf("                                MENU ATENDIMENTOS                             \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                              1. ATENDIMENTO                              {}\n");
+    printf("{}                              2. PLANOS                                   {}\n");
+    printf("{}                              0. VOLTAR                                   {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
+    printf("Selecione o servico desejado, informando seu digito correspondente:");
+    scanf("%c", &op2);
+    getchar();
+    return op2;
+} 
+
 //FUNCOES EM DESENVOLVIMENTO
-void cadastro_atendl(void)
+void cadastro_atend(void)
 {
-    tela_cadastro_atendl();
+    tela_cadastro_atend();
 }
 
-void exibe_atendl(void)
+void exibe_atend(void)
 {
-    tela_exibe_atendl();
+    tela_exibe_atend();
 }
 
-void atualiza_atendl(void)
+void atualiza_atend(void)
 {
-    tela_atualiza_atendl();
+    tela_atualiza_atend();
 }
 
-void deleta_atendl(void)
+void deleta_atend(void)
 {
-    tela_deleta_atendl();
+    tela_deleta_atend();
 }
 
 //TELAS CRUD
-void tela_cadastro_atendl(void)
+void tela_cadastro_atend(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
     printf("                             CADASTRAR ATENDIMENTO                            \n");
-    printf("                                   IN LOCO                                    \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
@@ -73,38 +96,36 @@ void tela_cadastro_atendl(void)
     printf("{}                       Modelo:                                            {}\n");
     printf("{}                       Numero de serie:                                   {}\n");
     printf("{}                       Observacoes:                                       {}\n");
-    printf("{}                       Data de visita:                                    {}\n");
+    printf("{}                       Data entrega/visita:                               {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
 }
 
-void tela_exibe_atendl(void)
+void tela_exibe_atend(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
     printf("                               EXIBIR ATENDIMENTO                             \n");
-    printf("                                   IN LOCO                                    \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                    Digite o codigo de atendimento                        {}\n");
-    printf("{}                para exibir (situacao+CPF/CNPJ+ordem):                    {}\n");
+    printf("{}                 para exibir (situacao+CPF/CNPJ+ordem):                   {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
 }
 
-void tela_atualiza_atendl(void)
+void tela_atualiza_atend(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
     printf("                            ATUALIZAR ATENDIMENTO                             \n");
-    printf("                                   IN LOCO                                    \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
@@ -116,13 +137,12 @@ void tela_atualiza_atendl(void)
     getchar();
 }
 
-void tela_deleta_atendl(void)
+void tela_deleta_atend(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
     printf("                             DELETAR ATENDIMENTO                              \n");
-    printf("                                   IN LOCO                                    \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");

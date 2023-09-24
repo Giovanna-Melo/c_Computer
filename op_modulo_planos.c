@@ -1,8 +1,8 @@
 ////////////////////////////////MODULO PLANOS///////////////////////////////////
-
+///////////////////////////MODULO EM DESENVOLVIMENTO////////////////////////////
 #include <stdio.h>
 #include <stdlib.h>
-#include "op_modulo_pf.h"
+#include "op_modulo_cli.h"
 #include "op_modulo_planos.h"
 //#include "utilidades.h"
 
@@ -15,7 +15,8 @@ void modulo_planos(void)
         printf("\n");
         printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
         printf("{}                                MENU PLANOS                               {}\n");
-		op3 = padrao_crud(); //ja declarado em op_modulo_pf
+        printf("{}                            EM DESENVOLVIMENTO                            {}\n");
+		op3 = padrao_crud(); //ja declarado em op_modulo_cli
 		switch(op3) 
         {
 			case '1': 	
@@ -60,6 +61,39 @@ void tela_cadastro_planos(void)
 {
     system("clear||cls");
     printf("\n");
+    printf("_____________________________________________________________________________\n");
+    printf("|                                 EM BREVE...                               |\n");
+    printf("-----------------------------------------------------------------------------\n");
+    printf("|                                                                           |\n");
+    printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
+    printf(")          23/09/2023.: MODULO EM DESENVOLVIMENTO, PASSIVO DE               (\n");
+    printf(")            FINALIZACAO POS ENTREGA ACADEMICA DE PROJETO,                  (\n");
+    printf(")          VISTO QUE EXCEDE A QUANTIDADE DE MODULOS PROPOSTA                (\n");
+    printf(")       E REPRESENTA UM AGRAVANTE PARA NAO CUMPRIMENTO DE ENTREGAS          (\n");
+    printf(")                                 NO PRAZO.                                 (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                           __________________________                      (\n");
+    printf(")                          |    __________________    |                     (\n");
+    printf(")                          |   | ****  ******** **|   |                     (\n");
+    printf(")                          |   | @*************   |   |                     (\n");
+    printf(")                          |   |        !         |   |                     (\n");
+    printf(")                          |   |--------O---------|   |                     (\n");
+    printf(")                          |__________________________|                     (\n");
+    printf(")                                      |   |                                (\n");
+    printf("|                                     /     \\                               |\n");
+    printf("_____________________________________________________________________________\n");
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
+/*void tela_cadastro_planos(void)
+{
+    system("clear||cls");
+    printf("\n");
     printf("------------------------------------------------------------------------------\n");
     printf("                               CADASTRAR PLANOS                               \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
@@ -76,10 +110,43 @@ void tela_cadastro_planos(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
-}
+}*/
 //Se anual data para visita marcar dia e mes, se mensal marcar dia, se semanal escrever o dia da semana  INSTRUCAO
 
 void tela_exibe_planos(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("_____________________________________________________________________________\n");
+    printf("|                                 EM BREVE...                               |\n");
+    printf("-----------------------------------------------------------------------------\n");
+    printf("|                                                                           |\n");
+    printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
+    printf(")          23/09/2023.: MODULO EM DESENVOLVIMENTO, PASSIVO DE               (\n");
+    printf(")            FINALIZACAO POS ENTREGA ACADEMICA DE PROJETO,                  (\n");
+    printf(")          VISTO QUE EXCEDE A QUANTIDADE DE MODULOS PROPOSTA                (\n");
+    printf(")       E REPRESENTA UM AGRAVANTE PARA NAO CUMPRIMENTO DE ENTREGAS          (\n");
+    printf(")                                 NO PRAZO.                                 (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                           __________________________                      (\n");
+    printf(")                          |    __________________    |                     (\n");
+    printf(")                          |   | ****  ******** **|   |                     (\n");
+    printf(")                          |   | @*************   |   |                     (\n");
+    printf(")                          |   |        !         |   |                     (\n");
+    printf(")                          |   |--------O---------|   |                     (\n");
+    printf(")                          |__________________________|                     (\n");
+    printf(")                                      |   |                                (\n");
+    printf("|                                     /     \\                               |\n");
+    printf("_____________________________________________________________________________\n");
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
+/*void tela_exibe_planos(void)
 {
     system("clear||cls");
     printf("\n");
@@ -94,9 +161,42 @@ void tela_exibe_planos(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
-}
+}*/
 
 void tela_atualiza_planos(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("_____________________________________________________________________________\n");
+    printf("|                                 EM BREVE...                               |\n");
+    printf("-----------------------------------------------------------------------------\n");
+    printf("|                                                                           |\n");
+    printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
+    printf(")          23/09/2023.: MODULO EM DESENVOLVIMENTO, PASSIVO DE               (\n");
+    printf(")            FINALIZACAO POS ENTREGA ACADEMICA DE PROJETO,                  (\n");
+    printf(")          VISTO QUE EXCEDE A QUANTIDADE DE MODULOS PROPOSTA                (\n");
+    printf(")       E REPRESENTA UM AGRAVANTE PARA NAO CUMPRIMENTO DE ENTREGAS          (\n");
+    printf(")                                 NO PRAZO.                                 (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                           __________________________                      (\n");
+    printf(")                          |    __________________    |                     (\n");
+    printf(")                          |   | ****  ******** **|   |                     (\n");
+    printf(")                          |   | @*************   |   |                     (\n");
+    printf(")                          |   |        !         |   |                     (\n");
+    printf(")                          |   |--------O---------|   |                     (\n");
+    printf(")                          |__________________________|                     (\n");
+    printf(")                                      |   |                                (\n");
+    printf("|                                     /     \\                               |\n");
+    printf("_____________________________________________________________________________\n");
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
+/*void tela_atualiza_planos(void)
 {
     system("clear||cls");
     printf("\n");
@@ -111,9 +211,42 @@ void tela_atualiza_planos(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
-}
+}*/
 
 void tela_deleta_planos(void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("_____________________________________________________________________________\n");
+    printf("|                                 EM BREVE...                               |\n");
+    printf("-----------------------------------------------------------------------------\n");
+    printf("|                                                                           |\n");
+    printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
+    printf(")          23/09/2023.: MODULO EM DESENVOLVIMENTO, PASSIVO DE               (\n");
+    printf(")            FINALIZACAO POS ENTREGA ACADEMICA DE PROJETO,                  (\n");
+    printf(")          VISTO QUE EXCEDE A QUANTIDADE DE MODULOS PROPOSTA                (\n");
+    printf(")       E REPRESENTA UM AGRAVANTE PARA NAO CUMPRIMENTO DE ENTREGAS          (\n");
+    printf(")                                 NO PRAZO.                                 (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                           __________________________                      (\n");
+    printf(")                          |    __________________    |                     (\n");
+    printf(")                          |   | ****  ******** **|   |                     (\n");
+    printf(")                          |   | @*************   |   |                     (\n");
+    printf(")                          |   |        !         |   |                     (\n");
+    printf(")                          |   |--------O---------|   |                     (\n");
+    printf(")                          |__________________________|                     (\n");
+    printf(")                                      |   |                                (\n");
+    printf("|                                     /     \\                               |\n");
+    printf("_____________________________________________________________________________\n");
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
+/*void tela_deleta_planos(void)
 {
     system("clear||cls");
     printf("\n");
@@ -128,4 +261,4 @@ void tela_deleta_planos(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
-}
+}*/

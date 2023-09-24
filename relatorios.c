@@ -35,15 +35,8 @@ void f_atendimentos(void)
             atendimentos_concluidos();
             break;
 			case '2': 
-            atendimentos_loco_concluidos();
-            break;
-            case '3': 	
             atendimentos_pendentes();
-            break;
-            case '4': 	
-            atendimentos_loco_pendentes();
-            break;
-            
+            break;            
 		} 		
 	} while (op3 != '0');
 }
@@ -159,14 +152,7 @@ void atendimentos_concluidos (void)
     printf("Tecle ENTER para continuar");
     getchar();
 }
-void atendimentos_loco_concluidos (void)
-{
-    system("clear||cls");
-    printf("\n");	
-    printf("ATENDIMENTOS IN LOCO CONCLUIDOS\n");
-    printf("Tecle ENTER para continuar");
-    getchar();
-}
+
 void atendimentos_pendentes (void)
 {	
     system("clear||cls");
@@ -175,45 +161,75 @@ void atendimentos_pendentes (void)
     printf("Tecle ENTER para continuar");
     getchar();
 }
-void atendimentos_loco_pendentes (void)
+
+void em_desenvolvimento (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("ATENDIMENTOS IN LOCO PENDENTES\n");
+    printf("_____________________________________________________________________________\n");
+    printf("|                                 EM BREVE...                               |\n");
+    printf("-----------------------------------------------------------------------------\n");
+    printf("|                                                                           |\n");
+    printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
+    printf(")          23/09/2023.: MODULO EM DESENVOLVIMENTO, PASSIVO DE               (\n");
+    printf(")            FINALIZACAO POS ENTREGA ACADEMICA DE PROJETO,                  (\n");
+    printf(")          VISTO QUE EXCEDE A QUANTIDADE DE MODULOS PROPOSTA                (\n");
+    printf(")       E REPRESENTA UM AGRAVANTE PARA NAO CUMPRIMENTO DE ENTREGAS          (\n");
+    printf(")                                 NO PRAZO.                                 (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                                                                           (\n");
+    printf(")                           __________________________                      (\n");
+    printf(")                          |    __________________    |                     (\n");
+    printf(")                          |   | ****  ******** **|   |                     (\n");
+    printf(")                          |   | @*************   |   |                     (\n");
+    printf(")                          |   |        !         |   |                     (\n");
+    printf(")                          |   |--------O---------|   |                     (\n");
+    printf(")                          |__________________________|                     (\n");
+    printf(")                                      |   |                                (\n");
+    printf("|                                     /     \\                               |\n");
+    printf("_____________________________________________________________________________\n");
     printf("Tecle ENTER para continuar");
     getchar();
 }
+
 void planos_semanais (void)
 {
-    system("clear||cls");
+    em_desenvolvimento();
+    /*system("clear||cls");
     printf("\n");
     printf("PLANOS SEMANAIS\n");
     printf("Tecle ENTER para continuar");
-    getchar();
+    getchar();*/
 }
 void planos_mensais (void)
 {	
-    system("clear||cls");
+    em_desenvolvimento ();
+    /*system("clear||cls");
     printf("\n");
     printf("PLANOS MENSAIS\n");
     printf("Tecle ENTER para continuar");
-    getchar();
+    getchar();*/
 }
 void planos_anuais (void)
 {	
-    system("clear||cls");
+    em_desenvolvimento();
+    /*system("clear||cls");
     printf("\n");
     printf("PLANOS ANUAIS\n");
     printf("Tecle ENTER para continuar");
-    getchar();
+    getchar();*/
 }
 void planos_vencidos (void)
 {
-    system("clear||cls");
+    em_desenvolvimento();
+    /*system("clear||cls");
     printf("\n");
     printf("PLANOS VENCIDOS\n");
     printf("Tecle ENTER para continuar");
-    getchar();
+    getchar();*/
 }
 void todos_funcionarios (void)
 {
@@ -312,9 +328,7 @@ char filtros_atendimentos(void)
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
     printf("| |                1. ATENDIMENTOS CONCLUIDOS                             | | \n"); 
-    printf("| |                2. ATENDIMENTOS IN LOCO CONCLUIDOS                     | | \n");
-    printf("| |                3. ATENDIMENTOS PENDENTES                              | | \n"); 
-    printf("| |                4. ATENDIMENTOS IN LOCO PENDENTES                      | | \n");
+    printf("| |                2. ATENDIMENTOS PENDENTES                              | | \n"); 
     printf("| |                0. VOLTAR                                              | | \n"); 
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n");
@@ -358,7 +372,7 @@ char filtros_planos(void)
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n"); 
     printf("| |                1. PLANOS SEMANAIS                                     | | \n"); 
-    printf("| |                2. PLLANOS MENSAIS                                     | | \n");
+    printf("| |                2. PLANOS MENSAIS                                      | | \n");
     printf("| |                3. PLANOS ANUAIS                                       | | \n"); 
     printf("| |                4. PLANOS VENCIDOS                                     | | \n");
     printf("| |                0. VOLTAR                                              | | \n");

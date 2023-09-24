@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "op_modulo_pf.h"
-#include "op_modulo_pj.h"
-#include "op_modulo_atendc.h"
-#include "op_modulo_atendl.h"
+#include "op_modulo_cli.h"
+#include "op_modulo_atend.h"
 #include "op_modulo_planos.h"
 #include "op_modulo_func.h"
 #include "op_modulo_equipes.h"
@@ -152,10 +150,7 @@ void op_clientes(void)
 		switch(op2) 
         {
 			case '1':
-            modulo_pf();
-			break;
-			case '2': 	
-            modulo_pj();
+            modulo_cli();
 			break;
 		} 		
 	} while (op2 != '0');
@@ -171,14 +166,11 @@ void op_atendimentos(void)
 		switch(op2) 
         {
 			case '1': 
-            modulo_atendc();
+            modulo_atend();
 			break;
 			case '2': 
-            modulo_atendl();
-			break;
-            case '3':
             modulo_planos();
-            break;
+			break;
 		} 		
 	} while (op2 != '0');
 }
@@ -262,24 +254,24 @@ int main(void)
 	do 
     {
 		op1 = menu_principal();
-		switch(op1) 
+        switch(op1) 
         {
-			case '1': 	
+            case '1': 	
             op_clientes();
             break;
-			case '2': 	
+            case '2': 	
             op_atendimentos();
             break;
-			case '3': 	
+            case '3': 	
             op_funcionarios();
             break;
-			case '4': 	
+            case '4': 	
             op_relatorios();
             break;
-			case '5': 	
+            case '5': 	
             op_sobre();
             break;
-		} 		
+        }
 	} while (op1 != '0');
     printf("Ate logo!");
     return 0;

@@ -1,56 +1,51 @@
 
-/////////////////////////////////MODULO ATENDC///////////////////////////////////
+/////////////////////////////////MODULO PF///////////////////////////////////
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "op_modulo_pf.h"
-#include "op_modulo_atendc.h"
-#include "op_modulo_atendl.h"
-#include "op_modulo_planos.h"
+#include "op_modulo_cli.h"
 //#include "utilidades.h"
 
-void modulo_atendc(void) 
+void modulo_cli(void) 
 {
 	char op3;
 	do 
     {
-        system("clear||cls");
+        system("clear||cls"); 
         printf("\n");
         printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
-        printf("{}                              MENU ATENDIMENTO                            {}\n");	
-		op3 = padrao_crud(); //ja declarado em op_modulo_pf
+        printf("{}                               MENU CLIENTES                              {}\n");	
+		op3 = padrao_crud();
 		switch(op3) 
         {
 			case '1': 	
-            cadastro_atendc();
+            cadastro_cli();
             break;
 			case '2': 	
-            exibe_atendc();
+            exibe_cli();
             break;
 			case '3': 	
-            atualiza_atendc();
+            atualiza_cli();
             break;
 			case '4': 	
-            deleta_atendc();
+            deleta_cli();
             break;
 		} 		
 	} while (op3 != '0');
 }
 
-char menu_atendimentos(void)
+char menu_clientes(void)
 {
     char op2;
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                                MENU ATENDIMENTOS                             \n");
+    printf("                                 MENU CLIENTES                                \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                              1. ATENDIMENTO                              {}\n");
-    printf("{}                              2. ATENDIMENTO IN LOCO                      {}\n");
-    printf("{}                              3. PLANOS                                   {}\n");
+    printf("{}                              1. CLIENTES                                 {}\n");
     printf("{}                              0. VOLTAR                                   {}\n");
     printf("{}                                                                          {}\n");
     printf("{}                                                                          {}\n");
@@ -59,97 +54,114 @@ char menu_atendimentos(void)
     scanf("%c", &op2);
     getchar();
     return op2;
-} 
+}
+
+char padrao_crud(void)
+{
+    char op3;
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                              1. CADASTRAR                                {}\n");
+    printf("{}                              2. EXIBIR                                   {}\n");
+    printf("{}                              3. ATUALIZAR                                {}\n");
+    printf("{}                              4. DELETAR                                  {}\n");
+    printf("{}                              0. VOLTAR                                   {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}                                                                          {}\n");
+    printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
+    printf("Selecione o servico desejado, informando seu digito correspondente:");
+    scanf("%c", &op3);
+    getchar();
+    return op3;
+
+}
 
 //FUNCOES EM DESENVOLVIMENTO
-void cadastro_atendc(void)
+void cadastro_cli(void)
 {
-    tela_cadastro_atendc();
+    tela_cadastro_cli();
 }
 
-void exibe_atendc(void)
+void exibe_cli(void)
 {
-    tela_exibe_atendc();
+    tela_exibe_cli();
 }
 
-void atualiza_atendc(void)
+void atualiza_cli(void)
 {
-    tela_atualiza_atendc();
+    tela_atualiza_cli();
 }
 
-void deleta_atendc(void)
+void deleta_cli(void)
 {
-    tela_deleta_atendc();
+    tela_deleta_cli();
 }
 
 //TELAS CRUD
-void tela_cadastro_atendc(void)
+void tela_cadastro_cli(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                             CADASTRAR ATENDIMENTO                            \n");
+    printf("                              CADASTRAR CLIENTES                              \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       CPF (somente numeros):                             {}\n");
-    printf("{}                       Nome do equipamento:                               {}\n");
-    printf("{}                       Marca:                                             {}\n");
-    printf("{}                       Modelo:                                            {}\n");
-    printf("{}                       Numero de serie:                                   {}\n");
-    printf("{}                       Observacoes:                                       {}\n");
-    printf("{}                       Previsao de entrega:                               {}\n");
+    printf("{}                       Nome:                                              {}\n");
+    printf("{}                       Tipo (PF/PJ):                                      {}\n");
+    printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
+    printf("{}                       E-mail:                                            {}\n");
+    printf("{}                       Telefone (somente numeros):                        {}\n");
+    printf("{}                       Endereco:                                          {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
 }
 
-void tela_exibe_atendc(void)
+void tela_exibe_cli(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                               EXIBIR ATENDIMENTO                             \n");
+    printf("                                EXIBIR CLIENTES                               \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o codigo de atendimento                        {}\n");
-    printf("{}                   para exibir (situaaco+CPF+ordem):                      {}\n");
+    printf("{}                  Digite o CPF/CNPJ (somente numeros):                    {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
 }
 
-void tela_atualiza_atendc(void)
+void tela_atualiza_cli(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                            ATUALIZAR ATENDIMENTO                             \n");
+    printf("                             ATUALIZAR CLIENTES                               \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o codigo de atendimento                        {}\n");
-    printf("{}               para atualizar (situacao+CPF/CNPJ+ordem):                  {}\n");
+    printf("{}                  Digite o CPF/CNPJ (somente numeros):                    {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
 }
 
-void tela_deleta_atendc(void)
+void tela_deleta_cli(void)
 {
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                             DELETAR ATENDIMENTO                              \n");
+    printf("                              DELETAR CLIENTES                                \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                    Digite o codigo de atendimento                        {}\n");
-    printf("{}                  para deletar (periodicidade+CPF/CNPJ):                  {}\n");
+    printf("{}                  Digite o CPF/CNPJ (somente numeros):                    {}\n");
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
