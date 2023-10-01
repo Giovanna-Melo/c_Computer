@@ -2,9 +2,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "op_modulo_cli.h"
 #include "op_modulo_equipes.h"
-//#include "utilidades.h"
+#include "utilidades.h"
 
 void modulo_equipes(void) 
 {
@@ -58,6 +59,14 @@ void deleta_equipe(void)
 //TELAS CRUD
 void tela_cadastro_equipe(void)
 {
+    char equipe[13];
+    char quant_part[4];
+    char qpc[4];
+    int qp = 0;
+    char nome[52];
+    //int count = 0;
+    char cpf[13];
+
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -65,17 +74,62 @@ void tela_cadastro_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       Equipe:                                            {}\n");
-    printf("{}                       Quantidade de participantes:                       {}\n");
+    le_equipe(equipe);
+    le_quant_part(quant_part);
+    strncpy(qpc, &quant_part[0], 2);
+    sscanf(qpc, "%d", &qp);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
+    printf("Equipe: %s\n", equipe);
+    printf("Quantidade de participantes: %s\n\n", quant_part);
+    for (int i = 0; i < qp; i++) 
+    {
+    le_nome(nome); //JA DECLARADO NO OP_MODULO_CLI
+    le_cpf(cpf);
+    printf("Nome: %s\n", nome);
+    printf("CPF: %s\n\n", cpf);
+    }
     printf("Tecle ENTER para continuar");
     getchar();
 }
 // fazer o scanf da quantidade para solicitar o nome e o cpf de tantos func
 
+void le_equipe(char* equipe) 
+{
+    printf("{}                       Equipe:                                            {}\n");
+    fgets(equipe, 13, stdin);
+    while (!valida_nome(equipe)) //em utilidades
+    {
+        printf("{}                       Informe a equipe novamente:                        {}\n");
+        fgets(equipe, 13, stdin);
+    } 
+}
+
+void le_quant_part(char* quant_part) 
+{
+    printf("{}                       Quantidade de participantes:                       {}\n");
+    fgets(quant_part, 4, stdin);
+    while (!valida_strnum(quant_part)) //em utilidades
+    {
+        printf("{}                       Informe a quantidade de participantes novamente:   {}\n");
+        fgets(quant_part, 4, stdin);
+    } 
+}
+
+void le_cpf(char* cpf)
+{
+    printf("{}                       CPF (somente numeros):                             {}\n");
+    fgets(cpf, 13, stdin);
+    while (!valida_cpf(cpf)) //em utilidades
+    {
+        printf("{}                       Informe o CPF novamente:                           {}\n");
+        fgets(cpf, 13, stdin);
+    } 
+}
+
 void tela_exibe_equipe(void)
 {
+    char equipe[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -83,7 +137,7 @@ void tela_exibe_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                                  Equipe:                                 {}\n");
+    le_equipe(equipe);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -92,6 +146,8 @@ void tela_exibe_equipe(void)
 
 void tela_atualiza_equipe(void)
 {
+    char equipe[13];
+    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -99,9 +155,11 @@ void tela_atualiza_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}          Equipe:                                                         {}\n");
-    printf("{}          Digite o CPF do atual integrante (somente numeros):             {}\n");
-    printf("{}          Digite o CPF do novo integrante (somente numeros):              {}\n");
+    le_equipe(equipe);
+    printf("{}                            Atual integrante:                             {}\n");
+    le_cpf(cpf);
+    printf("{}                            Novo integrante:                             {}\n");
+    le_cpf(cpf);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -110,6 +168,7 @@ void tela_atualiza_equipe(void)
 
 void tela_deleta_equipe(void)
 {
+    char equipe[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -117,7 +176,7 @@ void tela_deleta_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                                 Equipe:                                  {}\n");
+    le_equipe(equipe);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");

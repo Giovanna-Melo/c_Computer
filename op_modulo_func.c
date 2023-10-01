@@ -6,7 +6,7 @@
 #include "op_modulo_cli.h"
 #include "op_modulo_func.h"
 #include "op_modulo_equipes.h"
-//#include "utilidades.h"
+#include "utilidades.h"
 
 void modulo_func(void) 
 {
@@ -84,6 +84,13 @@ void deleta_func(void)
 //TELAS CRUD
 void tela_cadastro_func(void)
 {
+    char nome[52]; //DECLARADO EM OP_MODULO_CLI
+    char cpf[13]; //DECLARADO EM MODULO_OP_EQUIPES
+    char email[258]; //DECLARADO EM OP_MODULO_CLI
+    char telefone[13]; //DECLARADO EM OP_MODULO_CLI
+    char endereco[102]; //DECLARADO EM OP_MODULO_CLI
+    char profissao[52];
+    char salario[8];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -91,29 +98,60 @@ void tela_cadastro_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       Nome:                                              {}\n");
-    printf("{}                       CPF (somente numeros):                             {}\n");
-    printf("{}                       E-mail:                                            {}\n");
-    printf("{}                       Telefone (somente numeros):                        {}\n");
-    printf("{}                       Endereco:                                          {}\n");
-    printf("{}                       Profissao:                                         {}\n");
-    printf("{}                       Salario:                                           {}\n");
+    le_nome(nome);
+    le_cpf(cpf);
+    le_email(email);
+    le_telefone(telefone);
+    le_endereco(endereco);
+    le_profissao(profissao);
+    le_salario(salario);
+    //int count = 0;
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
+    printf("Nome: %s\n", nome);
+    printf("CPF: %s\n", cpf);
+    printf("Email: %s\n", email);
+    printf("Telefone: %s\n", telefone);
+    printf("Endereco: %s\n", endereco);
+    printf("Profissao: %s\n", profissao);
+    printf("Salario: %s\n", salario);
     printf("Tecle ENTER para continuar");
     getchar();
 }
 
+void le_profissao(char* profissao) 
+{
+    printf("{}                       Profissao:                                         {}\n");
+    fgets(profissao, 52, stdin);
+    while (!valida_nome(profissao)) //em utilidades
+    {
+        printf("{}                       Informe a profissao novamente:                     {}\n");
+        fgets(profissao, 52, stdin);
+    } 
+}
+
+void le_salario(char* salario) 
+{
+    printf("{}                       Salario:                                           {}\n");
+    fgets(salario, 8, stdin);
+    while (!valida_strnum(salario)) //em utilidades
+    {
+        printf("{}                       Informe o salario novamente:                       {}\n");
+        fgets(salario, 8, stdin);
+    } 
+}
+
 void tela_exibe_func(void)
 {
+    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
-    printf("                               EXIBIR FUNCIONaRIO                             \n");
+    printf("                               EXIBIR FUNCIONARIO                             \n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
+    le_cpf(cpf);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -122,6 +160,7 @@ void tela_exibe_func(void)
 
 void tela_atualiza_func(void)
 {
+    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -129,7 +168,7 @@ void tela_atualiza_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
+    le_cpf(cpf);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -138,6 +177,7 @@ void tela_atualiza_func(void)
 
 void tela_deleta_func(void)
 {
+    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -145,7 +185,7 @@ void tela_deleta_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                     Digite o CPF (somente numeros):                      {}\n");
+    le_cpf(cpf);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");

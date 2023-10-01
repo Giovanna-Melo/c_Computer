@@ -3,8 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "op_modulo_cli.h"
-//#include "utilidades.h"
+#include "utilidades.h"
 
 void modulo_cli(void) 
 {
@@ -101,6 +102,13 @@ void deleta_cli(void)
 //TELAS CRUD
 void tela_cadastro_cli(void)
 {
+    char nome[52];
+    char tipo[4];
+    char cpf_cnpj[16];
+    char email[258];
+    char telefone[13];
+    char endereco[102];
+  
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -108,20 +116,93 @@ void tela_cadastro_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                       Nome:                                              {}\n");
-    printf("{}                       Tipo (PF/PJ):                                      {}\n");
-    printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
-    printf("{}                       E-mail:                                            {}\n");
-    printf("{}                       Telefone (somente numeros):                        {}\n");
-    printf("{}                       Endereco:                                          {}\n");
+    le_nome(nome);
+    le_tipo(tipo);
+    le_cpf_cnpj(cpf_cnpj);
+    le_email(email);
+    le_telefone(telefone);
+    le_endereco(endereco);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
+    printf("Nome: %s\n", nome);
+    printf("Tipo: %s\n", tipo);
+    printf("CPF/CNPJ: %s\n", cpf_cnpj);
+    printf("Email: %s\n", email);
+    printf("Telefone: %s\n", telefone);
+    printf("Endereco: %s\n", endereco);
     printf("Tecle ENTER para continuar");
     getchar();
 }
 
+void le_nome(char* nome) 
+{
+    printf("{}                       Nome:                                              {}\n");
+    fgets(nome, 52, stdin);
+    while (!valida_nome(nome)) //em utilidades
+    {
+        printf("{}                       Informe o nome novamente:                          {}\n");
+        fgets(nome, 52, stdin);
+    } 
+}
+
+void le_tipo(char* tipo) 
+{
+    printf("{}                       Tipo (PF/PJ):                                      {}\n");
+    fgets(tipo, 4, stdin);
+    while (!valida_tipo(tipo)) //em utilidades
+    {
+        printf("{}                       Informe o tipo novamente:                          {}\n");
+        fgets(tipo, 4, stdin);
+    } 
+}
+
+void le_cpf_cnpj(char* cpf_cnpj)
+{
+    printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
+    fgets(cpf_cnpj, 16, stdin);
+    while (!valida_cpf_cnpj(cpf_cnpj)) //em utilidades
+    {
+        printf("{}                       Informe o CPF/CNPJ novamente:                      {}\n");
+        fgets(cpf_cnpj, 16, stdin);
+    } 
+}
+
+void le_email(char* email) 
+{
+    printf("{}                       E-mail:                                            {}\n");
+    fgets(email, 258, stdin);
+    while (!valida_email(email)) //em utilidades
+    {
+        printf("{}                       Informe o email novamente:                          {}\n");
+        fgets(email, 258, stdin);
+    } 
+}
+
+void le_telefone(char* telefone) 
+{
+    printf("{}                       Telefone (somente numeros):                        {}\n");
+    fgets(telefone, 13, stdin);
+    while (!valida_tel(telefone)) //em utilidades
+    {
+        printf("{}                       Informe o telefone novamente:                      {}\n");
+        fgets(telefone, 13, stdin);
+    } 
+}
+
+void le_endereco(char* endereco) 
+{
+    printf("{}                       Endereco:                                          {}\n");
+    fgets(endereco, 102, stdin);
+    while (!valida_endereco(endereco)) //em utilidades
+    {
+        printf("{}                       Informe o endereco novamente:                      {}\n");
+        fgets(endereco, 102, stdin);
+    } 
+}
+
 void tela_exibe_cli(void)
 {
+    char cpf_cnpj[16];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -129,7 +210,7 @@ void tela_exibe_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                  Digite o CPF/CNPJ (somente numeros):                    {}\n");
+    le_cpf_cnpj(cpf_cnpj);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -138,6 +219,7 @@ void tela_exibe_cli(void)
 
 void tela_atualiza_cli(void)
 {
+    char cpf_cnpj[16];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -145,7 +227,7 @@ void tela_atualiza_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                  Digite o CPF/CNPJ (somente numeros):                    {}\n");
+    le_cpf_cnpj(cpf_cnpj);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -154,6 +236,7 @@ void tela_atualiza_cli(void)
 
 void tela_deleta_cli(void)
 {
+    char cpf_cnpj[16];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -161,7 +244,7 @@ void tela_deleta_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    printf("{}                  Digite o CPF/CNPJ (somente numeros):                    {}\n");
+    le_cpf_cnpj(cpf_cnpj);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");

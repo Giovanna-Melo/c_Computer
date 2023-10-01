@@ -1,7 +1,22 @@
 ////////////UTILIDADES/////////////
 //FUNCOES EM DESENVOLVIMENTO
-void valida_cpf(void);
-void valida_cnpj(void);
-void valida_email(void);
-void valida_tel(void);
-void valida_data(void);
+int valida_nome(char* nome);
+int eh_letra(char c);
+int eh_bissexto(int aa);
+int valida_data(int dd, int mm, int aa);
+
+int valida_cpf(char* cpf);
+int valida_cpf_cnpj(char* cpf_cnpj);
+int valida_tipo(char* tipo);
+int valida_email(char* email);
+int valida_tel(char* telefone);
+int valida_endereco(char* endereco);
+
+int valida_alphanum(char* nome_eqp);
+int valida_nao_vazio(char* observacoes);
+int valida_situacao(char* situacao);
+int valida_strnum(char* salario);
+int valida_cdaten(char* cod_atend);
+int eh_num(char c);
+int eh_alphanum(char c);
+int valida_existe(char* responsavel);
