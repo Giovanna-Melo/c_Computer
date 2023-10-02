@@ -189,7 +189,7 @@ void le_data(char* data)
     int dia, mes, ano;
     char dd[3], mm[3], aa[5];
     
-        printf("{}                       Data entrega/visita (dd/mm/aaaa):                      {}\n");
+        printf("{}                       Data entrega/visita (dd/mm/aaaa):                     {}\n");
     fgets(data, 12, stdin);
     
     strncpy(dd, &data[0], 2);

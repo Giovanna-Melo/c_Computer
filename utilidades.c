@@ -4,7 +4,7 @@
 #include <string.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-// faltando 6
+// faltando 5
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -150,7 +150,14 @@ int valida_alphanum(char* nome_eqp)
 
 int valida_nao_vazio(char* observacoes)
 {
-  return 1;
+  int tam;
+  
+  tam = strlen(observacoes);
+  if (tam <= 1) {
+    return 0;
+  } else {
+    return 1;
+  }
 }
 
 int valida_situacao(char* situacao)
