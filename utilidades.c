@@ -4,7 +4,7 @@
 #include <string.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-// faltando 9
+// faltando 8
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -115,12 +115,30 @@ int valida_data(int dd, int mm, int aa) {
 
 int eh_alphanum(char c) 
 {
-  return 1;
+  if (c >= 'A' && c <= 'Z') {
+    return 1;
+  } else if (c >= 'a' && c <= 'z') {
+    return 1;
+  } else if (c >= '0' && c <= '9') {
+    return 1;
+  } else if (c == 13) {
+    return 1;
+  } else {
+    return 0;
+  } 
 }
 
 int valida_alphanum(char* nome_eqp)
 {
-  return 1;
+  int tam;
+  
+  tam = strlen(nome_eqp);
+  for (int i = 0; i < tam-1; i++) {
+    if (!eh_alphanum(nome_eqp[i])) {
+      return 0;
+    }
+  }
+  return 1; 
 }
 
 int valida_nao_vazio(char* observacoes)

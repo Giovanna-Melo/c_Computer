@@ -189,7 +189,7 @@ void le_data(char* data)
     int dia, mes, ano;
     char dd[3], mm[3], aa[5];
     
-    printf("{}                       Data entrega/visita:                               {}\n");
+        printf("{}                       Data entrega/visita (dd/mm/aaaa):                      {}\n");
     fgets(data, 12, stdin);
     
     strncpy(dd, &data[0], 2);
@@ -203,8 +203,8 @@ void le_data(char* data)
 
     while (!valida_data(dia, mes, ano)) {
         printf("Data invalida: %d/%d/%d\n", dia, mes, ano);
-        printf("{}                       Informe novamente a data entrega/visita:            {}\n\n");
-        fgets(data, 11, stdin);
+    printf("{}                       Informe novamente a data entrega/visita:            {}\n\n");
+        fgets(data, 12, stdin);
         strncpy(dd, &data[0], 2);
         sscanf(dd, "%d", &dia);
         strncpy(mm, &data[3], 2);
@@ -218,7 +218,7 @@ void le_responsavel(char* responsavel)
 {
     printf("{}                       Funcionario (CPF)/equipe responsavel:              {}\n");
     fgets(responsavel, 13, stdin);
-    while (!valida_existe(responsavel)) //em utilidades // escrever nas orientacoes q a equipe deve ser unico e ter apenas caracteres alfabeticos de ate 11 digitos
+    while (!valida_existe(responsavel)) //em utilidades // escrever nas orientacoes q a equipe deve ser unico e ter apenas caracteres alfabeticos de ate 11 digitos e sem acentuacao como tudo no programa
     {
         printf("{}                       Informe o responsavel novamente:                   {}\n");
         fgets(responsavel, 13, stdin);
