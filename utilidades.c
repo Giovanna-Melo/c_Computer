@@ -45,7 +45,17 @@ int valida_cpf(char* cpf)
 
 int valida_tipo(char* tipo)
 {
-  return 1;
+    char s_one []= "PF\n";
+    char s_two []= "PJ\n";
+    int result_one = strcmp(tipo,s_one);
+    int result_two = strcmp(tipo,s_two); 
+  if (result_one == 0) {
+    return 1;
+  } else if (result_two == 0) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 int valida_email(char* email)
