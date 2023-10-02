@@ -4,7 +4,7 @@
 #include <string.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-// faltando 8
+// faltando 6
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -65,7 +65,14 @@ int valida_email(char* email)
 
 int valida_tel(char* telefone)
 {
-  return 1; 
+  int tam;
+  
+  tam = strlen(telefone);
+  if (!valida_strnum(telefone) || tam!=12) {
+    return 0;
+  } else {
+    return 1; 
+  }
 }
 
 int valida_endereco(char* endereco)
