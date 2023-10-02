@@ -85,7 +85,7 @@ void deleta_func(void)
 void tela_cadastro_func(void)
 {
     char nome[52]; //DECLARADO EM OP_MODULO_CLI
-    char cpf[13]; //DECLARADO EM MODULO_OP_EQUIPES
+    char cpf[13];
     char email[258]; //DECLARADO EM OP_MODULO_CLI
     char telefone[13]; //DECLARADO EM OP_MODULO_CLI
     char endereco[102]; //DECLARADO EM OP_MODULO_CLI
@@ -117,6 +117,17 @@ void tela_cadastro_func(void)
     printf("Salario: %s\n", salario);
     printf("Tecle ENTER para continuar");
     getchar();
+}
+
+void le_cpf(char* cpf)
+{
+    printf("{}                       CPF(somente numeros):                              {}\n");
+    fgets(cpf, 13, stdin);
+    while (!valida_existe(cpf)) //em utilidades
+    {
+        printf("{}                       Informe o CPF novamente:                           {}\n");
+        fgets(cpf, 13, stdin);
+    } 
 }
 
 void le_profissao(char* profissao) 
@@ -151,7 +162,7 @@ void tela_exibe_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_cpf(cpf);
+    le_chave_func(cpf);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -168,7 +179,7 @@ void tela_atualiza_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_cpf(cpf);
+    le_chave_func(cpf);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -185,7 +196,7 @@ void tela_deleta_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_cpf(cpf);
+    le_chave_func(cpf);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");

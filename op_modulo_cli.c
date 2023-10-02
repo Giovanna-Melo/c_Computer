@@ -160,7 +160,7 @@ void le_cpf_cnpj(char* cpf_cnpj)
 {
     printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
     fgets(cpf_cnpj, 16, stdin);
-    while (!valida_cpf_cnpj(cpf_cnpj)) //em utilidades
+    while (!valida_cpf(cpf_cnpj) && !valida_cnpj(cpf_cnpj)) //em utilidades
     {
         printf("{}                       Informe o CPF/CNPJ novamente:                      {}\n");
         fgets(cpf_cnpj, 16, stdin);
@@ -210,11 +210,22 @@ void tela_exibe_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_cpf_cnpj(cpf_cnpj);
+    le_chave_cpf_cnpj(cpf_cnpj);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+}
+
+void le_chave_cpf_cnpj(char* cpf_cnpj)
+{
+    printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
+    fgets(cpf_cnpj, 16, stdin);
+    while (!valida_existe(cpf_cnpj)) //em utilidades
+    {
+        printf("{}                       Informe o CPF/CNPJ novamente:                      {}\n");
+        fgets(cpf_cnpj, 16, stdin);
+    } 
 }
 
 void tela_atualiza_cli(void)
@@ -227,7 +238,7 @@ void tela_atualiza_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_cpf_cnpj(cpf_cnpj);
+    le_chave_cpf_cnpj(cpf_cnpj);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
@@ -244,7 +255,7 @@ void tela_deleta_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_cpf_cnpj(cpf_cnpj);
+    le_chave_cpf_cnpj(cpf_cnpj);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");

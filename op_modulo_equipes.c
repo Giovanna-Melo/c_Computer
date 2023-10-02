@@ -85,7 +85,7 @@ void tela_cadastro_equipe(void)
     for (int i = 0; i < qp; i++) 
     {
     le_nome(nome); //JA DECLARADO NO OP_MODULO_CLI
-    le_cpf(cpf);
+    le_chave_func(cpf);
     printf("Nome: %s\n", nome);
     printf("CPF: %s\n\n", cpf);
     }
@@ -116,11 +116,11 @@ void le_quant_part(char* quant_part)
     } 
 }
 
-void le_cpf(char* cpf)
+void le_chave_func(char* cpf)
 {
-    printf("{}                       CPF (somente numeros):                             {}\n");
+    printf("{}                       CPF(somente numeros):                              {}\n");
     fgets(cpf, 13, stdin);
-    while (!valida_cpf(cpf)) //em utilidades
+    while (!valida_existe(cpf)) //em utilidades
     {
         printf("{}                       Informe o CPF novamente:                           {}\n");
         fgets(cpf, 13, stdin);
@@ -137,11 +137,22 @@ void tela_exibe_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_equipe(equipe);
+    le_chave_equipe(equipe);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+}
+
+void le_chave_equipe(char* equipe)
+{
+    printf("{}                       Equipe:                                            {}\n");
+    fgets(equipe, 13, stdin);
+    while (!valida_existe(equipe)) //em utilidades
+    {
+        printf("{}                       Informe a equipe novamente:                        {}\n");
+        fgets(equipe, 13, stdin);
+    } 
 }
 
 void tela_atualiza_equipe(void)
@@ -155,16 +166,28 @@ void tela_atualiza_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_equipe(equipe);
+    le_chave_equipe(equipe);
     printf("{}                            Atual integrante:                             {}\n");
-    le_cpf(cpf);
+    le_chave_func(cpf); //JA DECLARADO EM OP_MODULO_FUNC
+    //le_cpf_atualin(cpf);
     printf("{}                            Novo integrante:                             {}\n");
-    le_cpf(cpf);
+    le_chave_func(cpf); //JA DECLARADO EM OP_MODULO_FUNC
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
 }
+
+/*void le_cpf_atualin(char* cpf, char* equipe)  ORGANIZACAO DE IDEACAO
+{
+    printf("{}                       CPF (somente numeros):                             {}\n");
+    fgets(cpf, 13, stdin);
+    while (cpf not in equipe)
+    {
+        printf("{}                       Informe o CPF novamente:                           {}\n");
+        fgets(cpf, 13, stdin);
+    } 
+}*/
 
 void tela_deleta_equipe(void)
 {
@@ -176,7 +199,7 @@ void tela_deleta_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_equipe(equipe);
+    le_chave_equipe(equipe);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");

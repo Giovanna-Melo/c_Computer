@@ -15,4 +15,5 @@ void tela_deleta_equipe(void);
 //FUNCOES LEITURA COM VALIDACAO
 void le_equipe(char* equipe);
 void le_quant_part(char* quant_part);
-void le_cpf(char* cpf);
+void le_chave_equipe(char* equipe);
+void le_chave_func(char* cpf);

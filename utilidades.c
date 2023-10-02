@@ -4,20 +4,7 @@
 #include <string.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-int valida_nome(char* nome) 
-{
-  int tam;
-  
-  tam = strlen(nome);
-  for (int i = 0; i < tam-1; i++) {
-    if (!eh_letra(nome[i])) {
-      return 0;
-    }
-  }
-  return 1;  
-}
-// FUNCAO DESENVOLVIDA POR FLAVIUS GORGONIO
-
+// faltando 9
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -32,7 +19,21 @@ int eh_letra(char c)
 }
 // FUNCAO DESENVOLVIDA POR FLAVIUS GORGONIO
 
-int valida_cpf_cnpj(char* cpf_cnpj)
+int valida_nome(char* nome) 
+{
+  int tam;
+  
+  tam = strlen(nome);
+  for (int i = 0; i < tam-1; i++) {
+    if (!eh_letra(nome[i])) {
+      return 0;
+    }
+  }
+  return 1;  
+}
+// FUNCAO DESENVOLVIDA POR FLAVIUS GORGONIO
+
+int valida_cnpj(char* cpf_cnpj)
 {
   return 1;   
 }
@@ -102,6 +103,11 @@ int valida_data(int dd, int mm, int aa) {
 }
 // FUNCAO DESENVOLVIDA POR FLAVIUS GORGONIO
 
+int eh_alphanum(char c) 
+{
+  return 1;
+}
+
 int valida_alphanum(char* nome_eqp)
 {
   return 1;
@@ -114,7 +120,28 @@ int valida_nao_vazio(char* observacoes)
 
 int valida_situacao(char* situacao)
 {
-  return 1;
+    char s_one []= "pendente\n";
+    char s_two []= "concluido\n";
+    int result_one = strcmp(situacao,s_one);
+    int result_two = strcmp(situacao,s_two); 
+  if (result_one == 0) {
+    return 1;
+  } else if (result_two == 0) {
+    return 1;
+  } else {
+    return 0;
+  }  
+}
+
+int eh_num(char c) 
+{
+  if (c >= '0' && c <= '9') {
+    return 1;
+  } else if (c == 13) {
+    return 1;
+  } else {
+    return 0;
+  }  
 }
 
 int valida_strnum(char* salario)
@@ -130,28 +157,59 @@ int valida_strnum(char* salario)
   return 1; 
 }
 
-int valida_cdaten(char* cod_atend)
-{
-  return 1;
-}
-
-int eh_num(char c) 
-{
-  if (c >= '0' && c <= '9') {
-    return 1;
-  } else if (c == 13) {
-    return 1;
-  } else {
-    return 0;
-  }  
-}
-
-int eh_alphanum(char c) 
-{
-  return 1;
-}
-
 int valida_existe(char* responsavel)
 {
   return 1;
 }
+
+/*
+int valida_existe_cli(char* cpf_cnpj)
+{
+    if (cpf_cnpj in (clientes)) {
+    return 1;
+  } else {
+    return 0;
+  }
+  return 1;
+}
+
+int valida_existe_func(char* cpf)
+{
+    if (cpf in (func)) {
+    return 1;
+  } else {
+    return 0;
+  }
+  return 1;
+}
+
+int valida_existe_atend(char* cod_atend)
+{
+    if (cod_atend in (atendimentos)) {
+    return 1;
+  } else {
+    return 0;
+  }
+  return 1;
+}
+
+int valida_existe_equipe(char* equipe)
+{
+    if (equipe in (equipes)) {
+    return 1;
+  } else {
+    return 0;
+  }
+  return 1;
+}
+
+int valida_existe_responsavel(char* responsavel)
+{
+    if (responsavel in (equipes)) {
+  return 1;
+  } else if (responsavel in (func)){
+  } else {
+    return 0;
+  } 
+  return 1;
+}*/

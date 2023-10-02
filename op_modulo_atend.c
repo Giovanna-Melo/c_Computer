@@ -259,7 +259,7 @@ void le_codigoatend(char* cod_atend)
     printf("{}                    Digite o codigo de atendimento                        {}\n");
     printf("{}                 para exibir (situacao+CPF/CNPJ+ordem):                   {}\n");
     fgets(cod_atend, 30, stdin);
-    while (!valida_cdaten(cod_atend)) //em utilidades
+    while (!valida_existe(cod_atend)) //em utilidades
     {
     printf("{}                Digite novamente o codigo de atendimento                  {}\n");
     printf("{}                 para exibir (situacao+CPF/CNPJ+ordem):                   {}\n");
