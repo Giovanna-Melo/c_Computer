@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-// faltando 4 cpf cnpj email endereco e implementar campo vazio a todas funcoes 23:59
+// faltando 3 cpf cnpj endereco e implementar campo vazio a todas funcoes 
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -99,6 +99,14 @@ int valida_tel(char* telefone)
 
 int valida_endereco(char* endereco)
 {
+  int tam;
+  
+  tam = strlen(endereco);
+  for (int i = 0; i < tam-1; i++) {
+    if (!eh_alphanum(endereco[i]) && endereco[i] != ',' && endereco[i] != '-') {
+      return 0;
+    }
+  }
   return 1;
 }
 

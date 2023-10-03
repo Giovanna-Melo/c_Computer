@@ -193,7 +193,7 @@ void le_endereco(char* endereco)
 {
     printf("{}                       Endereco:                                          {}\n");
     fgets(endereco, 102, stdin);
-    while (!valida_endereco(endereco)) //em utilidades
+    while (!eh_letra(endereco[0]) || !valida_endereco(endereco)) //em utilidades
     {
         printf("{}                       Informe o endereco novamente:                      {}\n");
         fgets(endereco, 102, stdin);
