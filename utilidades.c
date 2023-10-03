@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-// faltando 5
+// faltando 4 cpf cnpj email endereco e implementar campo vazio a todas funcoes 23:59
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -60,8 +61,29 @@ int valida_tipo(char* tipo)
 
 int valida_email(char* email)
 {
-  return 1;
+// Encontre o índice do '@'
+    char *atSymbol = strchr(email, '@');
+    
+    // Verifique se existe '@' e se não é o primeiro caractere nem o último
+    if (atSymbol == NULL || atSymbol == email || atSymbol[strlen(atSymbol) - 1] == '@') {
+        return 0;
+    }
+
+    // Verifique se a parte antes do '@' contém apenas caracteres permitidos
+    for (char* p = email; p < atSymbol; p++) {
+        if (!eh_alphanum(*p) && *p != '.' && *p != '-' && *p != '_') {
+            return 0;
+        }
+    }
+
+    // Verifique se a parte após o '@' contém pelo menos um '.'
+    char *afterAt = atSymbol + 2;
+    if (strchr(afterAt, '.') == NULL) {
+        return 0;
+    }
+    return 1;
 }
+//FUNCAO DESENVOLVIDA PELO CHATGPT
 
 int valida_tel(char* telefone)
 {
