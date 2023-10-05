@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-// faltando 3 cpf cnpj endereco e implementar campo vazio a todas funcoes 
+// faltando cnpj e implementar campo vazio a todas funcoes 
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -36,13 +36,64 @@ int valida_nome(char* nome)
 
 int valida_cnpj(char* cpf_cnpj)
 {
-  return 1;   
+  return 0;   
 }
 
 int valida_cpf(char* cpf)
 {
-  return 1;   
+  int tam;
+
+  tam = strlen(cpf);
+   // Verifica se o CPF tem 11 digitos
+    if (tam != 12) {
+      return 0;
+    }
+
+// Exclui opcoes invalidas
+    else if ((strcmp(cpf,"00000000000\n") == 0) || (strcmp(cpf,"11111111111\n") == 0) || 
+    (strcmp(cpf,"22222222222\n") == 0) || (strcmp(cpf,"33333333333\n") == 0) || 
+    (strcmp(cpf,"44444444444\n") == 0) || (strcmp(cpf,"55555555555\n") == 0) || 
+    (strcmp(cpf,"66666666666\n") == 0) || (strcmp(cpf,"77777777777\n") == 0) || 
+    (strcmp(cpf,"88888888888\n") == 0) || (strcmp(cpf,"99999999999\n") == 0)) {
+      return 0;
+    }
+
+    // Verifica se todos os caracteres sao digitos numericos
+    for (int i = 0; i < tam - 1; i++) {
+      if (!eh_num(cpf[i])) {
+        return 0;
+      }
+    }
+
+    // Calcula o primeiro digito verificador
+    int soma = 0;
+    for (int i = 0; i < 9; i++) {
+      soma += (cpf[i] - '0') * (10 - i);
+    }
+
+    int primeiroDigito = (soma * 10) % 11;
+    if (primeiroDigito >= 10) {
+      primeiroDigito = 0;
+    }
+
+    // Calcula o segundo digito verificador
+    soma = 0;
+    for (int i = 0; i < 10; i++) {
+        soma += (cpf[i] - '0') * (11 - i);
+    }
+    int segundoDigito = 11 - (soma % 11);
+    if (segundoDigito >= 10) {
+        segundoDigito = 0;
+    }
+
+    // Verifica se os digitos verificadores sao iguais aos fornecidos
+    if (cpf[9] - '0' == primeiroDigito && cpf[10] - '0' == segundoDigito) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
+//FUNCAO ADAPTADA DO CHATGPT
 
 int valida_tipo(char* tipo)
 {
@@ -97,7 +148,7 @@ int valida_tel(char* telefone)
   }
 }
 
-int valida_endereco(char* endereco)
+int valida_endereco(char* endereco) //Informar nas instrucoes q nn deve ter espaco
 {
   int tam;
   

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>//tirar
 #include "op_modulo_cli.h"
 #include "op_modulo_func.h"
 #include "op_modulo_equipes.h"

@@ -173,7 +173,7 @@ void le_email(char* email)
     fgets(email, 258, stdin);
     while (!valida_email(email)) //em utilidades
     {
-        printf("{}                       Informe o email novamente:                          {}\n");
+        printf("{}                       Informe o email novamente:                         {}\n");
         fgets(email, 258, stdin);
     } 
 }
