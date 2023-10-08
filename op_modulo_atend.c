@@ -201,9 +201,8 @@ void le_data(char* data)
     strncpy(aa, &data[6], 4);
     sscanf(aa, "%d", &ano);
 
-    while (!valida_data(dia, mes, ano)) {
-        printf("Data invalida: %d/%d/%d\n", dia, mes, ano);
-    printf("{}                       Informe novamente a data entrega/visita:            {}\n\n");
+    while (!valida_data(dia, mes, ano) || !valida_nao_vazio(data)) {
+        printf("{}                       Informe novamente a data entrega/visita:            {}\n\n");
         fgets(data, 12, stdin);
         strncpy(dd, &data[0], 2);
         sscanf(dd, "%d", &dia);

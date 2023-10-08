@@ -124,7 +124,7 @@ void le_cpf(char* cpf)
 {
     printf("{}                       CPF(somente numeros):                              {}\n");
     fgets(cpf, 13, stdin);
-    while (!valida_existe(cpf)) //em utilidades
+    while (!valida_cpf(cpf)) //em utilidades
     {
         printf("{}                       Informe o CPF novamente:                           {}\n");
         fgets(cpf, 13, stdin);

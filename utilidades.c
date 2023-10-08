@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
-// faltando cnpj e implementar campo vazio a todas funcoes 
+
 int eh_letra(char c) 
 {
   if (c >= 'A' && c <= 'Z') {
@@ -22,45 +22,107 @@ int eh_letra(char c)
 
 int valida_nome(char* nome) 
 {
-  int tam;
-  
-  tam = strlen(nome);
-  for (int i = 0; i < tam-1; i++) {
-    if (!eh_letra(nome[i])) {
-      return 0;
+  if (valida_nao_vazio(nome)) {
+    int tam;
+    
+    tam = strlen(nome);
+    for (int i = 0; i < tam-1; i++) {
+      if (!eh_letra(nome[i])) {
+        return 0;
+      }
     }
+    return 1;
+  } else {
+    return 0;
   }
-  return 1;  
 }
 // FUNCAO DESENVOLVIDA POR FLAVIUS GORGONIO
 
 int valida_cnpj(char* cpf_cnpj)
 {
-  return 0;   
+  int tam;
+  int list_one []= {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+  int list_two []= {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+
+  tam = strlen(cpf_cnpj);
+   // Verifica se o CNPJ tem 14 digitos
+    if (tam != 15) {
+      return 0;
+    }
+
+// Exclui opcoes invalidas
+    else if ((strcmp(cpf_cnpj,"00000000000000\n") == 0) || (strcmp(cpf_cnpj,"11111111111111\n") == 0) || 
+    (strcmp(cpf_cnpj,"22222222222222\n") == 0) || (strcmp(cpf_cnpj,"33333333333333\n") == 0) || 
+    (strcmp(cpf_cnpj,"44444444444444\n") == 0) || (strcmp(cpf_cnpj,"55555555555555\n") == 0) || 
+    (strcmp(cpf_cnpj,"66666666666666\n") == 0) || (strcmp(cpf_cnpj,"77777777777777\n") == 0) || 
+    (strcmp(cpf_cnpj,"88888888888888\n") == 0) || (strcmp(cpf_cnpj,"99999999999999\n") == 0)) {
+      return 0;
+    }
+
+    // Verifica se todos os caracteres sao digitos numericos
+    for (int i = 0; i < tam - 1; i++) {
+      if (!eh_num(cpf_cnpj[i])) {
+        return 0;
+      }
+    }
+
+    // Calcula o primeiro digito verificador
+    
+    int soma_one = 0;
+    for (int i = 0; i < 12; i++) {
+      soma_one+=(cpf_cnpj[i] - '0') * list_one[i];
+    }
+
+    int primeiro_digito = soma_one % 11;
+    if (primeiro_digito < 2) {
+      primeiro_digito = 0;
+    } else {
+      primeiro_digito = 11 - primeiro_digito;
+    }
+
+    // Calcula o segundo digito verificador
+    int soma_two = 0;
+    for (int i = 0; i < 13; i++) {
+      soma_two+=(cpf_cnpj[i] - '0') * list_two[i];
+    }
+
+    int segundo_digito = soma_two % 11;
+    if (segundo_digito < 2) {
+      segundo_digito = 0;
+    } else {
+      segundo_digito = 11 - segundo_digito;
+    }
+
+    // Verifica se os digitos verificadores sao iguais aos fornecidos
+    if (cpf_cnpj[12] - '0' == primeiro_digito && cpf_cnpj[13] - '0' == segundo_digito) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
-int valida_cpf(char* cpf)
+int valida_cpf(char* cpf_cnpj)
 {
   int tam;
 
-  tam = strlen(cpf);
+  tam = strlen(cpf_cnpj);
    // Verifica se o CPF tem 11 digitos
     if (tam != 12) {
       return 0;
     }
 
 // Exclui opcoes invalidas
-    else if ((strcmp(cpf,"00000000000\n") == 0) || (strcmp(cpf,"11111111111\n") == 0) || 
-    (strcmp(cpf,"22222222222\n") == 0) || (strcmp(cpf,"33333333333\n") == 0) || 
-    (strcmp(cpf,"44444444444\n") == 0) || (strcmp(cpf,"55555555555\n") == 0) || 
-    (strcmp(cpf,"66666666666\n") == 0) || (strcmp(cpf,"77777777777\n") == 0) || 
-    (strcmp(cpf,"88888888888\n") == 0) || (strcmp(cpf,"99999999999\n") == 0)) {
+    else if ((strcmp(cpf_cnpj,"00000000000\n") == 0) || (strcmp(cpf_cnpj,"11111111111\n") == 0) || 
+    (strcmp(cpf_cnpj,"22222222222\n") == 0) || (strcmp(cpf_cnpj,"33333333333\n") == 0) || 
+    (strcmp(cpf_cnpj,"44444444444\n") == 0) || (strcmp(cpf_cnpj,"55555555555\n") == 0) || 
+    (strcmp(cpf_cnpj,"66666666666\n") == 0) || (strcmp(cpf_cnpj,"77777777777\n") == 0) || 
+    (strcmp(cpf_cnpj,"88888888888\n") == 0) || (strcmp(cpf_cnpj,"99999999999\n") == 0)) {
       return 0;
     }
 
     // Verifica se todos os caracteres sao digitos numericos
     for (int i = 0; i < tam - 1; i++) {
-      if (!eh_num(cpf[i])) {
+      if (!eh_num(cpf_cnpj[i])) {
         return 0;
       }
     }
@@ -68,26 +130,26 @@ int valida_cpf(char* cpf)
     // Calcula o primeiro digito verificador
     int soma = 0;
     for (int i = 0; i < 9; i++) {
-      soma += (cpf[i] - '0') * (10 - i);
+      soma += (cpf_cnpj[i] - '0') * (10 - i);
     }
 
-    int primeiroDigito = (soma * 10) % 11;
-    if (primeiroDigito >= 10) {
-      primeiroDigito = 0;
+    int primeiro_digito = (soma * 10) % 11;
+    if (primeiro_digito >= 10) {
+      primeiro_digito = 0;
     }
 
     // Calcula o segundo digito verificador
     soma = 0;
     for (int i = 0; i < 10; i++) {
-        soma += (cpf[i] - '0') * (11 - i);
+        soma += (cpf_cnpj[i] - '0') * (11 - i);
     }
-    int segundoDigito = 11 - (soma % 11);
-    if (segundoDigito >= 10) {
-        segundoDigito = 0;
+    int segundo_digito = 11 - (soma % 11);
+    if (segundo_digito >= 10) {
+        segundo_digito = 0;
     }
 
     // Verifica se os digitos verificadores sao iguais aos fornecidos
-    if (cpf[9] - '0' == primeiroDigito && cpf[10] - '0' == segundoDigito) {
+    if (cpf_cnpj[9] - '0' == primeiro_digito && cpf_cnpj[10] - '0' == segundo_digito) {
         return 1;
     } else {
         return 0;
@@ -218,15 +280,19 @@ int eh_alphanum(char c)
 
 int valida_alphanum(char* nome_eqp)
 {
-  int tam;
-  
-  tam = strlen(nome_eqp);
-  for (int i = 0; i < tam-1; i++) {
-    if (!eh_alphanum(nome_eqp[i])) {
-      return 0;
+  if (valida_nao_vazio(nome_eqp)) {
+    int tam;
+    
+    tam = strlen(nome_eqp);
+    for (int i = 0; i < tam-1; i++) {
+      if (!eh_alphanum(nome_eqp[i])) {
+        return 0;
+      }
     }
+    return 1; 
+  } else {
+    return 0;
   }
-  return 1; 
 }
 
 int valida_nao_vazio(char* observacoes)
@@ -269,15 +335,19 @@ int eh_num(char c)
 
 int valida_strnum(char* salario)
 {
-  int tam;
-  
-  tam = strlen(salario);
-  for (int i = 0; i < tam-1; i++) {
-    if (!eh_num(salario[i])) {
-      return 0;
+  if (valida_nao_vazio(salario)) {
+    int tam;
+    
+    tam = strlen(salario);
+    for (int i = 0; i < tam-1; i++) {
+      if (!eh_num(salario[i])) {
+        return 0;
+      }
     }
+    return 1;
+  } else {
+    return 0;
   }
-  return 1; 
 }
 
 int valida_existe(char* responsavel)
