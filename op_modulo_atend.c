@@ -24,22 +24,26 @@ void modulo_atend(void)
 			case '1': 	
             cadastro_atend();
             break;
+
 			case '2': 	
             exibe_atend();
             break;
+
 			case '3': 	
             atualiza_atend();
             break;
+
 			case '4': 	
             deleta_atend();
             break;
-		} 		
+            		} 		
 	} while (op3 != '0');
 }
 
 char menu_atendimentos(void)
 {
     char op2;
+    char op2_list [11];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -55,8 +59,12 @@ char menu_atendimentos(void)
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op2);
-    getchar();
+    fgets (op2_list, 11, stdin);
+    if (strlen(op2_list) == 2) {
+        op2 = op2_list[0];
+    } else {
+        op2 = 'a';
+    }
     return op2;
 } 
 

@@ -2,8 +2,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "relatorios.h"
-//#include "utilidades.h"
+#include "utilidades.h"
 
 void f_clientes(void) 
 {
@@ -16,10 +17,11 @@ void f_clientes(void)
 			case '1': 
             todos_clientes_pf();
             break;
+
 			case '2': 
             todos_clientes_pj();
             break;
-		} 		
+            		} 		
 	} while (op3 != '0');
 }
 
@@ -34,6 +36,7 @@ void f_atendimentos(void)
 			case '1': 	
             atendimentos_concluidos();
             break;
+
 			case '2': 
             atendimentos_pendentes();
             break;            
@@ -52,16 +55,20 @@ void f_planos(void)
 			case '1': 	
             planos_semanais();
             break;
+
 			case '2': 	
             planos_mensais();
+            break;
+
             case '3': 	
             planos_anuais();
             break;
+
             case '4': 	
             planos_vencidos();
             break;
             
-		} 		
+        } 		
 	} while (op3 != '0');
 }
 
@@ -76,6 +83,7 @@ void f_funcionarios(void)
 			case '1': 	
             todos_funcionarios();
             break;
+
 			case '2':
             funcionario_do_mes();
             break;            
@@ -94,6 +102,7 @@ void f_equipes(void)
 			case '1': 	
             todas_equipes();
             break;
+
 			case '2': 	
             equipe_do_mes();
             break;            
@@ -104,6 +113,7 @@ void f_equipes(void)
 char menu_relatorios(void)
 {
     char op2;
+    char op2_list [11];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -122,8 +132,12 @@ char menu_relatorios(void)
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op2);
-    getchar();
+    fgets (op2_list, 11, stdin);
+    if (strlen(op2_list) == 2) {
+        op2 = op2_list[0];
+    } else {
+        op2 = 'a';
+    }
     return op2;
 }
 
@@ -270,6 +284,7 @@ void equipe_do_mes (void)
 char filtros_clientes(void)
 {
     char op3;
+    char op3_list [11];
     system("clear||cls");
     printf("\n");
     printf("                          _______________________                             \n");
@@ -305,8 +320,12 @@ char filtros_clientes(void)
     printf("| |_____________________________/     \\___________________________________| | \n");
     printf("|___________________________________________________________________________| \n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op3);
-    getchar();
+    fgets (op3_list, 11, stdin);
+    if (strlen(op3_list) == 2) {
+        op3 = op3_list[0];
+    } else {
+        op3 = 'a';
+    }
     return op3;
 
 }
@@ -314,6 +333,7 @@ char filtros_clientes(void)
 char filtros_atendimentos(void)
 {
     char op3;
+    char op3_list [11];
     system("clear||cls");
     printf("\n");
     printf("                          _______________________                             \n");
@@ -349,8 +369,12 @@ char filtros_atendimentos(void)
     printf("| |_____________________________/     \\___________________________________| | \n");
     printf("|___________________________________________________________________________| \n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op3);
-    getchar();
+    fgets (op3_list, 11, stdin);
+    if (strlen(op3_list) == 2) {
+        op3 = op3_list[0];
+    } else {
+        op3 = 'a';
+    }
     return op3;
     
 }
@@ -358,6 +382,7 @@ char filtros_atendimentos(void)
 char filtros_planos(void)
 {
     char op3;
+    char op3_list [11];
     system("clear||cls");
     printf("\n");
     printf("                          _______________________                             \n");
@@ -395,14 +420,19 @@ char filtros_planos(void)
     printf("| |_____________________________/     \\___________________________________| | \n");
     printf("|___________________________________________________________________________| \n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op3);
-    getchar();
+    fgets (op3_list, 11, stdin);
+    if (strlen(op3_list) == 2) {
+        op3 = op3_list[0];
+    } else {
+        op3 = 'a';
+    }
     return op3;    
 }
 
 char filtros_func(void)
 {
     char op3;
+    char op3_list [11];
     system("clear||cls");
     printf("\n");
     printf("                          _______________________                             \n");
@@ -438,14 +468,19 @@ char filtros_func(void)
     printf("| |_____________________________/     \\___________________________________| | \n");
     printf("|___________________________________________________________________________| \n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op3);
-    getchar();
+    fgets (op3_list, 11, stdin);
+    if (strlen(op3_list) == 2) {
+        op3 = op3_list[0];
+    } else {
+        op3 = 'a';
+    }
     return op3;    
 }
 
 char filtros_equipes(void)
 {
     char op3;
+    char op3_list [11];
     system("clear||cls");
     printf("\n");
     printf("                          _______________________                             \n");
@@ -481,7 +516,11 @@ char filtros_equipes(void)
     printf("| |_____________________________/     \\___________________________________| | \n");
     printf("|___________________________________________________________________________| \n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op3);
-    getchar();
+    fgets (op3_list, 11, stdin);
+    if (strlen(op3_list) == 2) {
+        op3 = op3_list[0];
+    } else {
+        op3 = 'a';
+    }
     return op3;
 }

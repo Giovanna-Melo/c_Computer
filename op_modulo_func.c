@@ -24,22 +24,26 @@ void modulo_func(void)
 			case '1': 	
             cadastro_func();
             break;
+
 			case '2': 	
             exibe_func();
             break;
+
 			case '3': 	
             atualiza_func();
             break;
+
 			case '4': 	
             deleta_func();
             break;
-		} 		
+        } 		
 	} while (op3 != '0');
 }
 
 char menu_funcionarios(void)
 {
     char op2;
+    char op2_list [11];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -56,8 +60,12 @@ char menu_funcionarios(void)
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op2);
-    getchar();
+    fgets (op2_list, 11, stdin);
+    if (strlen(op2_list) == 2) {
+        op2 = op2_list[0];
+    } else {
+        op2 = 'a';
+    }
     return op2;
 }
 
@@ -216,13 +224,14 @@ void z_cont(void)
 			case '1': 	
             mostra_zcont();
             break;
-		} 		
+        } 		
 	} while (op3 != '0');
 }
 
 char confirma_zcont(void)
 {
     char op3;
+    char op3_list [11];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -235,8 +244,12 @@ char confirma_zcont(void)
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op3);
-    getchar();
+    fgets (op3_list, 11, stdin);
+    if (strlen(op3_list) == 2) {
+        op3 = op3_list[0];
+    } else {
+        op3 = 'a';
+    }
     return op3;
 }
 

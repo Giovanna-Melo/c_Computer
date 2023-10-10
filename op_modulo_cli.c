@@ -22,22 +22,26 @@ void modulo_cli(void)
 			case '1': 	
             cadastro_cli();
             break;
+
 			case '2': 	
             exibe_cli();
             break;
+
 			case '3': 	
             atualiza_cli();
             break;
+
 			case '4': 	
             deleta_cli();
             break;
-		} 		
+            		} 		
 	} while (op3 != '0');
 }
 
 char menu_clientes(void)
 {
     char op2;
+    char op2_list [11];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -52,14 +56,19 @@ char menu_clientes(void)
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op2);
-    getchar();
+    fgets (op2_list, 11, stdin);
+    if (strlen(op2_list) == 2) {
+        op2 = op2_list[0];
+    } else {
+        op2 = 'a';
+    }
     return op2;
 }
 
 char padrao_crud(void)
 {
     char op3;
+    char op3_list [11];
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     printf("{}                                                                          {}\n");
@@ -72,8 +81,12 @@ char padrao_crud(void)
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op3);
-    getchar();
+    fgets (op3_list, 11, stdin);
+    if (strlen(op3_list) == 2) {
+        op3 = op3_list[0];
+    } else {
+        op3 = 'a';
+    }
     return op3;
 
 }

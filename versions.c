@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "op_modulo_cli.h"
 #include "op_modulo_atend.h"
 #include "op_modulo_planos.h"
 #include "op_modulo_func.h"
 #include "op_modulo_equipes.h"
 #include "relatorios.h"
-//#include "utilidades.h"
+#include "utilidades.h"
+
+#define true 1
+#define false 0
 
 // Assinatura das funcoes
 
@@ -27,6 +31,7 @@ void op_sobre(void);
 
 char menu_principal(void)
 {
+    char op1_list [11];
     char op1;
     system("clear||cls");
     printf("\n");
@@ -44,14 +49,19 @@ char menu_principal(void)
     printf("|                                                                            |\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op1);
-    getchar();
+    fgets (op1_list, 11, stdin);
+    if (strlen(op1_list) == 2) {
+        op1 = op1_list[0];
+    } else {
+        op1 = 'a';
+    }
     return op1;
 }
 
 char menu_sobre(void)
 {
     char op2;
+    char op2_list [11];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -65,8 +75,12 @@ char menu_sobre(void)
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Selecione o servico desejado, informando seu digito correspondente:");
-    scanf("%c", &op2);
-    getchar();
+    fgets (op2_list, 11, stdin);
+    if (strlen(op2_list) == 2) {
+        op2 = op2_list[0];
+    } else {
+        op2 = 'a';
+    }
     return op2;
 }
 
@@ -168,6 +182,7 @@ void op_atendimentos(void)
 			case '1': 
             modulo_atend();
 			break;
+
 			case '2': 
             modulo_planos();
 			break;
@@ -188,11 +203,14 @@ void op_funcionarios(void)
 			case '1': 
             modulo_func();
 			break;
+
 			case '2': 	
             modulo_equipes();
 			break;
+
             case '3':
             z_cont();
+            break;
 		} 		
 	} while (op2 != '0');
 }
@@ -210,15 +228,19 @@ void op_relatorios(void)
 			case '1': 
             f_clientes();
 			break;
+
 			case '2': 
             f_atendimentos();
 			break;
+
             case '3': 
             f_planos();
             break;
+
             case '4': 
             f_funcionarios();
             break;
+
             case '5': 
             f_equipes();
             break;
@@ -239,6 +261,7 @@ void op_sobre(void)
 			case '1': 
             menu_criacao();
 			break;
+
 			case '2': 
             menu_instrucoes();
 			break;
@@ -259,19 +282,23 @@ int main(void)
             case '1': 	
             op_clientes();
             break;
+
             case '2': 	
             op_atendimentos();
             break;
+
             case '3': 	
             op_funcionarios();
             break;
+
             case '4': 	
             op_relatorios();
             break;
+
             case '5': 	
             op_sobre();
             break;
-        }
+                    }
 	} while (op1 != '0');
     printf("Ate logo!");
     return 0;

@@ -175,28 +175,35 @@ int valida_tipo(char* tipo)
 int valida_email(char* email)
 {
 // Encontre o índice do '@'
-    char *atSymbol = strchr(email, '@');
+    char *at_symbol = strchr(email, '@');
     
     // Verifique se existe '@' e se não é o primeiro caractere nem o último
-    if (atSymbol == NULL || atSymbol == email || atSymbol[strlen(atSymbol) - 1] == '@') {
+    if (at_symbol == NULL || at_symbol == email || at_symbol[strlen(at_symbol) - 1] == '@') {
         return 0;
     }
 
     // Verifique se a parte antes do '@' contém apenas caracteres permitidos
-    for (char* p = email; p < atSymbol; p++) {
+    for (char* p = email; p < at_symbol; p++) {
         if (!eh_alphanum(*p) && *p != '.' && *p != '-' && *p != '_') {
             return 0;
         }
     }
 
     // Verifique se a parte após o '@' contém pelo menos um '.'
-    char *afterAt = atSymbol + 2;
-    if (strchr(afterAt, '.') == NULL) {
-        return 0;
+    char *after_at = at_symbol + 2;
+    if (strchr(after_at, '.') == NULL) {
+      return 0;
+    }
+
+    // Verifique se após o '.' contém pelo menos um caracter
+    int tam;
+    tam = strlen(email);
+    if (email [tam-2]=='.'){
+      return 0;
     }
     return 1;
 }
-//FUNCAO DESENVOLVIDA PELO CHATGPT
+//FUNCAO ADAPTADA DO CHATGPT
 
 int valida_tel(char* telefone)
 {
