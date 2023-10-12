@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 #include "utilidades.h"
 //FUNCOES EM DESENVOLVIMENTO
 
@@ -356,6 +357,24 @@ int valida_strnum(char* salario)
     return 0;
   }
 }
+
+char* date_time(void) {
+    // Obter o tempo atual
+    time_t tempo_atual;
+    time(&tempo_atual);
+
+    // Converter o tempo para struct tm
+    struct tm *info_tempo = localtime(&tempo_atual);
+
+    // Alocar espaço para a string de data/hora
+    static char data_hora[20];
+
+    // Formatando a string de data para dia/mês/ano e hora:minutos:segundos
+    strftime(data_hora, sizeof(data_hora), "%d/%m/%Y %H:%M:%S", info_tempo);
+
+    return data_hora;
+}
+// TRECHO ADAPTADO DO CHAT GPT
 
 int valida_existe(char* responsavel)
 {

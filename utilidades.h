@@ -16,4 +16,5 @@ int valida_nao_vazio(char* observacoes);
 int valida_situacao(char* situacao);
 int eh_num(char c);
 int valida_strnum(char* salario);
+char* date_time(void);
 int valida_existe(char* responsavel);

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "op_modulo_cli.h"
 #include "op_modulo_atend.h"
 #include "op_modulo_planos.h"
@@ -71,9 +72,8 @@ char menu_atendimentos(void)
 //FUNCOES EM DESENVOLVIMENTO
 void cadastro_atend(void)
 {
+    //char* data_atend = date_time();
     tela_cadastro_atend();
-    //data_atend=pega do computador
-    //situacao="pendente"
     //posicao de ordem = 0
     //while (situacao+cpf/cnpj+ordem in cad_atend) {posico de ordem+=1}
 }
@@ -96,6 +96,7 @@ void deleta_atend(void)
 //TELAS CRUD
 void tela_cadastro_atend(void)
 {
+    char* data_atend = date_time();
     char cpf_cnpj[16];
     char nome_eqp[52];
     char marca[22];
@@ -124,6 +125,7 @@ void tela_cadastro_atend(void)
     le_situacao(situacao);
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
+    printf("%s\n", data_atend); //tirar
     printf("CPF/CNPJ: %s\n", cpf_cnpj);
     printf("Nome do equipamento: %s\n", nome_eqp);
     printf("Marca: %s\n", marca);
