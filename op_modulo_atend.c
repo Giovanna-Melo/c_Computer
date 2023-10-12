@@ -95,7 +95,7 @@ void deleta_atend(void)
 
 //TELAS CRUD
 void tela_cadastro_atend(void)
-{
+{ //CRIAR OS STRUCTS BONITA
     char* data_atend = date_time();
     char cpf_cnpj[16];
     char nome_eqp[52];

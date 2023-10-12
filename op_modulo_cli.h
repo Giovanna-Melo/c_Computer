@@ -1,4 +1,15 @@
 //////////MODULO CLIENTES//////////
+//ESTRUTURA
+struct cliente {
+    char nome[52];
+    char tipo[4];
+    char cpf_cnpj[16];
+    char email[258];
+    char telefone[13];
+    char endereco[102];
+};
+
+typedef struct cliente Cliente;
  
 void modulo_cli(void); 
 char menu_clientes(void);
@@ -8,8 +19,10 @@ void cadastro_cli(void);
 void exibe_cli(void);
 void atualiza_cli(void);
 void deleta_cli(void);
+
+void exibe_cadastro(const Cliente* cli);
 //TELAS
-void tela_cadastro_cli(void);
+Cliente* tela_cadastro_cli(void);
 void tela_exibe_cli(void);
 void tela_atualiza_cli(void);
 void tela_deleta_cli(void);

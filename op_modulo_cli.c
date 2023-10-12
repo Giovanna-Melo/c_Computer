@@ -7,6 +7,8 @@
 #include "op_modulo_cli.h"
 #include "utilidades.h"
 
+typedef struct cliente Cliente;
+
 void modulo_cli(void) 
 {
 	char op3;
@@ -92,9 +94,30 @@ char padrao_crud(void)
 }
 
 //FUNCOES EM DESENVOLVIMENTO
+void exibe_cadastro(const Cliente* cli)
+{
+    printf("Nome: %s\n", cli->nome);
+    printf("Tipo: %s\n", cli->tipo);
+    printf("CPF/CNPJ: %s\n", cli->cpf_cnpj);
+    printf("Email: %s\n", cli->email);
+    printf("Telefone: %s\n", cli->telefone);
+    printf("Endereco: %s\n", cli->endereco);
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void cadastro_cli(void)
 {
-    tela_cadastro_cli();
+    // função ainda em desenvolvimento
+    // ler os dados do cliente
+    Cliente *cli = tela_cadastro_cli();
+    exibe_cadastro(cli);
+
+    // gravar o registro no arquivo de clientes
+    //gravar_cliente(cli);
+
+    // liberar o espaço de memória da estrutura 
+    free(cli);
 }
 
 void exibe_cli(void)
@@ -113,14 +136,16 @@ void deleta_cli(void)
 }
 
 //TELAS CRUD
-void tela_cadastro_cli(void)
-{
+Cliente* tela_cadastro_cli(void)
+{ 
     char nome[52];
     char tipo[4];
     char cpf_cnpj[16];
     char email[258];
     char telefone[13];
     char endereco[102];
+    
+    Cliente *cli = (Cliente*) malloc(sizeof(Cliente)); 
   
     system("clear||cls");
     printf("\n");
@@ -130,21 +155,20 @@ void tela_cadastro_cli(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     le_nome(nome);
+    strncpy(cli->nome, nome, sizeof(cli->nome));//, cli->nome;
     le_tipo(tipo);
+    strncpy(cli->tipo, tipo, sizeof(cli->tipo));//, cli->tipo;
     le_cpf_cnpj(cpf_cnpj);
+    strncpy(cli->cpf_cnpj, cpf_cnpj, sizeof(cli->cpf_cnpj));//, cli->cpf_cnpj;
     le_email(email);
+    strncpy(cli->email, email, sizeof(cli->email));//, cli->email;
     le_telefone(telefone);
+    strncpy(cli->telefone, telefone, sizeof(cli->telefone));//, cli->telefone;
     le_endereco(endereco);
+    strncpy(cli->endereco, endereco, sizeof(cli->endereco));//, cli->endereco;
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
-    printf("Nome: %s\n", nome);
-    printf("Tipo: %s\n", tipo);
-    printf("CPF/CNPJ: %s\n", cpf_cnpj);
-    printf("Email: %s\n", email);
-    printf("Telefone: %s\n", telefone);
-    printf("Endereco: %s\n", endereco);
-    printf("Tecle ENTER para continuar");
-    getchar();
+    return cli;
 }
 
 void le_nome(char* nome) 
@@ -203,7 +227,7 @@ void le_telefone(char* telefone)
 }
 
 void le_endereco(char* endereco) 
-{
+{ 
     printf("{}                       Endereco:                                          {}\n");
     fgets(endereco, 102, stdin);
     while (!eh_letra(endereco[0]) || !valida_endereco(endereco)) //em utilidades
