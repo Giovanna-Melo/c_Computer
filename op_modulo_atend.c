@@ -70,12 +70,38 @@ char menu_atendimentos(void)
 } 
 
 //FUNCOES EM DESENVOLVIMENTO
+void exibe_cadastro_atd(const Atendimento* atend)
+{
+    printf("%s\n\n", atend->data_atend); //tirar
+    printf("CPF/CNPJ: %s\n", atend->cpf_cnpj);
+    printf("Nome do equipamento: %s\n", atend->nome_eqp);
+    printf("Marca: %s\n", atend->marca);
+    printf("Modelo: %s\n", atend->modelo);
+    printf("Numero de serie: %s\n", atend->nserie);
+    printf("Observacoes: %s\n", atend->observacoes);
+    printf("Data: %s\n", atend->data);
+    printf("Reponsavel: %s\n", atend->responsavel);
+    printf("Situacao: %s\n", atend->situacao);
+    printf("Ordem: %s\n\n", atend->ordem_s);
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void cadastro_atend(void)
 {
+    // função ainda em desenvolvimento
+    // ler os dados do cliente
+    Atendimento *atend = tela_cadastro_atend();
+    exibe_cadastro_atd(atend);
+
+    // gravar o registro no arquivo de clientes
+    //gravar_cliente(cli);
+
+    // liberar o espaço de memória da estrutura 
+    free(atend);
+
     //char* data_atend = date_time();
-    tela_cadastro_atend();
-    //posicao de ordem = 0
-    //while (situacao+cpf/cnpj+ordem in cad_atend) {posico de ordem+=1}
+
 }
 
 void exibe_atend(void)
@@ -94,9 +120,8 @@ void deleta_atend(void)
 }
 
 //TELAS CRUD
-void tela_cadastro_atend(void)
-{ //CRIAR OS STRUCTS BONITA
-    char* data_atend = date_time();
+Atendimento* tela_cadastro_atend(void)
+{
     char cpf_cnpj[16];
     char nome_eqp[52];
     char marca[22];
@@ -106,6 +131,10 @@ void tela_cadastro_atend(void)
     char data[12];
     char responsavel[13];
     char situacao[11];
+    char ordem_s[25];
+    //while ('pendente'+cpf/cnpj+ordem in cad_atend) {posico de ordem+=1};
+
+    Atendimento *atend = (Atendimento*) malloc(sizeof(Atendimento));
 
     system("clear||cls");
     printf("\n");
@@ -114,29 +143,31 @@ void tela_cadastro_atend(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
+    char* d_h_atual = date_time();
+    strncpy(atend->data_atend, d_h_atual, sizeof(atend->data_atend));
     le_cpf_cnpj(cpf_cnpj); // JA DECLARO EM MODULO CLI
+    strncpy(atend->cpf_cnpj, cpf_cnpj, sizeof(atend->cpf_cnpj));
     le_nome_eqp(nome_eqp);
+    strncpy(atend->nome_eqp, nome_eqp, sizeof(atend->nome_eqp));
     le_marca(marca);
+    strncpy(atend->marca, marca, sizeof(atend->marca));
     le_modelo(modelo);
+    strncpy(atend->modelo, modelo, sizeof(atend->modelo));
     le_nserie(nserie);
+    strncpy(atend->nserie, nserie, sizeof(atend->nserie));
     le_observacoes(observacoes);
+    strncpy(atend->observacoes, observacoes, sizeof(atend->observacoes));
     le_data(data);
+    strncpy(atend->data, data, sizeof(atend->data));
     le_responsavel(responsavel);
+    strncpy(atend->responsavel, responsavel, sizeof(atend->responsavel));
     le_situacao(situacao);
+    strncpy(atend->situacao, situacao, sizeof(atend->situacao));
+    le_ordem(ordem_s);
+    strncpy(atend->ordem_s, ordem_s, sizeof(atend->ordem_s));
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
-    printf("%s\n", data_atend); //tirar
-    printf("CPF/CNPJ: %s\n", cpf_cnpj);
-    printf("Nome do equipamento: %s\n", nome_eqp);
-    printf("Marca: %s\n", marca);
-    printf("Modelo: %s\n", modelo);
-    printf("Numero de serie: %s\n", nserie);
-    printf("Observacoes: %s\n", observacoes);
-    printf("Data: %s\n", data);
-    printf("Reponsavel: %s\n", responsavel);
-    printf("Situacao: %s\n", situacao);
-    printf("Tecle ENTER para continuar");
-    getchar();
+    return atend;
 }
 
 void le_nome_eqp(char* nome_eqp) 
@@ -243,6 +274,13 @@ void le_situacao(char* situacao)
         printf("{}                       Situacao (pendente/concluido):                     {}\n");
         fgets(situacao, 11, stdin);
     } 
+}
+
+void le_ordem(char* ordem_s)
+{
+    int ordem = 0;
+    //while ('pendente'+cpf/cnpj+ordem in cad_atend) {posico de ordem+=1};
+    sprintf(ordem_s, "%d", ordem);
 }
 
 void tela_exibe_atend(void)
