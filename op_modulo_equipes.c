@@ -36,9 +36,30 @@ void modulo_equipes(void)
 }
 
 //FUNCOES EM DESENVOLVIMENTO
+void exibe_cadastro_eqp(const Equipe* eqp, int tamanho)
+{
+    printf("\n\nEquipe: %s\n", eqp->equipe);
+    printf("Contador: %d\n", eqp->count);
+    for (int i = 0; i < tamanho; i++){
+        printf("Nome: %s", (eqp + i)->nome);
+        printf("CPF: %s\n", (eqp + i)->cpf);
+    }
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void cadastro_equipe(void)
 {
-    tela_cadastro_equipe();
+    // função ainda em desenvolvimento
+    // ler os dados do cliente
+    Equipe *eqp = tela_cadastro_equipe();
+    exibe_cadastro_eqp(eqp,2);
+
+    // gravar o registro no arquivo de clientes
+    //gravar_cliente(cli);
+
+    // liberar o espaço de memória da estrutura 
+    free(eqp);
 }
 
 void exibe_equipe(void)
@@ -57,15 +78,17 @@ void deleta_equipe(void)
 }
 
 //TELAS CRUD
-void tela_cadastro_equipe(void)
+Equipe* tela_cadastro_equipe(void)
 {
     char equipe[13];
     char quant_part[4];
     char qpc[4];
     int qp = 0;
     char nome[52];
-    //int count = 0;
     char cpf[13];
+    int tamanho = 2;
+
+    Equipe *eqp = (Equipe*) malloc(tamanho * sizeof(Equipe));
 
     system("clear||cls");
     printf("\n");
@@ -75,6 +98,8 @@ void tela_cadastro_equipe(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     le_equipe(equipe);
+    strncpy(eqp->equipe, equipe, sizeof(eqp->equipe));
+    eqp->count = 0;
     le_quant_part(quant_part);
     strncpy(qpc, &quant_part[0], 2);
     sscanf(qpc, "%d", &qp);
@@ -85,12 +110,11 @@ void tela_cadastro_equipe(void)
     for (int i = 0; i < qp; i++) 
     {
     le_nome(nome); //JA DECLARADO NO OP_MODULO_CLI
+    strncpy((eqp +i)->nome, nome, sizeof((eqp + i)->nome));
     le_chave_func(cpf);
-    printf("Nome: %s\n", nome);
-    printf("CPF: %s\n\n", cpf);
+    strncpy((eqp + i)->cpf, cpf, sizeof((eqp + i)->cpf));
     }
-    printf("Tecle ENTER para continuar");
-    getchar();
+    return eqp;
 }
 // fazer o scanf da quantidade para solicitar o nome e o cpf de tantos func
 
