@@ -70,9 +70,31 @@ char menu_funcionarios(void)
 }
 
 //FUNCOES EM DESENVOLVIMENTO
+void exibe_cadastro_func(const Funcionario* func)
+{
+    printf("\nNome: %s\n", func->nome);
+    printf("CPF: %s\n", func->cpf);
+    printf("Email: %s\n", func->email);
+    printf("Telefone: %s\n", func->telefone);
+    printf("Endereco: %s\n", func->endereco);
+    printf("Profissao: %s\n", func->profissao);
+    printf("Salario: %s\n", func->salario);
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void cadastro_func(void)
 {
-    tela_cadastro_func();
+        // função ainda em desenvolvimento
+    // ler os dados do cliente
+    Funcionario *func = tela_cadastro_func();
+    exibe_cadastro_func(func);
+
+    // gravar o registro no arquivo de clientes
+    //gravar_cliente(cli);
+
+    // liberar o espaço de memória da estrutura 
+    free(func);
 }
 
 void exibe_func(void)
@@ -91,7 +113,7 @@ void deleta_func(void)
 }
 
 //TELAS CRUD
-void tela_cadastro_func(void)
+Funcionario* tela_cadastro_func(void)
 {
     char nome[52]; //DECLARADO EM OP_MODULO_CLI
     char cpf[13];
@@ -100,6 +122,8 @@ void tela_cadastro_func(void)
     char endereco[102]; //DECLARADO EM OP_MODULO_CLI
     char profissao[52];
     char salario[8];
+
+    Funcionario *func = (Funcionario*) malloc(sizeof(Funcionario));
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -108,24 +132,23 @@ void tela_cadastro_func(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     le_nome(nome);
+    strncpy(func->nome, nome, sizeof(func->nome));
     le_cpf(cpf);
+    strncpy(func->cpf, cpf, sizeof(func->cpf));
     le_email(email);
+    strncpy(func->email, email, sizeof(func->email));
     le_telefone(telefone);
+    strncpy(func->telefone, telefone, sizeof(func->telefone));
     le_endereco(endereco);
+    strncpy(func->endereco, endereco, sizeof(func->endereco));
     le_profissao(profissao);
+    strncpy(func->profissao, profissao, sizeof(func->profissao));
     le_salario(salario);
-    //int count = 0;
+    strncpy(func->salario, salario, sizeof(func->salario));
+    func->count = 0;
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
-    printf("Nome: %s\n", nome);
-    printf("CPF: %s\n", cpf);
-    printf("Email: %s\n", email);
-    printf("Telefone: %s\n", telefone);
-    printf("Endereco: %s\n", endereco);
-    printf("Profissao: %s\n", profissao);
-    printf("Salario: %s\n", salario);
-    printf("Tecle ENTER para continuar");
-    getchar();
+    return func;
 }
 
 void le_cpf(char* cpf)

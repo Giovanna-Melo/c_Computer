@@ -1,4 +1,16 @@
 ////////////MODULO FUNC/////////////
+struct funcionario {
+    char nome[52]; //DECLARADO EM OP_MODULO_CLI
+    char cpf[13];
+    char email[258]; //DECLARADO EM OP_MODULO_CLI
+    char telefone[13]; //DECLARADO EM OP_MODULO_CLI
+    char endereco[102]; //DECLARADO EM OP_MODULO_CLI
+    char profissao[52];
+    char salario[8];
+    int count;
+};
+
+typedef struct funcionario Funcionario;
 
 void modulo_func(void); 
 char menu_funcionarios(void);
@@ -7,8 +19,10 @@ void cadastro_func(void);
 void exibe_func(void);
 void atualiza_func(void);
 void deleta_func(void);
+
+void exibe_cadastro_func(const Funcionario* func);
 //TELAS
-void tela_cadastro_func(void);
+Funcionario* tela_cadastro_func(void);
 void tela_exibe_func(void);
 void tela_atualiza_func(void);
 void tela_deleta_func(void);
