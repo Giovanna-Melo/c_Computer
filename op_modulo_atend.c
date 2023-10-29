@@ -72,7 +72,8 @@ char menu_atendimentos(void)
 //FUNCOES EM DESENVOLVIMENTO
 void exibe_cadastro_atd(const Atendimento* atend)
 {
-    printf("%s\n\n", atend->data_atend); //tirar
+    printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
+    printf("%s\n", atend->data_atend);
     printf("CPF/CNPJ: %s\n", atend->cpf_cnpj);
     printf("Nome do equipamento: %s\n", atend->nome_eqp);
     printf("Marca: %s\n", atend->marca);
@@ -83,6 +84,7 @@ void exibe_cadastro_atd(const Atendimento* atend)
     printf("Reponsavel: %s\n", atend->responsavel);
     printf("Situacao: %s\n", atend->situacao);
     printf("Ordem: %s\n\n", atend->ordem_s);
+    printf("Status: %s\n", atend->status);
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -130,8 +132,10 @@ Atendimento* tela_cadastro_atend(void)
     char observacoes[502];
     char data[12];
     char responsavel[13];
-    char situacao[11];
+    char situacao[11] = "pendente";
     char ordem_s[25];
+    char status[9] = "ativo";
+    char codigo_atend[52];
     //while ('pendente'+cpf/cnpj+ordem in cad_atend) {posico de ordem+=1};
 
     Atendimento *atend = (Atendimento*) malloc(sizeof(Atendimento));
@@ -161,10 +165,14 @@ Atendimento* tela_cadastro_atend(void)
     strncpy(atend->data, data, sizeof(atend->data));
     le_responsavel(responsavel);
     strncpy(atend->responsavel, responsavel, sizeof(atend->responsavel));
-    le_situacao(situacao);
     strncpy(atend->situacao, situacao, sizeof(atend->situacao));
     le_ordem(ordem_s);
     strncpy(atend->ordem_s, ordem_s, sizeof(atend->ordem_s));
+    strncpy(codigo_atend, situacao, sizeof(situacao));
+    strncat(codigo_atend, cpf_cnpj, sizeof(cpf_cnpj));
+    strncat(codigo_atend, ordem_s, sizeof(ordem_s));
+    strncpy(atend->codigo_atend, codigo_atend, sizeof(atend->codigo_atend));
+    strncpy(atend->status, status, sizeof(atend->status));
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     return atend;
@@ -276,10 +284,22 @@ void le_situacao(char* situacao)
     } 
 }
 
-void le_ordem(char* ordem_s)
+void le_ordem(char* ordem_s)//recebe cpf_ cnpj e vai retornar ordem_s
 {
-    int ordem = 0;
-    //while ('pendente'+cpf/cnpj+ordem in cad_atend) {posico de ordem+=1};
+    int ordem = 1;
+    //do
+    //contruir codigo
+    //codigop [52];
+    //codigoc [52];
+    //strncpy(codigop, "pendente")
+    //strncat (codigop, cpf_cnpj)
+    //strncpy(codigoc, "concluido")
+    //strncat (codigoc, cpf_cnpj)
+    //transforma o valor de ordem em ordem_s
+    //strncat(codigop,ordem_s)
+    //strncat(codigoc,ordem_s)
+    //posico de ordem+=1
+    //while ('pendente'+cpf/cnpj+ordem or 'concluido'+cpf/cnpj+ordem (codigop or codigoc) in cad_atend) {posico de ordem+=1};
     sprintf(ordem_s, "%d", ordem);
 }
 

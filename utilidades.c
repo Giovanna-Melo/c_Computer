@@ -224,7 +224,7 @@ int valida_endereco(char* endereco) //Informar nas instrucoes q nn deve ter espa
   
   tam = strlen(endereco);
   for (int i = 0; i < tam-1; i++) {
-    if (!eh_alphanum(endereco[i]) && endereco[i] != ',' && endereco[i] != '-') {
+    if (!eh_alphanum(endereco[i]) && endereco[i] != ',' && endereco[i] != '-' && endereco[i] != ' ') {
       return 0;
     }
   }

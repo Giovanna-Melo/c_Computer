@@ -73,12 +73,14 @@ char menu_funcionarios(void)
 void exibe_cadastro_func(const Funcionario* func)
 {
     printf("\nNome: %s\n", func->nome);
+    printf("Contador: %d\n", func->count);
     printf("CPF: %s\n", func->cpf);
     printf("Email: %s\n", func->email);
     printf("Telefone: %s\n", func->telefone);
     printf("Endereco: %s\n", func->endereco);
     printf("Profissao: %s\n", func->profissao);
     printf("Salario: %s\n", func->salario);
+    printf("Status: %s\n", func->status);
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -122,6 +124,7 @@ Funcionario* tela_cadastro_func(void)
     char endereco[102]; //DECLARADO EM OP_MODULO_CLI
     char profissao[52];
     char salario[8];
+    char status[9] = "ativo";
 
     Funcionario *func = (Funcionario*) malloc(sizeof(Funcionario));
     system("clear||cls");
@@ -131,6 +134,7 @@ Funcionario* tela_cadastro_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
+    func->count = 0;
     le_nome(nome);
     strncpy(func->nome, nome, sizeof(func->nome));
     le_cpf(cpf);
@@ -145,7 +149,7 @@ Funcionario* tela_cadastro_func(void)
     strncpy(func->profissao, profissao, sizeof(func->profissao));
     le_salario(salario);
     strncpy(func->salario, salario, sizeof(func->salario));
-    func->count = 0;
+    strncpy(func->status, status, sizeof(func->status));
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     return func;

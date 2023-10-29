@@ -102,6 +102,7 @@ void exibe_cadastro(const Cliente* cli)
     printf("Email: %s\n", cli->email);
     printf("Telefone: %s\n", cli->telefone);
     printf("Endereco: %s\n", cli->endereco);
+    printf("Status: %s\n", cli->status);
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -144,6 +145,7 @@ Cliente* tela_cadastro_cli(void)
     char email[258];
     char telefone[13];
     char endereco[102];
+    char status[9] = "ativo";
     
     Cliente *cli = (Cliente*) malloc(sizeof(Cliente)); 
   
@@ -166,6 +168,7 @@ Cliente* tela_cadastro_cli(void)
     strncpy(cli->telefone, telefone, sizeof(cli->telefone));//, cli->telefone;
     le_endereco(endereco);
     strncpy(cli->endereco, endereco, sizeof(cli->endereco));//, cli->endereco;
+    strncpy(cli->status, status, sizeof(cli->status));//, cli->status;
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     return cli;

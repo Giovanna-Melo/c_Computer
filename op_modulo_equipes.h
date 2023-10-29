@@ -2,8 +2,10 @@
 struct equipe {
     char equipe[13];
     int count;
+    int qp;
     char nome[52];
     char cpf[13];
+    char status[9];
 };
 
 typedef struct equipe Equipe;
@@ -15,7 +17,7 @@ void exibe_equipe(void);
 void atualiza_equipe(void);
 void deleta_equipe(void);
 
-void exibe_cadastro_eqp(const Equipe* eqp, int tamanho);
+void exibe_cadastro_eqp(const Equipe* eqp);
 //TELAS
 Equipe* tela_cadastro_equipe(void);
 void tela_exibe_equipe(void);

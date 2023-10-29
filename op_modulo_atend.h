@@ -1,6 +1,7 @@
 ////////////MODULO ATEND/////////////
 //ESTRUTURA
 struct atendimento {
+    char codigo_atend[52];
     char data_atend[20];
     char cpf_cnpj[16];
     char nome_eqp[52];
@@ -12,6 +13,7 @@ struct atendimento {
     char responsavel[13];
     char situacao[11];
     char ordem_s[25];
+    char status[9];
 };
 
 typedef struct atendimento Atendimento;

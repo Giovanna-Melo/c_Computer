@@ -1,13 +1,14 @@
 ////////////MODULO FUNC/////////////
 struct funcionario {
     char nome[52]; //DECLARADO EM OP_MODULO_CLI
+    int count;
     char cpf[13];
     char email[258]; //DECLARADO EM OP_MODULO_CLI
     char telefone[13]; //DECLARADO EM OP_MODULO_CLI
     char endereco[102]; //DECLARADO EM OP_MODULO_CLI
     char profissao[52];
     char salario[8];
-    int count;
+    char status[9];
 };
 
 typedef struct funcionario Funcionario;

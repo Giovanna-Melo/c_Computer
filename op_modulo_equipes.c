@@ -36,14 +36,16 @@ void modulo_equipes(void)
 }
 
 //FUNCOES EM DESENVOLVIMENTO
-void exibe_cadastro_eqp(const Equipe* eqp, int tamanho)
+void exibe_cadastro_eqp(const Equipe* eqp)
 {
-    printf("\n\nEquipe: %s\n", eqp->equipe);
-    printf("Contador: %d\n", eqp->count);
-    for (int i = 0; i < tamanho; i++){
+    int qp = eqp->qp;
+    printf("\n\nEquipe: %s", eqp->equipe);
+    printf("Contador: %d\n\n", eqp->count);
+    for (int i = 0; i < qp; i++){
         printf("Nome: %s", (eqp + i)->nome);
         printf("CPF: %s\n", (eqp + i)->cpf);
     }
+    printf("Status: %s\n", eqp->status);
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -53,7 +55,7 @@ void cadastro_equipe(void)
     // função ainda em desenvolvimento
     // ler os dados do cliente
     Equipe *eqp = tela_cadastro_equipe();
-    exibe_cadastro_eqp(eqp,2);
+    exibe_cadastro_eqp(eqp);
 
     // gravar o registro no arquivo de clientes
     //gravar_cliente(cli);
@@ -86,7 +88,8 @@ Equipe* tela_cadastro_equipe(void)
     int qp = 0;
     char nome[52];
     char cpf[13];
-    int tamanho = 2;
+    int tamanho = 20; //Há limite aproximado de vinte participantes por equipe informar no modulo sobre
+    char status[9] = "ativo";
 
     Equipe *eqp = (Equipe*) malloc(tamanho * sizeof(Equipe));
 
@@ -103,6 +106,7 @@ Equipe* tela_cadastro_equipe(void)
     le_quant_part(quant_part);
     strncpy(qpc, &quant_part[0], 2);
     sscanf(qpc, "%d", &qp);
+    eqp->qp = qp;
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Equipe: %s\n", equipe);
@@ -110,10 +114,11 @@ Equipe* tela_cadastro_equipe(void)
     for (int i = 0; i < qp; i++) 
     {
     le_nome(nome); //JA DECLARADO NO OP_MODULO_CLI
-    strncpy((eqp +i)->nome, nome, sizeof((eqp + i)->nome));
+    strncpy((eqp + i)->nome, nome, sizeof((eqp + i)->nome));
     le_chave_func(cpf);
     strncpy((eqp + i)->cpf, cpf, sizeof((eqp + i)->cpf));
     }
+    strncpy(eqp->status, status, sizeof(eqp->status));
     return eqp;
 }
 // fazer o scanf da quantidade para solicitar o nome e o cpf de tantos func
