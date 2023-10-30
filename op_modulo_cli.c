@@ -96,6 +96,10 @@ char padrao_crud(void)
 //FUNCOES EM DESENVOLVIMENTO
 void exibe_cadastro(const Cliente* cli)
 {
+  if ((cli == NULL) || (strcmp(cli->status, "inativo")==0)) {
+    printf("\n Cliente Inexistente \n");
+  } else {
+    printf("\n Cliente Cadastrado  \n");
     printf("Nome: %s\n", cli->nome);
     printf("Tipo: %s\n", cli->tipo);
     printf("CPF/CNPJ: %s\n", cli->cpf_cnpj);
@@ -105,6 +109,21 @@ void exibe_cadastro(const Cliente* cli)
     printf("Status: %s\n", cli->status);
     printf("Tecle ENTER para continuar");
     getchar();
+  }
+}
+
+void grava_cliente(Cliente* cli) //.h
+{
+  FILE* fp;
+  fp = fopen("clientes.dat", "ab");
+  if (fp == NULL) 
+  {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1);
+  }
+  fwrite(cli, sizeof(Cliente), 1, fp);
+  fclose(fp);
 }
 
 void cadastro_cli(void)
@@ -113,6 +132,7 @@ void cadastro_cli(void)
     // ler os dados do cliente
     Cliente *cli = tela_cadastro_cli();
     exibe_cadastro(cli);
+    grava_cliente(cli);
 
     // gravar o registro no arquivo de clientes
     //gravar_cliente(cli);
@@ -123,7 +143,11 @@ void cadastro_cli(void)
 
 void exibe_cli(void)
 {
-    tela_exibe_cli();
+
+    Cliente *cli = tela_exibe_cli();
+    exibe_cadastro(cli);
+    // liberar o espaço de memória da estrutura 
+    free(cli);
 }
 
 void atualiza_cli(void)
@@ -240,9 +264,8 @@ void le_endereco(char* endereco)
     } 
 }
 
-void tela_exibe_cli(void)
+Cliente* tela_exibe_cli(void) //.h
 {
-    char cpf_cnpj[16];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -250,11 +273,39 @@ void tela_exibe_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_cpf_cnpj(cpf_cnpj);
+    Cliente* cli = busca_cliente();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return cli;
+}
+
+Cliente* busca_cliente(void) //.h
+{
+    FILE* fp;
+    Cliente* cli;
+    char cpf_cnpj[16];
+    le_chave_cpf_cnpj(cpf_cnpj);
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(cli, sizeof(Cliente), 1, fp);
+        if ((strcmp(cli->cpf_cnpj, cpf_cnpj)==0) && (strcmp(cli->status, "inativo")!=0)) 
+        {
+            fclose(fp);
+            return cli;
+        }
+    }
+    fclose(fp);
+    return NULL;
 }
 
 void le_chave_cpf_cnpj(char* cpf_cnpj)
