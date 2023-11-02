@@ -7,7 +7,7 @@ struct funcionario {
     char telefone[13]; //DECLARADO EM OP_MODULO_CLI
     char endereco[102]; //DECLARADO EM OP_MODULO_CLI
     char profissao[52];
-    char salario[8];
+    char salario[10];
     char status[9];
 };
 
@@ -22,9 +22,11 @@ void atualiza_func(void);
 void deleta_func(void);
 
 void exibe_cadastro_func(const Funcionario* func);
+void grava_func(Funcionario* func);
+Funcionario* busca_func(void);
 //TELAS
 Funcionario* tela_cadastro_func(void);
-void tela_exibe_func(void);
+Funcionario* tela_exibe_func(void);
 void tela_atualiza_func(void);
 void tela_deleta_func(void);
 

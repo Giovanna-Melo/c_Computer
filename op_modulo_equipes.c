@@ -149,11 +149,6 @@ void le_chave_func(char* cpf)
 {
     printf("{}                       CPF(somente numeros):                              {}\n");
     fgets(cpf, 13, stdin);
-    while (!valida_existe(cpf)) //em utilidades
-    {
-        printf("{}                       Informe o CPF novamente:                           {}\n");
-        fgets(cpf, 13, stdin);
-    } 
 }
 
 void tela_exibe_equipe(void)

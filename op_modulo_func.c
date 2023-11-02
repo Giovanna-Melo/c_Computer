@@ -72,36 +72,54 @@ char menu_funcionarios(void)
 //FUNCOES EM DESENVOLVIMENTO
 void exibe_cadastro_func(const Funcionario* func)
 {
-    printf("\nNome: %s\n", func->nome);
-    printf("Contador: %d\n", func->count);
-    printf("CPF: %s\n", func->cpf);
-    printf("Email: %s\n", func->email);
-    printf("Telefone: %s\n", func->telefone);
-    printf("Endereco: %s\n", func->endereco);
-    printf("Profissao: %s\n", func->profissao);
-    printf("Salario: %s\n", func->salario);
-    printf("Status: %s\n", func->status);
-    printf("Tecle ENTER para continuar");
-    getchar();
+    if ((func == NULL) || (strcmp(func->status, "inativo")==0)) {
+        printf("\n Funcionario Inexistente \n");
+    } else {
+        printf("\n Funcionario Cadastrado  \n");
+        printf("\nNome: %s\n", func->nome);
+        printf("Contador: %d\n", func->count);
+        printf("CPF: %s\n", func->cpf);
+        printf("Email: %s\n", func->email);
+        printf("Telefone: %s\n", func->telefone);
+        printf("Endereco: %s\n", func->endereco);
+        printf("Profissao: %s\n", func->profissao);
+        printf("Salario: %s\n", func->salario);
+        printf("Status: %s\n", func->status);
+        printf("Tecle ENTER para continuar");
+        getchar();
+    }
+}
+
+void grava_func(Funcionario* func) //.h
+{
+    FILE* fp;
+    fp = fopen("funcionarios.dat", "ab");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    fwrite(func, sizeof(Funcionario), 1, fp);
+    fclose(fp);
 }
 
 void cadastro_func(void)
 {
-    // função ainda em desenvolvimento
-    // ler os dados do cliente
+    // ler os dados do funcionario
     Funcionario *func = tela_cadastro_func();
     exibe_cadastro_func(func);
-
-    // gravar o registro no arquivo de clientes
-    //gravar_cliente(cli);
-
+    grava_func(func);
     // liberar o espaço de memória da estrutura 
     free(func);
 }
 
 void exibe_func(void)
 {
-    tela_exibe_func();
+    Funcionario *func = tela_exibe_func();
+    exibe_cadastro_func(func);
+    // liberar o espaço de memória da estrutura 
+    free(func);
 }
 
 void atualiza_func(void)
@@ -123,10 +141,11 @@ Funcionario* tela_cadastro_func(void)
     char telefone[13]; //DECLARADO EM OP_MODULO_CLI
     char endereco[102]; //DECLARADO EM OP_MODULO_CLI
     char profissao[52];
-    char salario[8];
+    char salario[10];
     char status[9] = "ativo";
 
     Funcionario *func = (Funcionario*) malloc(sizeof(Funcionario));
+
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -180,17 +199,16 @@ void le_profissao(char* profissao)
 void le_salario(char* salario) 
 {
     printf("{}                       Salario:                                           {}\n");
-    fgets(salario, 8, stdin);
+    fgets(salario, 10, stdin);
     while (!valida_salario(salario)) //em utilidades
     {
         printf("{}                       Informe o salario novamente:                       {}\n");
-        fgets(salario, 8, stdin);
+        fgets(salario, 10, stdin);
     } 
 }
 
-void tela_exibe_func(void)
+Funcionario* tela_exibe_func(void) //.h
 {
-    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -198,11 +216,39 @@ void tela_exibe_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_func(cpf);
+    Funcionario* func = busca_func();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return func;
+}
+
+Funcionario* busca_func(void) //.h
+{
+    FILE* fp;
+    Funcionario* func;
+    char cpf[13];
+    le_chave_func(cpf);
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(func, sizeof(Funcionario), 1, fp);
+        if ((strcmp(func->cpf, cpf)==0) && (strcmp(func->status, "inativo")!=0)) 
+        {
+            fclose(fp);
+            return func;
+        }
+    }
+    fclose(fp);
+    return NULL;
 }
 
 void tela_atualiza_func(void)
