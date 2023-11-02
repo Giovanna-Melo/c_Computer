@@ -87,7 +87,7 @@ void exibe_cadastro_func(const Funcionario* func)
 
 void cadastro_func(void)
 {
-        // função ainda em desenvolvimento
+    // função ainda em desenvolvimento
     // ler os dados do cliente
     Funcionario *func = tela_cadastro_func();
     exibe_cadastro_func(func);
@@ -181,7 +181,7 @@ void le_salario(char* salario)
 {
     printf("{}                       Salario:                                           {}\n");
     fgets(salario, 8, stdin);
-    while (!valida_strnum(salario)) //em utilidades
+    while (!valida_salario(salario)) //em utilidades
     {
         printf("{}                       Informe o salario novamente:                       {}\n");
         fgets(salario, 8, stdin);

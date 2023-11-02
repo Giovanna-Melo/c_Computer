@@ -114,16 +114,16 @@ void exibe_cadastro(const Cliente* cli)
 
 void grava_cliente(Cliente* cli) //.h
 {
-  FILE* fp;
-  fp = fopen("clientes.dat", "ab");
-  if (fp == NULL) 
-  {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  fwrite(cli, sizeof(Cliente), 1, fp);
-  fclose(fp);
+    FILE* fp;
+    fp = fopen("clientes.dat", "ab");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    fwrite(cli, sizeof(Cliente), 1, fp);
+    fclose(fp);
 }
 
 void cadastro_cli(void)

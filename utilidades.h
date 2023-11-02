@@ -14,6 +14,7 @@ int eh_alphanum(char c);
 int valida_alphanum(char* nome_eqp);
 int valida_nao_vazio(char* observacoes);
 int valida_situacao(char* situacao);
+int valida_salario(char* salario);
 int eh_num(char c);
 int valida_strnum(char* salario);
 char* date_time(void);

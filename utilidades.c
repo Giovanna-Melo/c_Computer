@@ -330,6 +330,23 @@ int valida_situacao(char* situacao)
   }  
 }
 
+int valida_salario(char* salario)
+{
+  if (valida_nao_vazio(salario)) {
+    int tam;
+    
+    tam = strlen(salario);
+    for (int i = 0; i < tam-1; i++) {
+      if (!eh_num(salario[i]) && salario[i] != ',' && salario[i] != '.') {
+        return 0;
+      }
+    }
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 int eh_num(char c) 
 {
   if (c >= '0' && c <= '9') {
