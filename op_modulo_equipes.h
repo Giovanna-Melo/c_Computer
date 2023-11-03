@@ -3,8 +3,8 @@ struct equipe {
     char equipe[13];
     int count;
     int qp;
-    char nome[52];
-    char cpf[13];
+    char nome[20][52];
+    char cpf[20][13];
     char status[9];
 };
 
@@ -18,9 +18,11 @@ void atualiza_equipe(void);
 void deleta_equipe(void);
 
 void exibe_cadastro_eqp(const Equipe* eqp);
+void grava_equipe(Equipe* eqp);
+Equipe* busca_equipe(void);
 //TELAS
 Equipe* tela_cadastro_equipe(void);
-void tela_exibe_equipe(void);
+Equipe* tela_exibe_equipe(void);
 void tela_atualiza_equipe(void);
 void tela_deleta_equipe(void);
 //FUNCOES LEITURA COM VALIDACAO

@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "op_modulo_cli.h"
+#include "op_modulo_func.h"
 #include "op_modulo_equipes.h"
 #include "utilidades.h"
 
@@ -39,34 +40,51 @@ void modulo_equipes(void)
 void exibe_cadastro_eqp(const Equipe* eqp)
 {
     int qp = eqp->qp;
-    printf("\n\nEquipe: %s", eqp->equipe);
-    printf("Contador: %d\n\n", eqp->count);
-    for (int i = 0; i < qp; i++){
-        printf("Nome: %s", (eqp + i)->nome);
-        printf("CPF: %s\n", (eqp + i)->cpf);
+    if ((eqp == NULL) || (strcmp(eqp->status, "inativo")==0)) {
+        printf("\n Equipe Inexistente \n");
+    } else {
+        printf("\n\nEquipe: %s", eqp->equipe);
+        printf("Contador: %d\n\n", eqp->count);
+        for (int i = 0; i < qp; i++){
+            printf("Nome: %s", eqp->nome[i]);
+            printf("CPF: %s\n", eqp->cpf[i]);
+        }
+        printf("Status: %s\n", eqp->status);
+        printf("Tecle ENTER para continuar");
+        getchar();
     }
-    printf("Status: %s\n", eqp->status);
-    printf("Tecle ENTER para continuar");
-    getchar();
+}
+
+void grava_equipe(Equipe* eqp) //.h
+{
+    FILE* fp;
+    fp = fopen("equipes.dat", "ab");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    fwrite(eqp, sizeof(Equipe), 1, fp);
+    fclose(fp);
 }
 
 void cadastro_equipe(void)
 {
-    // função ainda em desenvolvimento
-    // ler os dados do cliente
+    // ler os dados da equipe
     Equipe *eqp = tela_cadastro_equipe();
     exibe_cadastro_eqp(eqp);
-
-    // gravar o registro no arquivo de clientes
-    //gravar_cliente(cli);
-
+    grava_equipe(eqp);
     // liberar o espaço de memória da estrutura 
     free(eqp);
 }
 
 void exibe_equipe(void)
 {
-    tela_exibe_equipe();
+    Equipe *eqp = tela_exibe_equipe();
+    exibe_cadastro_eqp(eqp);
+    // liberar o espaço de memória da estrutura 
+    free(eqp);
 }
 
 void atualiza_equipe(void)
@@ -88,10 +106,10 @@ Equipe* tela_cadastro_equipe(void)
     int qp = 0;
     char nome[52];
     char cpf[13];
-    int tamanho = 20; //Há limite aproximado de vinte participantes por equipe informar no modulo sobre
+    //Há limite de vinte participantes por equipe informar no modulo sobre
     char status[9] = "ativo";
 
-    Equipe *eqp = (Equipe*) malloc(tamanho * sizeof(Equipe));
+    Equipe *eqp = (Equipe*) malloc(sizeof(Equipe));
 
     system("clear||cls");
     printf("\n");
@@ -114,9 +132,17 @@ Equipe* tela_cadastro_equipe(void)
     for (int i = 0; i < qp; i++) 
     {
     le_nome(nome); //JA DECLARADO NO OP_MODULO_CLI
-    strncpy((eqp + i)->nome, nome, sizeof((eqp + i)->nome));
-    le_chave_func(cpf);
-    strncpy((eqp + i)->cpf, cpf, sizeof((eqp + i)->cpf));
+    strncpy(eqp->nome[i], nome, sizeof(eqp->nome[i]));
+    Funcionario* func = busca_func();
+    while(func==NULL)
+    {
+        printf("Funcionario nao cadastrado\n");
+        printf("Informe novamente\n");
+        func = busca_func();
+    }
+    strncpy(cpf, func->cpf, sizeof(cpf));
+    free(func);
+    strncpy(eqp->cpf[i], cpf, sizeof(eqp->cpf[i]));
     }
     strncpy(eqp->status, status, sizeof(eqp->status));
     return eqp;
@@ -151,9 +177,8 @@ void le_chave_func(char* cpf)
     fgets(cpf, 13, stdin);
 }
 
-void tela_exibe_equipe(void)
+Equipe* tela_exibe_equipe(void) //.h
 {
-    char equipe[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -161,22 +186,45 @@ void tela_exibe_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_equipe(equipe);
+    Equipe* eqp = busca_equipe();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return eqp;
+}
+
+Equipe* busca_equipe(void) //.h
+{
+    FILE* fp;
+    Equipe* eqp;
+    char equipe[13];
+    le_chave_equipe(equipe);
+    eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(eqp, sizeof(Equipe), 1, fp);
+        if ((strcmp(eqp->equipe, equipe)==0) && (strcmp(eqp->status, "inativo")!=0)) 
+        {
+            fclose(fp);
+            return eqp;
+        }
+    }
+    fclose(fp);
+    return NULL;
 }
 
 void le_chave_equipe(char* equipe)
 {
     printf("{}                       Equipe:                                            {}\n");
-    fgets(equipe, 13, stdin);
-    while (!valida_existe(equipe)) //em utilidades
-    {
-        printf("{}                       Informe a equipe novamente:                        {}\n");
-        fgets(equipe, 13, stdin);
-    } 
+    fgets(equipe, 13, stdin); 
 }
 
 void tela_atualiza_equipe(void)
