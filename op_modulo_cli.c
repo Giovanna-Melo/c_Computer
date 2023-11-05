@@ -106,9 +106,7 @@ void exibe_cadastro(const Cliente* cli)
     printf("Email: %s\n", cli->email);
     printf("Telefone: %s\n", cli->telefone);
     printf("Endereco: %s\n", cli->endereco);
-    printf("Status: %s\n", cli->status);
-    printf("Tecle ENTER para continuar");
-    getchar();
+    printf("Status: %s\n\n", cli->status);
   }
 }
 
@@ -132,6 +130,8 @@ void cadastro_cli(void)
     // ler os dados do cliente
     Cliente *cli = tela_cadastro_cli();
     exibe_cadastro(cli);
+    printf("Tecle ENTER para continuar"); //mudar isso em todos os modulos e tirar o tipo resp de atendimento
+    getchar();
     grava_cliente(cli);
 
     // gravar o registro no arquivo de clientes
@@ -146,6 +146,8 @@ void exibe_cli(void)
 
     Cliente *cli = tela_exibe_cli();
     exibe_cadastro(cli);
+    printf("Tecle ENTER para continuar");
+    getchar();
     // liberar o espaço de memória da estrutura 
     free(cli);
 }
@@ -317,6 +319,46 @@ void le_chave_cpf_cnpj(char* cpf_cnpj)
         printf("{}                       Informe o CPF/CNPJ novamente:                      {}\n");
         fgets(cpf_cnpj, 16, stdin);
     } 
+}
+
+void lista_pf(void) //.h
+{
+  FILE* fp;
+  Cliente* cli;
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  fp = fopen("clientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(cli, sizeof(Cliente), 1, fp)) {
+    if ((strcmp(cli->tipo, "PF\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
+      exibe_cadastro(cli);
+    }
+  }
+  fclose(fp);
+  free(cli);
+}
+
+void lista_pj(void) 
+{ //.h
+  FILE* fp;
+  Cliente* cli;
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  fp = fopen("clientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(cli, sizeof(Cliente), 1, fp)) {
+    if ((strcmp(cli->tipo, "PJ\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
+      exibe_cadastro(cli);
+    }
+  }
+  fclose(fp);
+  free(cli);
 }
 
 void tela_atualiza_cli(void)

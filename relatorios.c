@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "relatorios.h"
+#include "op_modulo_cli.h"
 #include "utilidades.h"
 
 void f_clientes(void) 
@@ -147,6 +148,7 @@ void todos_clientes_pf (void)
     system("clear||cls");
     printf("\n");
     printf("TODOS OS CLIENTES PF\n");
+    lista_pf();
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -155,6 +157,7 @@ void todos_clientes_pj (void)
     system("clear||cls");
     printf("\n");	
     printf("TODOS OS CLIENTES PJ\n");
+    lista_pj();
     printf("Tecle ENTER para continuar");
     getchar();
 }

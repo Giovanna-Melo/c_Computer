@@ -37,3 +37,6 @@ void le_email(char* email);
 void le_telefone(char* telefone);
 void le_endereco(char* endereco);
 void le_chave_cpf_cnpj(char* cpf_cnpj);
+//RELATORIO
+void lista_pf(void);
+void lista_pj(void);
