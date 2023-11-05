@@ -251,6 +251,32 @@ Funcionario* busca_func(void) //.h
     return NULL;
 }
 
+//busca_resp_func
+Funcionario* busca_resp_func(char* responsavel) //.h
+{
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(func, sizeof(Funcionario), 1, fp);
+        if ((strcmp(func->cpf, responsavel)==0) && (strcmp(func->status, "ativo")==0)) 
+        {
+            fclose(fp);
+            return func;
+        }
+    }
+    fclose(fp);
+    return NULL;
+}
+
 void tela_atualiza_func(void)
 {
     char cpf[13];

@@ -20,6 +20,7 @@ void deleta_equipe(void);
 void exibe_cadastro_eqp(const Equipe* eqp);
 void grava_equipe(Equipe* eqp);
 Equipe* busca_equipe(void);
+Equipe* busca_resp_equipe(char* responsavel);
 //TELAS
 Equipe* tela_cadastro_equipe(void);
 Equipe* tela_exibe_equipe(void);

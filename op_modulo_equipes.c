@@ -5,6 +5,7 @@
 #include <string.h>
 #include "op_modulo_cli.h"
 #include "op_modulo_func.h"
+#include "op_modulo_atend.h"
 #include "op_modulo_equipes.h"
 #include "utilidades.h"
 
@@ -212,6 +213,32 @@ Equipe* busca_equipe(void) //.h
     {
         fread(eqp, sizeof(Equipe), 1, fp);
         if ((strcmp(eqp->equipe, equipe)==0) && (strcmp(eqp->status, "inativo")!=0)) 
+        {
+            fclose(fp);
+            return eqp;
+        }
+    }
+    fclose(fp);
+    return NULL;
+}
+
+//busca_resp_equipe
+Equipe* busca_resp_equipe(char* responsavel) //.h
+{
+    FILE* fp;
+    Equipe* eqp;
+    eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(eqp, sizeof(Equipe), 1, fp);
+        if ((strcmp(eqp->equipe, responsavel)==0) && (strcmp(eqp->status, "ativo")==0)) 
         {
             fclose(fp);
             return eqp;

@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <time.h>
 #include "utilidades.h"
+#include "op_modulo_func.h" //mover para utilidades
+#include "op_modulo_equipes.h" //mover para utilidades
 //FUNCOES EM DESENVOLVIMENTO
 
 int eh_letra(char c) 
@@ -392,6 +394,48 @@ char* date_time(void) {
     return data_hora;
 }
 // TRECHO ADAPTADO DO CHAT GPT
+
+int valida_responsavel(char* responsavel) 
+{
+  if (valida_nome(responsavel)) 
+  {
+  //busca em equipe
+    Equipe* eqp = busca_resp_equipe(responsavel);
+    if ((eqp == NULL) || (strcmp(eqp->status, "inativo")==0))
+    {
+      if (eqp != NULL)
+      {
+        free(eqp);
+      }
+      printf("{}                             Responsavel inexistente                      {}\n");
+      printf("{}                                Informe novamente                         {}\n");
+      return 0;
+    } else {
+      free(eqp);
+      return 1;
+    }
+  }
+  else if (valida_strnum(responsavel)) 
+  {
+  //busca em func
+    Funcionario* func = busca_resp_func(responsavel);
+    if ((func == NULL) || (strcmp(func->status, "inativo")==0)) 
+    {
+      if (func != NULL)
+      {
+        free(func);
+      }
+      printf("{}                             Responsavel inexistente                      {}\n");
+      printf("{}                                Informe novamente                         {}\n");
+      return 0;
+    } else {
+      free(func);
+      return 1;
+    }
+  } else {
+    return 0;
+  }
+}
 
 int valida_existe(char* responsavel)
 {
