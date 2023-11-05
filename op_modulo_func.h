@@ -42,3 +42,5 @@ void tela_mostra_zcont(void);
 void le_profissao(char* profissao);
 void le_salario(char* salario);
 void le_cpf(char* cpf);
+//RELATORIO
+void lista_all_func(void);

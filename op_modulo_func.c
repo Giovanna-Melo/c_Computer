@@ -85,8 +85,6 @@ void exibe_cadastro_func(const Funcionario* func)
         printf("Profissao: %s\n", func->profissao);
         printf("Salario: %s\n", func->salario);
         printf("Status: %s\n", func->status);
-        printf("Tecle ENTER para continuar");
-        getchar();
     }
 }
 
@@ -109,6 +107,8 @@ void cadastro_func(void)
     // ler os dados do funcionario
     Funcionario *func = tela_cadastro_func();
     exibe_cadastro_func(func);
+    printf("Tecle ENTER para continuar");
+    getchar();
     grava_func(func);
     // liberar o espaço de memória da estrutura 
     free(func);
@@ -118,6 +118,8 @@ void exibe_func(void)
 {
     Funcionario *func = tela_exibe_func();
     exibe_cadastro_func(func);
+    printf("Tecle ENTER para continuar");
+    getchar();
     // liberar o espaço de memória da estrutura 
     free(func);
 }
@@ -275,6 +277,26 @@ Funcionario* busca_resp_func(char* responsavel) //.h
     }
     fclose(fp);
     return NULL;
+}
+
+void lista_all_func(void) //.h
+{
+  FILE* fp;
+  Funcionario* func;
+  func = (Funcionario*) malloc(sizeof(Funcionario));
+  fp = fopen("funcionarios.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(func, sizeof(Funcionario), 1, fp)) {
+    if (strcmp(func->status, "ativo")==0) {
+      exibe_cadastro_func(func);
+    }
+  }
+  fclose(fp);
+  free(func);
 }
 
 void tela_atualiza_func(void)

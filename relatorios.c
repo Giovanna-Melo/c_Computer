@@ -5,6 +5,7 @@
 #include <string.h>
 #include "relatorios.h"
 #include "op_modulo_cli.h"
+#include "op_modulo_func.h"
 #include "utilidades.h"
 
 void f_clientes(void) 
@@ -253,6 +254,7 @@ void todos_funcionarios (void)
     system("clear||cls");
     printf("\n");
     printf("TODOS OS FUNCIONARIOS\n");
+    lista_all_func();
     printf("Tecle ENTER para continuar");
     getchar();
 }
