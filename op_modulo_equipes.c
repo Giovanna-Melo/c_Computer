@@ -50,9 +50,7 @@ void exibe_cadastro_eqp(const Equipe* eqp)
             printf("Nome: %s", eqp->nome[i]);
             printf("CPF: %s\n", eqp->cpf[i]);
         }
-        printf("Status: %s\n", eqp->status);
-        printf("Tecle ENTER para continuar");
-        getchar();
+        printf("Status: %s\n\n", eqp->status);
     }
 }
 
@@ -75,6 +73,8 @@ void cadastro_equipe(void)
     // ler os dados da equipe
     Equipe *eqp = tela_cadastro_equipe();
     exibe_cadastro_eqp(eqp);
+    printf("Tecle ENTER para continuar");
+    getchar();
     grava_equipe(eqp);
     // liberar o espaço de memória da estrutura 
     free(eqp);
@@ -84,6 +84,8 @@ void exibe_equipe(void)
 {
     Equipe *eqp = tela_exibe_equipe();
     exibe_cadastro_eqp(eqp);
+    printf("Tecle ENTER para continuar");
+    getchar();
     // liberar o espaço de memória da estrutura 
     free(eqp);
 }
@@ -252,6 +254,26 @@ void le_chave_equipe(char* equipe)
 {
     printf("{}                       Equipe:                                            {}\n");
     fgets(equipe, 13, stdin); 
+}
+
+void lista_all_equipes(void) //.h
+{
+  FILE* fp;
+  Equipe* eqp;
+  eqp = (Equipe*) malloc(sizeof(Equipe));
+  fp = fopen("equipes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(eqp, sizeof(Equipe), 1, fp)) {
+    if (strcmp(eqp->status, "ativo")==0) {
+      exibe_cadastro_eqp(eqp);
+    }
+  }
+  fclose(fp);
+  free(eqp);
 }
 
 void tela_atualiza_equipe(void)

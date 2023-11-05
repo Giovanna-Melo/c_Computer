@@ -6,6 +6,7 @@
 #include "relatorios.h"
 #include "op_modulo_cli.h"
 #include "op_modulo_func.h"
+#include "op_modulo_equipes.h"
 #include "utilidades.h"
 
 void f_clientes(void) 
@@ -272,6 +273,7 @@ void todas_equipes (void)
     system("clear||cls");
     printf("\n");
     printf("TODAS AS EQUIPES\n");
+    lista_all_equipes();
     printf("Tecle ENTER para continuar");
     getchar();
 }
