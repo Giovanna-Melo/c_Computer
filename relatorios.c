@@ -7,6 +7,7 @@
 #include "op_modulo_cli.h"
 #include "op_modulo_func.h"
 #include "op_modulo_equipes.h"
+#include "op_modulo_atend.h"
 #include "utilidades.h"
 
 void f_clientes(void) 
@@ -168,6 +169,7 @@ void atendimentos_concluidos (void)
     system("clear||cls");
     printf("\n");
     printf("ATENDIMENTOS CONCLUIDOS\n");
+    lista_atendc();
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -177,6 +179,7 @@ void atendimentos_pendentes (void)
     system("clear||cls");
     printf("\n");
     printf("ATENDIMENTOS PENDENTES\n");
+    lista_atendp();
     printf("Tecle ENTER para continuar");
     getchar();
 }

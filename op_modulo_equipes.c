@@ -264,7 +264,7 @@ void lista_all_equipes(void) //.h
   fp = fopen("equipes.dat", "rb");
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
+    printf("Nao e possivel continuar este programa...\n");
     exit(1);
   }
   while(fread(eqp, sizeof(Equipe), 1, fp)) {

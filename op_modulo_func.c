@@ -287,7 +287,7 @@ void lista_all_func(void) //.h
   fp = fopen("funcionarios.dat", "rb");
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
+    printf("Nao e possivel continuar este programa...\n");
     exit(1);
   }
   while(fread(func, sizeof(Funcionario), 1, fp)) {

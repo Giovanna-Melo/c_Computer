@@ -91,8 +91,6 @@ void exibe_cadastro_atend(const Atendimento* atend) //.h
         printf("Situacao: %s\n", atend->situacao);
         printf("Ordem: %s\n\n", atend->ordem_s);
         printf("Status: %s\n", atend->status);
-        printf("Tecle ENTER para continuar");
-        getchar();
     }
 }
 
@@ -115,6 +113,8 @@ void cadastro_atend(void)
     // ler os dados do cliente
     Atendimento *atend = tela_cadastro_atend();
     exibe_cadastro_atend(atend);
+    printf("Tecle ENTER para continuar");
+    getchar();
     grava_atend(atend);
     // liberar o espaço de memória da estrutura 
     free(atend);
@@ -124,6 +124,8 @@ void exibe_atend(void)
 {
     Atendimento *atend = tela_exibe_atend();
     exibe_cadastro_atend(atend);
+    printf("Tecle ENTER para continuar");
+    getchar();
     // liberar o espaço de memória da estrutura 
     free(atend);
 }
@@ -431,6 +433,46 @@ void le_codigoatend(char* codigo_atend)
     fgets(codigo_atend, 53, stdin);
     codigo_atend[strcspn(codigo_atend, "\n")] = '\0';
     //fflush(stdin);
+}
+
+void lista_atendc(void) //.h
+{
+  FILE* fp;
+  Atendimento* atend;
+  atend = (Atendimento*) malloc(sizeof(Atendimento));
+  fp = fopen("atendimentos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(atend, sizeof(Atendimento), 1, fp)) {
+    if ((strcmp(atend->situacao, "concluido") == 0) && (strcmp(atend->status, "ativo")==0)) {
+      exibe_cadastro_atend(atend);
+    }
+  }
+  fclose(fp);
+  free(atend);
+}
+
+void lista_atendp(void) //.h
+{
+  FILE* fp;
+  Atendimento* atend;
+  atend = (Atendimento*) malloc(sizeof(Atendimento));
+  fp = fopen("atendimentos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(atend, sizeof(Atendimento), 1, fp)) {
+    if ((strcmp(atend->situacao, "pendente") == 0) && (strcmp(atend->status, "ativo")==0)) {
+      exibe_cadastro_atend(atend);
+    }
+  }
+  fclose(fp);
+  free(atend);
 }
 
 void tela_atualiza_atend(void)

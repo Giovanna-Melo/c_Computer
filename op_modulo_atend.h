@@ -49,3 +49,6 @@ void le_responsavel(char* responsavel);
 void le_situacao(char* situacao);
 void le_ordem(char* cpf_cnpj, char* ordem_s);
 void le_codigoatend(char* codigo_atend);
+//RELATORIO
+void lista_atendc(void);
+void lista_atendp(void);
