@@ -10,7 +10,6 @@ struct atendimento {
     char nserie[22];
     char observacoes[502];
     char data[12];
-    char tipo_resp[13];
     char responsavel[13];
     char situacao[11];
     char ordem_s[25];

@@ -408,9 +408,6 @@ Atendimento* busca_atend_pec(char* codigop, char* codigoc) //.h //Informar no so
     while(!feof(fp)) 
     {
         fread(atend, sizeof(Atendimento), 1, fp);
-        printf("codigo de atendimeneto buscado: %s", atend->codigo_atend);//tirar nn chegou ate aqui
-        printf("codigo de atendimeneto ponto p: %s", codigop);//tirar
-        printf("codigo de atendimeneto ponto c: %s", codigoc);//tirar
         if ((strcmp(atend->codigo_atend, codigop)==0) && (strcmp(atend->status, "ativo")==0)) 
         {
             fclose(fp);
