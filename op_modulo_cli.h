@@ -23,11 +23,12 @@ void deleta_cli(void);
 
 void exibe_cadastro(const Cliente* cli);
 void grava_cliente(Cliente* cli);
+void atualizando_cliente(Cliente* cli);
 Cliente* busca_cliente(void);
 //TELAS
 Cliente* tela_cadastro_cli(void);
 Cliente* tela_exibe_cli(void);
-void tela_atualiza_cli(void);
+Cliente* tela_atualiza_cli(void);
 void tela_deleta_cli(void);
 //FUNCOES LEITURA COM VALIDACAO
 void le_nome(char* nome);
