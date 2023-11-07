@@ -68,6 +68,45 @@ void grava_equipe(Equipe* eqp) //.h
     fclose(fp);
 }
 
+void deletando_equipe (Equipe* eqp) //.h
+{
+    FILE* fp;
+    Equipe* arq_eqp;
+    char status[9] = "inativo";
+    int achou = 0;
+    if (eqp == NULL) 
+    {
+        printf("Ops! A equipe informada nao existe!\n");
+    } else {
+        arq_eqp = (Equipe*) malloc(sizeof(Equipe));
+        fp = fopen("equipes.dat", "r+b");
+        if (fp == NULL) 
+        {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+        } 
+        while(fread(arq_eqp, sizeof(Equipe), 1, fp)==1)
+        {
+            if ((strcmp(arq_eqp->equipe, eqp->equipe)==0) && (strcmp(arq_eqp->status, "inativo")!=0))
+            {
+                strncpy(arq_eqp->status, status, sizeof(arq_eqp->status));
+                fseek(fp, -1*sizeof(Equipe), SEEK_CUR);
+                fwrite(arq_eqp, sizeof(Equipe), 1, fp);
+                achou = 1;
+                printf("\nEquipe excluida com sucesso!!!\n");
+                break;
+            } //while alterado por chatgpt
+        }
+        if (!achou) 
+        {
+            printf("\nEquipe nao encontrada!\n");
+        }
+        fclose(fp);
+        free(arq_eqp);
+  }
+}
+
 void cadastro_equipe(void)
 {
     // ler os dados da equipe
@@ -97,7 +136,12 @@ void atualiza_equipe(void)
 
 void deleta_equipe(void)
 {
-    tela_deleta_equipe();
+    Equipe *eqp = tela_deleta_equipe();
+    deletando_equipe(eqp);
+    printf("Tecle ENTER para continuar");
+    getchar();
+    // liberar o espaço de memória da estrutura 
+    free(eqp);
 }
 
 //TELAS CRUD
@@ -310,9 +354,8 @@ void tela_atualiza_equipe(void)
     } 
 }*/
 
-void tela_deleta_equipe(void)
+Equipe* tela_deleta_equipe(void)
 {
-    char equipe[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -320,9 +363,10 @@ void tela_deleta_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_equipe(equipe);
+    Equipe* eqp = busca_equipe();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return eqp;
 }

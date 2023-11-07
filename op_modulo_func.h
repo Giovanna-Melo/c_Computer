@@ -24,6 +24,7 @@ void deleta_func(void);
 void exibe_cadastro_func(const Funcionario* func);
 void grava_func(Funcionario* func);
 void atualizando_func(Funcionario* func);
+void deletando_func (Funcionario* func);
 Funcionario* busca_func(void);
 Funcionario* busca_resp_func(char* responsavel);
 //TELAS
