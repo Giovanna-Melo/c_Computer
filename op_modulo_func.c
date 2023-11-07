@@ -102,6 +102,115 @@ void grava_func(Funcionario* func) //.h
     fclose(fp);
 }
 
+void atualizando_func(Funcionario* func) //.h
+{
+    FILE* fp;
+    Funcionario* arqv_func;
+    char email[258];
+    char telefone[13];
+    char endereco[102];
+    char profissao[52];
+    char salario[10];
+    char resposta_email[5];
+    char resposta_tel[5];
+    char resposta_ender[5];
+    char resposta_prof[5];
+    char resposta_sal[5];
+    arqv_func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while (fread(arqv_func, sizeof(Funcionario), 1, fp) == 1)
+        {
+            if (strcmp(arqv_func->cpf, func->cpf)==0)
+            {
+                fseek(fp, -sizeof(Funcionario), SEEK_CUR);
+                break;
+            }
+        } //Trecho do while desenvolvido pelo chatgpt
+    printf("\nDeseja atualizar o e-mail (sim/nao)?");
+    fgets(resposta_email, 5, stdin);
+    if (strcmp(resposta_email, "sim\n")==0)
+    {
+        le_email(email);
+        strncpy(func->email, email, sizeof(func->email));//, cli->email;
+    }
+    printf("\nDeseja atualizar o telefone (sim/nao)?");
+    fgets(resposta_tel, 5, stdin);
+    if (strcmp(resposta_tel, "sim\n")==0)
+    {
+        le_telefone(telefone);
+        strncpy(func->telefone, telefone, sizeof(func->telefone));
+    }
+    printf("\nDeseja atualizar o endereco (sim/nao)?");
+    fgets(resposta_ender, 5, stdin);
+    if (strcmp(resposta_ender, "sim\n")==0)
+    {
+        le_endereco(endereco);
+        strncpy(func->endereco, endereco, sizeof(func->endereco));
+    }
+    printf("\nDeseja atualizar a profissao (sim/nao)?");
+    fgets(resposta_prof, 5, stdin);
+    if (strcmp(resposta_prof, "sim\n")==0)
+    {
+        le_profissao(profissao);
+        strncpy(func->profissao, profissao, sizeof(func->profissao));
+    }
+    printf("\nDeseja atualizar o salario (sim/nao)?");
+    fgets(resposta_sal, 5, stdin);
+    if (strcmp(resposta_sal, "sim\n")==0)
+    {
+        le_salario(salario);
+        strncpy(func->salario, salario, sizeof(func->salario));
+    }
+    fwrite(func, sizeof(Funcionario), 1, fp);
+    fclose(fp);
+    free(arqv_func);
+}
+
+void deletando_func (Funcionario* func) //.h
+{
+    FILE* fp;
+    Funcionario* arq_func;
+    char status[9] = "inativo";
+    int achou = 0;
+    if (func == NULL) 
+    {
+        printf("Ops! O funcionario informado nao existe!\n");
+    } else {
+        arq_func = (Funcionario*) malloc(sizeof(Funcionario));
+        fp = fopen("funcionarios.dat", "r+b");
+        if (fp == NULL) 
+        {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+        } 
+        while(fread(arq_func, sizeof(Funcionario), 1, fp)==1)
+        {
+            if ((strcmp(arq_func->cpf, func->cpf)==0) && (strcmp(arq_func->status, "inativo")!=0))
+            {
+                strncpy(arq_func->status, status, sizeof(arq_func->status));
+                fseek(fp, -1*sizeof(Funcionario), SEEK_CUR);
+                fwrite(arq_func, sizeof(Funcionario), 1, fp);
+                achou = 1;
+                printf("\nFuncionario excluido com sucesso!!!\n");
+                break;
+            } //while alterado por chatgpt
+        }
+        if (!achou) 
+        {
+            printf("\nFuncionario nao encontrado!\n");
+        }
+        fclose(fp);
+        free(arq_func);
+  }
+}
+
 void cadastro_func(void)
 {
     // ler os dados do funcionario
@@ -126,12 +235,23 @@ void exibe_func(void)
 
 void atualiza_func(void)
 {
-    tela_atualiza_func();
+    Funcionario *func = tela_atualiza_func();
+    atualizando_func(func);
+    exibe_cadastro_func(func);
+    printf("Tecle ENTER para continuar");
+    getchar();
+    // liberar o espaço de memória da estrutura 
+    free(func);
 }
 
 void deleta_func(void)
 {
-    tela_deleta_func();
+    Funcionario *func = tela_deleta_func();
+    deletando_func(func);
+    printf("Tecle ENTER para continuar");
+    getchar();
+    // liberar o espaço de memória da estrutura 
+    free(func);
 }
 
 //TELAS CRUD
@@ -299,9 +419,8 @@ void lista_all_func(void) //.h
   free(func);
 }
 
-void tela_atualiza_func(void)
+Funcionario* tela_atualiza_func(void)
 {
-    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -309,16 +428,16 @@ void tela_atualiza_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_func(cpf);
+    Funcionario* func = busca_func();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return func;
 }
 
-void tela_deleta_func(void)
+Funcionario* tela_deleta_func(void)
 {
-    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -326,11 +445,12 @@ void tela_deleta_func(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_func(cpf);
+    Funcionario* func = busca_func();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return func;
 }
 
 //OP ZERADOR DE CONTADORES
