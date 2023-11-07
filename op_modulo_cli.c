@@ -127,19 +127,29 @@ void grava_cliente(Cliente* cli) //.h
 void atualizando_cliente(Cliente* cli) //.h
 {
     FILE* fp;
-    fp = fopen("clientes.dat", "r+b");
+    Cliente* arqv_cli;
     char email[258];
     char telefone[13];
     char endereco[102];
     char resposta_email[5];
     char resposta_tel[5];
     char resposta_ender[5];
+    arqv_cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "r+b");
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
+    while (fread(arqv_cli, sizeof(Cliente), 1, fp) == 1)
+        {
+            if (strcmp(arqv_cli->cpf_cnpj, cli->cpf_cnpj)==0)
+            {
+                fseek(fp, -sizeof(Cliente), SEEK_CUR);
+                break;
+            }
+        } //Trecho do while desenvolvido pelo chatgpt
     printf("\nDeseja atualizar o e-mail (sim/nao)?");
     fgets(resposta_email, 5, stdin);
     if (strcmp(resposta_email, "sim\n")==0)
@@ -161,9 +171,48 @@ void atualizando_cliente(Cliente* cli) //.h
     le_endereco(endereco);
     strncpy(cli->endereco, endereco, sizeof(cli->endereco));//, cli->endereco;
     }
-    fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
     fwrite(cli, sizeof(Cliente), 1, fp);
     fclose(fp);
+    free(arqv_cli);
+}
+
+void deletando_cliente (Cliente* cli) //.h
+{
+    FILE* fp;
+    Cliente* arq_cli;
+    char status[9] = "inativo";
+    int achou = 0;
+    if (cli == NULL) 
+    {
+        printf("Ops! O cliente informado nao existe!\n");
+    } else {
+        arq_cli = (Cliente*) malloc(sizeof(Cliente));
+        fp = fopen("clientes.dat", "r+b");
+        if (fp == NULL) 
+        {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+        } 
+        while(fread(arq_cli, sizeof(Cliente), 1, fp)==1)
+        {
+            if ((strcmp(arq_cli->cpf_cnpj, cli->cpf_cnpj)==0) && (strcmp(arq_cli->status, "inativo")!=0))
+            {
+                strncpy(arq_cli->status, status, sizeof(arq_cli->status));
+                fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+                fwrite(arq_cli, sizeof(Cliente), 1, fp);
+                achou = 1;
+                printf("\nCliente excluido com sucesso!!!\n");
+                break;
+            } //while alterado por chatgpt
+        }
+        if (!achou) 
+        {
+            printf("\nCliente nao encontrado!\n");
+        }
+        fclose(fp);
+        free(arq_cli);
+  }
 }
 
 void cadastro_cli(void)
@@ -207,7 +256,12 @@ void atualiza_cli(void)
 
 void deleta_cli(void)
 {
-    tela_deleta_cli();
+    Cliente *cli = tela_deleta_cli();
+    deletando_cliente(cli);
+    printf("Tecle ENTER para continuar");
+    getchar();
+    // liberar o espaço de memória da estrutura 
+    free(cli);
 }
 
 //TELAS CRUD
@@ -426,9 +480,8 @@ Cliente* tela_atualiza_cli(void)
     return cli;
 }
 
-void tela_deleta_cli(void)
+Cliente* tela_deleta_cli(void)
 {
-    char cpf_cnpj[16];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -436,9 +489,10 @@ void tela_deleta_cli(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_cpf_cnpj(cpf_cnpj);
+    Cliente* cli = busca_cliente();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return cli;
 }
