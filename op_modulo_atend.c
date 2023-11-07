@@ -108,6 +108,45 @@ void grava_atend(Atendimento* atend) //.h
     fclose(fp);
 }
 
+void deletando_atend (Atendimento* atend) //.h
+{
+    FILE* fp;
+    Atendimento* arq_atend;
+    char status[9] = "inativo";
+    int achou = 0;
+    if (atend == NULL) 
+    {
+        printf("Ops! O atendimento informado nao existe!\n");
+    } else {
+        arq_atend = (Atendimento*) malloc(sizeof(Atendimento));
+        fp = fopen("atendimentos.dat", "r+b");
+        if (fp == NULL) 
+        {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+        } 
+        while(fread(arq_atend, sizeof(Atendimento), 1, fp)==1)
+        {
+            if ((strcmp(arq_atend->codigo_atend, atend->codigo_atend)==0) && (strcmp(arq_atend->status, "inativo")!=0))
+            {
+                strncpy(arq_atend->status, status, sizeof(arq_atend->status));
+                fseek(fp, -1*sizeof(Atendimento), SEEK_CUR);
+                fwrite(arq_atend, sizeof(Atendimento), 1, fp);
+                achou = 1;
+                printf("\nAtendimento excluido com sucesso!!!\n");
+                break;
+            } //while alterado por chatgpt
+        }
+        if (!achou) 
+        {
+            printf("\nAtendimento nao encontrado!\n");
+        }
+        fclose(fp);
+        free(arq_atend);
+  }
+}
+
 void cadastro_atend(void)
 {
     // ler os dados do cliente
@@ -137,7 +176,12 @@ void atualiza_atend(void)
 
 void deleta_atend(void)
 {
-    tela_deleta_atend();
+    Atendimento *atend = tela_deleta_atend();
+    deletando_atend(atend);
+    printf("Tecle ENTER para continuar");
+    getchar();
+    // liberar o espaço de memória da estrutura 
+    free(atend);
 }
 
 //TELAS CRUD
@@ -490,9 +534,8 @@ void tela_atualiza_atend(void)
     getchar();
 }
 
-void tela_deleta_atend(void)
+Atendimento* tela_deleta_atend(void)
 {
-    char codigo_atend[53];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -500,10 +543,10 @@ void tela_deleta_atend(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_codigoatend(codigo_atend); 
+    Atendimento* atend = busca_atend();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
-    printf("Codigo de atendimento: %s\n", codigo_atend);
     printf("Tecle ENTER para continuar");
     getchar();
+    return atend;
 }
