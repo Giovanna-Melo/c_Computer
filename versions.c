@@ -142,7 +142,9 @@ void menu_instrucoes(void)
     printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
     printf(")        19/08/2023.: TELA DE DESENVOLVIMENTO SIMULTANEO AO PROJETO         (\n");
     printf(")                                                                           (\n");
-    printf(")          Padronize uma forma de escrita;                                  (\n");//detalhar mais dps
+    printf(")          Padronize uma forma de escrita, atentando a nao inserir          (\n");//detalhar mais dps
+    printf(")          acentos em nenhum dado;                                          (\n");//detalhar mais dps
+    printf(")          Ha um limite de 20 membros por equipe;                           (\n");//detalhar mais dps
     printf(")          Por ter quantidade de integrantes definida no cadastro de        (\n");
     printf(")          equipe, so e possivel trocar um integrante por outro             (\n");
     printf(")          funcionario ou deletar a equipe inteira;                         (\n");
