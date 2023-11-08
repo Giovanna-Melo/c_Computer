@@ -28,6 +28,7 @@ void deleta_atend(void);
 
 void exibe_cadastro_atend(const Atendimento* atend);
 void grava_atend(Atendimento* atend);
+void atualizando_atend(Atendimento* atend);
 void deletando_atend (Atendimento* atend);
 Atendimento* busca_atend(void);
 Atendimento* busca_atend_pec(char* codigop, char* codigoc);
@@ -35,7 +36,7 @@ Atendimento* busca_atend_pec(char* codigop, char* codigoc);
 //TELAS
 Atendimento* tela_cadastro_atend(void);
 Atendimento* tela_exibe_atend(void);
-void tela_atualiza_atend(void);
+Atendimento* tela_atualiza_atend(void);
 Atendimento* tela_deleta_atend(void);
 //FUNCOES LEITURA COM VALIDACAO
 void construir_codigo_atendimento(char* codigo_atend, const char* situacao, const char* cpf_cnpj, const char* ordem_s);

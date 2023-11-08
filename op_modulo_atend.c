@@ -108,6 +108,117 @@ void grava_atend(Atendimento* atend) //.h
     fclose(fp);
 }
 
+void atualizando_atend(Atendimento* atend) //.h
+{
+    FILE* fp;
+    Atendimento* arqv_atend;
+    char nome_eqp[52];
+    char marca[22];
+    char modelo[32];
+    char nserie[22];
+    char observacoes[502];
+    char data[12];
+    char responsavel[13];
+    char situacao[11];
+    
+    char resposta_nome_eqp[5];
+    char resposta_marca[5];
+    char resposta_modelo[5];
+    char resposta_nserie[5];
+    char resposta_observacoes[5];
+    char resposta_data[5];
+    char resposta_responsavel[5];
+    char resposta_situacao[5];
+    arqv_atend = (Atendimento*) malloc(sizeof(Atendimento));
+    fp = fopen("atendimentos.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while (fread(arqv_atend, sizeof(Atendimento), 1, fp) == 1)
+        {
+            if (strcmp(arqv_atend->codigo_atend, atend->codigo_atend)==0)
+            {
+                fseek(fp, -sizeof(Atendimento), SEEK_CUR);
+                break;
+            }
+        } //Trecho do while desenvolvido pelo chatgpt
+    printf("\nDeseja atualizar o nome do equipamento (sim/nao)?");
+    fgets(resposta_nome_eqp, 5, stdin);
+    if (strcmp(resposta_nome_eqp, "sim\n")==0)
+    {
+        le_nome_eqp(nome_eqp);
+        strncpy(atend->nome_eqp, nome_eqp, sizeof(atend->nome_eqp));//, cli->email;
+    }
+    printf("\nDeseja atualizar a marca (sim/nao)?");
+    fgets(resposta_marca, 5, stdin);
+    if (strcmp(resposta_marca, "sim\n")==0)
+    {
+        le_marca(marca);
+        strncpy(atend->marca, marca, sizeof(atend->marca));
+    }
+    printf("\nDeseja atualizar o modelo (sim/nao)?");
+    fgets(resposta_modelo, 5, stdin);
+    if (strcmp(resposta_modelo, "sim\n")==0)
+    {
+        le_modelo(modelo);
+        strncpy(atend->modelo, modelo, sizeof(atend->modelo));
+    }
+    printf("\nDeseja atualizar o numero de serie (sim/nao)?");
+    fgets(resposta_nserie, 5, stdin);
+    if (strcmp(resposta_nserie, "sim\n")==0)
+    {
+        le_nserie(nserie);
+        strncpy(atend->nserie, nserie, sizeof(atend->nserie));
+    }
+    printf("\nDeseja atualizar as observacoes (sim/nao)?");
+    fgets(resposta_observacoes, 5, stdin);
+    if (strcmp(resposta_observacoes, "sim\n")==0)
+    {
+        le_observacoes(observacoes);
+        strncpy(atend->observacoes, observacoes, sizeof(atend->observacoes));
+    }
+    printf("\nDeseja atualizar a data entrega/visita (dd/mm/aaaa): (sim/nao)?");
+    fgets(resposta_data, 5, stdin);
+    if (strcmp(resposta_data, "sim\n")==0)
+    {
+        le_data(data);
+        strncpy(atend->data, data, sizeof(atend->data));
+    }
+    printf("\nDeseja atualizar o responsavel (sim/nao)?");
+    fgets(resposta_responsavel, 5, stdin);
+    if (strcmp(resposta_responsavel, "sim\n")==0)
+    {
+        le_responsavel(responsavel);
+        strncpy(atend->responsavel, responsavel, sizeof(atend->responsavel));
+    }
+    printf("\nDeseja atualizar a situacao (sim/nao)?");
+    fgets(resposta_situacao, 5, stdin);
+    if (strcmp(resposta_situacao, "sim\n")==0)
+    {
+        le_situacao(situacao);
+        strncpy(atend->situacao, situacao, sizeof(atend->situacao));
+        if ((strcmp(atend->situacao, "concluido\n")==0) && valida_strnum(atend->responsavel))
+        {
+            Funcionario* func = busca_resp_func(atend->responsavel);
+            atualizando_func_count(func);
+            free(func);
+        }
+        else if ((strcmp(atend->situacao, "concluido\n")==0) && valida_nome(atend->responsavel))
+        {
+            Equipe* eqp = busca_resp_equipe(atend->responsavel);
+            atualizando_eqp_count(eqp);
+            free(eqp);
+
+        }
+    }
+    fwrite(atend, sizeof(Atendimento), 1, fp);
+    fclose(fp);
+    free(arqv_atend);
+}
+
 void deletando_atend (Atendimento* atend) //.h
 {
     FILE* fp;
@@ -171,7 +282,13 @@ void exibe_atend(void)
 
 void atualiza_atend(void)
 {
-    tela_atualiza_atend();
+    Atendimento *atend = tela_atualiza_atend();
+    atualizando_atend(atend);
+    exibe_cadastro_atend(atend);
+    printf("Tecle ENTER para continuar");
+    getchar();
+    // liberar o espaço de memória da estrutura 
+    free(atend);
 }
 
 void deleta_atend(void)
@@ -516,9 +633,8 @@ void lista_atendp(void) //.h
   free(atend);
 }
 
-void tela_atualiza_atend(void)
+Atendimento* tela_atualiza_atend(void)
 {
-    char codigo_atend[53];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -526,12 +642,12 @@ void tela_atualiza_atend(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_codigoatend(codigo_atend); 
+    Atendimento* atend = busca_atend(); 
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
-    printf("Codigo de atendimento: %s\n", codigo_atend);
     printf("Tecle ENTER para continuar");
     getchar();
+    return (atend);
 }
 
 Atendimento* tela_deleta_atend(void)

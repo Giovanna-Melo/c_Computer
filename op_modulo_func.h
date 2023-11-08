@@ -27,6 +27,7 @@ void atualizando_func(Funcionario* func);
 void deletando_func (Funcionario* func);
 Funcionario* busca_func(void);
 Funcionario* busca_resp_func(char* responsavel);
+void atualizando_func_count(Funcionario* func);
 //TELAS
 Funcionario* tela_cadastro_func(void);
 Funcionario* tela_exibe_func(void);

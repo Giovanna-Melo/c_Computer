@@ -118,6 +118,36 @@ void atualizando_equipe(Equipe* eqp) //.h
     free(arqv_eqp);
 }
 
+void atualizando_eqp_count(Equipe* eqp) //.h
+{
+    FILE* fp;
+    Equipe* arqv_eqp;
+    int count;
+    arqv_eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while (fread(arqv_eqp, sizeof(Equipe), 1, fp) == 1)
+        {
+            if (strcmp(arqv_eqp->equipe, eqp->equipe)==0)
+            {
+                fseek(fp, -sizeof(Funcionario), SEEK_CUR);
+                break;
+            }
+        } //Trecho do while desenvolvido pelo chatgpt
+    int count_arq = eqp->count;
+    count_arq+=1;
+    count = count_arq;
+    eqp->count=count;
+    fwrite(eqp, sizeof(Funcionario), 1, fp);
+    fclose(fp);
+    free(arqv_eqp);
+}
+
 void deletando_equipe (Equipe* eqp) //.h
 {
     FILE* fp;

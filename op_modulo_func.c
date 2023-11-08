@@ -172,6 +172,36 @@ void atualizando_func(Funcionario* func) //.h
     free(arqv_func);
 }
 
+void atualizando_func_count(Funcionario* func) //.h
+{
+    FILE* fp;
+    Funcionario* arqv_func;
+    int count;
+    arqv_func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while (fread(arqv_func, sizeof(Funcionario), 1, fp) == 1)
+        {
+            if (strcmp(arqv_func->cpf, func->cpf)==0)
+            {
+                fseek(fp, -sizeof(Funcionario), SEEK_CUR);
+                break;
+            }
+        } //Trecho do while desenvolvido pelo chatgpt
+    int count_arq = func->count;
+    count_arq+=1;
+    count = count_arq;
+    func->count=count;
+    fwrite(func, sizeof(Funcionario), 1, fp);
+    fclose(fp);
+    free(arqv_func);
+}
+
 void deletando_func (Funcionario* func) //.h
 {
     FILE* fp;

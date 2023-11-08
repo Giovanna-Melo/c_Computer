@@ -23,6 +23,7 @@ void atualizando_equipe(Equipe* eqp);
 void deletando_equipe (Equipe* eqp);
 Equipe* busca_equipe(void);
 Equipe* busca_resp_equipe(char* responsavel);
+void atualizando_eqp_count(Equipe* eqp);
 //TELAS
 Equipe* tela_cadastro_equipe(void);
 Equipe* tela_exibe_equipe(void);
