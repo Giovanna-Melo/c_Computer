@@ -68,6 +68,56 @@ void grava_equipe(Equipe* eqp) //.h
     fclose(fp);
 }
 
+void atualizando_equipe(Equipe* eqp) //.h
+{
+    FILE* fp;
+    Equipe* arqv_eqp;
+    //char nome[52];
+    char cpf[13];
+    char resposta_membro[5];
+    arqv_eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while (fread(arqv_eqp, sizeof(Equipe), 1, fp) == 1)
+        {
+            if (strcmp(arqv_eqp->equipe, eqp->equipe)==0)
+            {
+                fseek(fp, -sizeof(Equipe), SEEK_CUR);
+                break;
+            }
+        } //Trecho do while desenvolvido pelo chatgpt
+    int qp = eqp->qp;
+    for (int i = 0; i < qp; i++) 
+    {
+    printf("Nome: %s",eqp->nome[i]);
+    printf("Nome: %s",eqp->cpf[i]);
+    printf("\nDeseja atualizar o membro (sim/nao)?");
+    fgets(resposta_membro, 5, stdin);
+        if (strcmp(resposta_membro, "sim\n")==0)
+        {
+            Funcionario* func = busca_func();
+            while(func==NULL)
+            {
+                printf("Funcionario nao cadastrado\n");
+                printf("Informe novamente\n");
+                func = busca_func();
+            }
+            strncpy(cpf, func->cpf, sizeof(cpf));
+            strncpy(eqp->nome[i], func->nome, sizeof(eqp->nome[i]));
+            free(func);
+            strncpy(eqp->cpf[i], cpf, sizeof(eqp->cpf[i]));
+        }
+    }
+    fwrite(eqp, sizeof(Equipe), 1, fp);
+    fclose(fp);
+    free(arqv_eqp);
+}
+
 void deletando_equipe (Equipe* eqp) //.h
 {
     FILE* fp;
@@ -131,7 +181,15 @@ void exibe_equipe(void)
 
 void atualiza_equipe(void)
 {
-    tela_atualiza_equipe();
+    Equipe *eqp = tela_atualiza_equipe();
+    exibe_cadastro_eqp(eqp);
+    printf("------------------------------------------------------------------------------\n");
+    atualizando_equipe(eqp);
+    exibe_cadastro_eqp(eqp);
+    printf("Tecle ENTER para continuar");
+    getchar();
+    // liberar o espaço de memória da estrutura 
+    free(eqp);
 }
 
 void deleta_equipe(void)
@@ -320,10 +378,8 @@ void lista_all_equipes(void) //.h
   free(eqp);
 }
 
-void tela_atualiza_equipe(void)
+Equipe* tela_atualiza_equipe(void)
 {
-    char equipe[13];
-    char cpf[13];
     system("clear||cls");
     printf("\n");
     printf("------------------------------------------------------------------------------\n");
@@ -331,16 +387,12 @@ void tela_atualiza_equipe(void)
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
-    le_chave_equipe(equipe);
-    printf("{}                            Atual integrante:                             {}\n");
-    le_chave_func(cpf); //JA DECLARADO EM OP_MODULO_FUNC
-    //le_cpf_atualin(cpf);
-    printf("{}                            Novo integrante:                             {}\n");
-    le_chave_func(cpf); //JA DECLARADO EM OP_MODULO_FUNC
+    Equipe* eqp = busca_equipe();
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     printf("Tecle ENTER para continuar");
     getchar();
+    return eqp;
 }
 
 /*void le_cpf_atualin(char* cpf, char* equipe)  ORGANIZACAO DE IDEACAO

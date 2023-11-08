@@ -19,13 +19,14 @@ void deleta_equipe(void);
 
 void exibe_cadastro_eqp(const Equipe* eqp);
 void grava_equipe(Equipe* eqp);
+void atualizando_equipe(Equipe* eqp);
 void deletando_equipe (Equipe* eqp);
 Equipe* busca_equipe(void);
 Equipe* busca_resp_equipe(char* responsavel);
 //TELAS
 Equipe* tela_cadastro_equipe(void);
 Equipe* tela_exibe_equipe(void);
-void tela_atualiza_equipe(void);
+Equipe* tela_atualiza_equipe(void);
 Equipe* tela_deleta_equipe(void);
 //FUNCOES LEITURA COM VALIDACAO
 void le_equipe(char* equipe);
