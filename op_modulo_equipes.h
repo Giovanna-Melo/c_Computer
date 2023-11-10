@@ -22,6 +22,7 @@ void grava_equipe(Equipe* eqp);
 void atualizando_equipe(Equipe* eqp);
 void deletando_equipe (Equipe* eqp);
 Equipe* busca_equipe(void);
+int busca_chave_eqp(char* equipe);
 Equipe* busca_resp_equipe(char* responsavel);
 void atualizando_eqp_count(Equipe* eqp);
 //TELAS

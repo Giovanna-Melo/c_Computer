@@ -288,8 +288,12 @@ void le_equipe(char* equipe)
 {
     printf("{}                       Equipe:                                            {}\n");
     fgets(equipe, 13, stdin);
-    while (!valida_nome(equipe)) //em utilidades
+    while (!valida_nome(equipe)||busca_chave_eqp(equipe)) //em utilidades
     {
+        if (busca_chave_eqp(equipe))
+        {
+            printf("{}                          Equipe ja cadastrada                            {}\n");
+        }
         printf("{}                       Informe a equipe novamente:                        {}\n");
         fgets(equipe, 13, stdin);
     } 
@@ -354,6 +358,32 @@ Equipe* busca_equipe(void) //.h
     }
     fclose(fp);
     return NULL;
+}
+
+int busca_chave_eqp(char* equipe) //.h
+{
+    FILE* fp;
+    Equipe* eqp;
+    eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(eqp, sizeof(Equipe), 1, fp);
+        if ((strcmp(eqp->equipe, equipe)==0) && (strcmp(eqp->status, "ativo")==0)) 
+        {
+            fclose(fp);
+            return 1;
+        }
+    }
+    fclose(fp);
+    free(eqp);
+    return 0;
 }
 
 //busca_resp_equipe
