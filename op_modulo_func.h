@@ -26,6 +26,7 @@ void grava_func(Funcionario* func);
 void atualizando_func(Funcionario* func);
 void deletando_func (Funcionario* func);
 Funcionario* busca_func(void);
+int busca_chave_func(char* cpf);
 Funcionario* busca_resp_func(char* responsavel);
 void atualizando_func_count(Funcionario* func);
 //TELAS

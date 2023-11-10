@@ -330,8 +330,12 @@ void le_cpf(char* cpf)
 {
     printf("{}                       CPF(somente numeros):                              {}\n");
     fgets(cpf, 13, stdin);
-    while (!valida_cpf(cpf)) //em utilidades
+    while (!valida_cpf(cpf)||busca_chave_func(cpf)) //em utilidades
     {
+        if (busca_chave_func(cpf))
+        {
+        printf("{}                      Funcionario ja cadastrado                           {}\n");
+        }
         printf("{}                       Informe o CPF novamente:                           {}\n");
         fgets(cpf, 13, stdin);
     } 
@@ -401,6 +405,32 @@ Funcionario* busca_func(void) //.h
     }
     fclose(fp);
     return NULL;
+}
+
+int busca_chave_func(char* cpf) //.h
+{
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(func, sizeof(Funcionario), 1, fp);
+        if ((strcmp(func->cpf, cpf)==0) && (strcmp(func->status, "ativo")==0)) 
+        {
+            fclose(fp);
+            return 1;
+        }
+    }
+    fclose(fp);
+    free(func);
+    return 0;
 }
 
 //busca_resp_func
