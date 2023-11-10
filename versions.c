@@ -144,6 +144,7 @@ void menu_instrucoes(void)
     printf(")                                                                           (\n");
     printf(")          Padronize uma forma de escrita, atentando a nao inserir          (\n");//detalhar mais dps
     printf(")          acentos em nenhum dado;                                          (\n");//detalhar mais dps
+    printf(")          Ha um limite de 11 caracteres para o nome da equipe;             (\n");//detalhar mais dps
     printf(")          Ha um limite de 20 membros por equipe;                           (\n");//detalhar mais dps
     printf(")          Por ter quantidade de integrantes definida no cadastro de        (\n");
     printf(")          equipe, so e possivel trocar um integrante por outro             (\n");
