@@ -26,6 +26,7 @@ void grava_cliente(Cliente* cli);
 void atualizando_cliente(Cliente* cli);
 void deletando_cliente (Cliente* cli);
 Cliente* busca_cliente(void);
+int busca_chave_cli(char* cpf_cnpj);
 //TELAS
 Cliente* tela_cadastro_cli(void);
 Cliente* tela_exibe_cli(void);

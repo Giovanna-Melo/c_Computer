@@ -328,8 +328,12 @@ void le_cpf_cnpj(char* cpf_cnpj)
 {
     printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
     fgets(cpf_cnpj, 16, stdin);
-    while (!valida_cpf(cpf_cnpj) && !valida_cnpj(cpf_cnpj)) //em utilidades
+    while ((!valida_cpf(cpf_cnpj) && !valida_cnpj(cpf_cnpj))||busca_chave_cli(cpf_cnpj)) //em utilidades
     {
+        if (busca_chave_cli(cpf_cnpj))
+        {
+            printf("{}                          Cliente ja cadastrado                           {}\n");
+        }
         printf("{}                       Informe o CPF/CNPJ novamente:                      {}\n");
         fgets(cpf_cnpj, 16, stdin);
     } 
@@ -416,11 +420,32 @@ void le_chave_cpf_cnpj(char* cpf_cnpj)
 {
     printf("{}                       CPF/CNPJ (somente numeros):                        {}\n");
     fgets(cpf_cnpj, 16, stdin);
-    while (!valida_existe(cpf_cnpj)) //em utilidades
+}
+
+int busca_chave_cli(char* cpf_cnpj) //.h
+{
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) 
     {
-        printf("{}                       Informe o CPF/CNPJ novamente:                      {}\n");
-        fgets(cpf_cnpj, 16, stdin);
-    } 
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(cli, sizeof(Cliente), 1, fp);
+        if ((strcmp(cli->cpf_cnpj, cpf_cnpj)==0) && (strcmp(cli->status, "ativo")==0)) 
+        {
+            fclose(fp);
+            return 1;
+        }
+    }
+    fclose(fp);
+    free(cli);
+    return 0;
 }
 
 void lista_pf(void) //.h
