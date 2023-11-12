@@ -194,25 +194,29 @@ void atualizando_atend(Atendimento* atend) //.h
         le_responsavel(responsavel);
         strncpy(atend->responsavel, responsavel, sizeof(atend->responsavel));
     }
-    printf("\nDeseja atualizar a situacao (sim/nao)?");
-    fgets(resposta_situacao, 5, stdin);
-    if (strcmp(resposta_situacao, "sim\n")==0)
+    if (strcmp(atend->situacao, "pendente")==0)
     {
-        le_situacao(situacao);
-        strncpy(atend->situacao, situacao, sizeof(atend->situacao));
-        if ((strcmp(atend->situacao, "concluido\n")==0) && valida_strnum(atend->responsavel))
+        printf("\nDeseja atualizar a situacao (sim/nao)?");
+        fgets(resposta_situacao, 5, stdin);
+        if (strcmp(resposta_situacao, "sim\n")==0)
         {
-            construir_codigo_atendimento(atend->codigo_atend, "concluido", atend->cpf_cnpj, atend->ordem_s);
-            Funcionario* func = busca_resp_func(atend->responsavel);
-            atualizando_func_count(func);
-            free(func);
-        }
-        else if ((strcmp(atend->situacao, "concluido\n")==0) && valida_nome(atend->responsavel))
-        {
-            Equipe* eqp = busca_resp_equipe(atend->responsavel);
-            atualizando_eqp_count(eqp);
-            free(eqp);
+            le_situacao(situacao);
+            strncpy(atend->situacao, situacao, sizeof(atend->situacao));
+            if ((strcmp(atend->situacao, "concluido\n")==0) && valida_strnum(atend->responsavel))
+            {
+                construir_codigo_atendimento(atend->codigo_atend, "concluido", atend->cpf_cnpj, atend->ordem_s);
+                Funcionario* func = busca_resp_func(atend->responsavel);
+                atualizando_func_count(func);
+                free(func);
+            }
+            else if ((strcmp(atend->situacao, "concluido\n")==0) && valida_nome(atend->responsavel))
+            {
+                construir_codigo_atendimento(atend->codigo_atend, "concluido", atend->cpf_cnpj, atend->ordem_s);
+                Equipe* eqp = busca_resp_equipe(atend->responsavel);
+                atualizando_eqp_count(eqp);
+                free(eqp);
 
+            }
         }
     }
     fwrite(atend, sizeof(Atendimento), 1, fp);
