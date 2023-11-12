@@ -163,7 +163,7 @@ void todos_clientes (void)
     system("clear||cls");
     printf("\n");
     printf("TODOS OS CLIENTES\n");
-    //lista_cli(); //DESENVOLER
+    lista_all_cli();
     printf("Tecle ENTER para continuar");
     getchar();
 }

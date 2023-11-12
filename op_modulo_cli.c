@@ -448,6 +448,26 @@ int busca_chave_cli(char* cpf_cnpj) //.h
     return 0;
 }
 
+void lista_all_cli(void) //.h
+{
+  FILE* fp;
+  Cliente* cli;
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  fp = fopen("clientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(cli, sizeof(Cliente), 1, fp)) {
+    if (strcmp(cli->status, "ativo")==0) {
+      exibe_cadastro(cli);
+    }
+  }
+  fclose(fp);
+  free(cli);
+}
+
 void lista_pf(void) //.h
 {
   FILE* fp;
