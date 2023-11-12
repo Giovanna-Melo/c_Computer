@@ -202,6 +202,7 @@ void atualizando_atend(Atendimento* atend) //.h
         strncpy(atend->situacao, situacao, sizeof(atend->situacao));
         if ((strcmp(atend->situacao, "concluido\n")==0) && valida_strnum(atend->responsavel))
         {
+            construir_codigo_atendimento(atend->codigo_atend, "concluido", atend->cpf_cnpj, atend->ordem_s);
             Funcionario* func = busca_resp_func(atend->responsavel);
             atualizando_func_count(func);
             free(func);
@@ -605,7 +606,27 @@ void lista_atendc(void) //.h
     exit(1);
   }
   while(fread(atend, sizeof(Atendimento), 1, fp)) {
-    if ((strcmp(atend->situacao, "concluido") == 0) && (strcmp(atend->status, "ativo")==0)) {
+    if ((strcmp(atend->situacao, "concluido\n") == 0) && (strcmp(atend->status, "ativo")==0)) {
+      exibe_cadastro_atend(atend);
+    }
+  }
+  fclose(fp);
+  free(atend);
+}
+
+void lista_atend_ant(void) //.h
+{
+  FILE* fp;
+  Atendimento* atend;
+  atend = (Atendimento*) malloc(sizeof(Atendimento));
+  fp = fopen("atendimentos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(atend, sizeof(Atendimento), 1, fp)) {
+    if (strcmp(atend->status, "ativo")==0) {
       exibe_cadastro_atend(atend);
     }
   }

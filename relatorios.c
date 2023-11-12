@@ -194,7 +194,7 @@ void atendimentos_ord_mais_antigos (void)
     printf("\n");
     printf("TODOS ATENDIMENTOS\n");
     printf("ORDENAR: MAIS ANTIGOS\n");
-    //lista_atend_ant(); //DESENVOLVER
+    lista_atend_ant();
     printf("Tecle ENTER para continuar");
     getchar();
 }
