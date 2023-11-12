@@ -7,8 +7,11 @@ void f_funcionarios(void);
 void f_equipes(void);
 char menu_relatorios(void);
 //FUNCOES
+void todos_clientes (void);
 void todos_clientes_pf (void);
 void todos_clientes_pj (void);
+void atendimentos_ord_mais_antigos (void);
+void atendimentos_ord_mais_recentes (void);
 void atendimentos_concluidos (void);
 void atendimentos_pendentes (void);
 void em_desenvolvimento (void);

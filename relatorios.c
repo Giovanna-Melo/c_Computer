@@ -18,14 +18,18 @@ void f_clientes(void)
 		op3 = filtros_clientes();
 		switch(op3) 
         {
-			case '1': 
-            todos_clientes_pf();
+            case '1': 
+            todos_clientes();
             break;
 
 			case '2': 
+            todos_clientes_pf();
+            break;
+
+			case '3': 
             todos_clientes_pj();
             break;
-            		} 		
+        } 		
 	} while (op3 != '0');
 }
 
@@ -38,10 +42,18 @@ void f_atendimentos(void)
 		switch(op3) 
         {
 			case '1': 	
+            atendimentos_ord_mais_antigos();
+            break;
+
+			case '2': 	
+            atendimentos_ord_mais_recentes();
+            break;
+
+			case '3': 	
             atendimentos_concluidos();
             break;
 
-			case '2': 
+			case '4': 
             atendimentos_pendentes();
             break;            
 		} 		
@@ -146,6 +158,16 @@ char menu_relatorios(void)
 }
 
 //FUNCOES EM DESENVOLVIMENTO
+void todos_clientes (void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("TODOS OS CLIENTES\n");
+    //lista_cli(); //DESENVOLER
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void todos_clientes_pf (void)
 {
     system("clear||cls");
@@ -155,6 +177,7 @@ void todos_clientes_pf (void)
     printf("Tecle ENTER para continuar");
     getchar();
 }
+
 void todos_clientes_pj (void)
 {
     system("clear||cls");
@@ -164,11 +187,35 @@ void todos_clientes_pj (void)
     printf("Tecle ENTER para continuar");
     getchar();
 }
+
+void atendimentos_ord_mais_antigos (void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("TODOS ATENDIMENTOS\n");
+    printf("ORDENAR: MAIS ANTIGOS\n");
+    //lista_atend_ant(); //DESENVOLVER
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
+void atendimentos_ord_mais_recentes (void)
+{
+    system("clear||cls");
+    printf("\n");
+    printf("TODOS ATENDIMENTOS\n");
+    printf("ORDENAR: MAIS RECENTES\n");
+    //lista_atend_rec(); //DESENVOLVER
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void atendimentos_concluidos (void)
 {
     system("clear||cls");
     printf("\n");
     printf("ATENDIMENTOS CONCLUIDOS\n");
+    printf("ORDENAR: MAIS ANTIGOS\n");
     lista_atendc();
     printf("Tecle ENTER para continuar");
     getchar();
@@ -179,6 +226,7 @@ void atendimentos_pendentes (void)
     system("clear||cls");
     printf("\n");
     printf("ATENDIMENTOS PENDENTES\n");
+    printf("ORDENAR: MAIS ANTIGOS\n");
     lista_atendp();
     printf("Tecle ENTER para continuar");
     getchar();
@@ -253,6 +301,7 @@ void planos_vencidos (void)
     printf("Tecle ENTER para continuar");
     getchar();*/
 }
+
 void todos_funcionarios (void)
 {
     system("clear||cls");
@@ -271,6 +320,7 @@ void funcionario_do_mes (void)
     printf("Tecle ENTER para continuar");
     getchar();
 }
+
 void todas_equipes (void)
 {
     system("clear||cls");
@@ -308,8 +358,9 @@ char filtros_clientes(void)
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                1. TODOS OS CLIENTES PF                                | | \n"); 
-    printf("| |                2. TODOS OS CLIENTES PJ                                | | \n"); 
+    printf("| |                1. TODOS OS CLIENTES                                   | | \n");
+    printf("| |                2. TODOS OS CLIENTES PF                                | | \n"); 
+    printf("| |                3. TODOS OS CLIENTES PJ                                | | \n"); 
     printf("| |                0. VOLTAR                                              | | \n");
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n"); 
@@ -357,8 +408,10 @@ char filtros_atendimentos(void)
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n");
-    printf("| |                1. ATENDIMENTOS CONCLUIDOS                             | | \n"); 
-    printf("| |                2. ATENDIMENTOS PENDENTES                              | | \n"); 
+    printf("| |                1. ATENDIMENTOS (ORDENAR: MAIS ANTIGOS)                | | \n");
+    printf("| |                2. ATENDIMENTOS (ORDENAR: MAIS RECENTES)               | | \n");
+    printf("| |                3. ATENDIMENTOS CONCLUIDOS                             | | \n"); 
+    printf("| |                4. ATENDIMENTOS PENDENTES                              | | \n"); 
     printf("| |                0. VOLTAR                                              | | \n"); 
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n");
