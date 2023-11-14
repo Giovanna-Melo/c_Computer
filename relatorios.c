@@ -162,7 +162,7 @@ void todos_clientes (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("TODOS OS CLIENTES\n");
+    printf("TODOS OS CLIENTES\n\n");
     lista_all_cli();
     printf("Tecle ENTER para continuar");
     getchar();

@@ -110,6 +110,56 @@ void exibe_cadastro(const Cliente* cli)
   }
 }
 
+void exibe_cadastro_tabela(const Cliente* cli) //.h
+{
+  if ((cli == NULL) || (strcmp(cli->status, "inativo")==0)) {
+    printf("\n Cliente Inexistente \n");
+  } else {
+        char  nome_i [ 52 ];
+        int tam_n;
+        tam_n  =  strlen ( cli->nome );
+        strncpy ( nome_i , cli->nome, tam_n );
+        for (int i = 0; i < tam_n; i++){
+            if (nome_i[i]=='\n'){
+                nome_i[i]='\0';
+            }
+        }
+
+        char  tipo_i [ 4 ];
+        int tam_t;
+        tam_t  =  strlen ( cli->tipo );
+        strncpy ( tipo_i , cli->tipo, tam_t );
+        for (int i = 0; i < tam_t; i++){
+            if (tipo_i[i]=='\n'){
+                tipo_i[i]='\0';
+            }
+        }
+
+        char  cpf_cnpj_i [ 16 ];
+        int tam_c;
+        tam_c  =  strlen ( cli->cpf_cnpj );
+        strncpy ( cpf_cnpj_i , cli->cpf_cnpj, tam_c );
+        for (int i = 0; i < tam_c; i++){
+            if (cpf_cnpj_i[i]=='\n'){
+                cpf_cnpj_i[i]='\0';
+            }
+        }
+
+        char  email_i [ 258 ];
+        int tam_e;
+        tam_e  =  strlen ( cli->email );
+        strncpy ( email_i , cli->email, tam_e );
+        for (int i = 0; i < tam_e; i++){
+            if (email_i[i]=='\n'){
+                email_i[i]='\0';
+            }
+        }
+        
+        printf ( "%-52s || %-4s || %-16s || %-258s\n" , nome_i , tipo_i, cpf_cnpj_i, email_i);
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+  }
+}
+
 void grava_cliente(Cliente* cli) //.h
 {
     FILE* fp;
@@ -450,22 +500,28 @@ int busca_chave_cli(char* cpf_cnpj) //.h
 
 void lista_all_cli(void) //.h
 {
-  FILE* fp;
-  Cliente* cli;
-  cli = (Cliente*) malloc(sizeof(Cliente));
-  fp = fopen("clientes.dat", "rb");
-  if (fp == NULL) {
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
     exit(1);
-  }
-  while(fread(cli, sizeof(Cliente), 1, fp)) {
-    if (strcmp(cli->status, "ativo")==0) {
-      exibe_cadastro(cli);
     }
-  }
-  fclose(fp);
-  free(cli);
+    char nome [52] = "NOME";
+    char cpf_cnpj [16] = "CPF/CNPJ";
+    char email [258] = "E-MAIL";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, email);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(cli, sizeof(Cliente), 1, fp)) {
+        if (strcmp(cli->status, "ativo")==0) {
+            exibe_cadastro_tabela(cli);
+        }
+    }
+    fclose(fp);
+    free(cli);
 }
 
 void lista_pf(void) //.h
