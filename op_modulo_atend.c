@@ -86,12 +86,52 @@ void exibe_cadastro_atend(const Atendimento* atend) //.h
         printf("Modelo: %s\n", atend->modelo);
         printf("Numero de serie: %s\n", atend->nserie);
         printf("Observacoes: %s\n", atend->observacoes);
-        printf("Data: %s\n", atend->data);
+        printf("Data de visita/entrega: %s\n", atend->data);
         printf("Reponsavel: %s\n", atend->responsavel);
         printf("Situacao: %s\n", atend->situacao);
         printf("Ordem: %s\n\n", atend->ordem_s);
         printf("Status: %s\n", atend->status);
     }
+}
+
+void exibe_cadastro_atend_tabela(const Atendimento* atend) //.h
+{
+    if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
+        printf("\n Atendimento Inexistente \n");
+    } else {
+        char  cod_i [ 53 ];
+        int tam_c;
+        tam_c  =  strlen (atend->codigo_atend);
+        strncpy ( cod_i , atend->codigo_atend, tam_c );
+        for (int i = 0; i < tam_c; i++){
+            if (cod_i[i]=='\n'){
+                cod_i[i]='\0';
+            }
+        }
+
+        char  data_i [ 12 ];
+        int tam_d;
+        tam_d  =  strlen ( atend->data );
+        strncpy ( data_i, atend->data, tam_d );
+        for (int i = 0; i < tam_d; i++){
+            if (data_i[i]=='\n'){
+                data_i[i]='\0';
+            }
+        }
+
+        char  responsavel_i [ 13 ];
+        int tam_r;
+        tam_r  =  strlen ( atend->responsavel );
+        strncpy ( responsavel_i , atend->responsavel, tam_r );
+        for (int i = 0; i < tam_r; i++){
+            if (responsavel_i[i]=='\n'){
+                responsavel_i[i]='\0';
+            }
+        }
+
+        printf ( "%-53s || %-12s || %-13s\n" , cod_i , data_i, responsavel_i);
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+  }
 }
 
 void grava_atend(Atendimento* atend) //.h
@@ -620,22 +660,28 @@ void lista_atendc(void) //.h
 
 void lista_atend_ant(void) //.h
 {
-  FILE* fp;
-  Atendimento* atend;
-  atend = (Atendimento*) malloc(sizeof(Atendimento));
-  fp = fopen("atendimentos.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(atend, sizeof(Atendimento), 1, fp)) {
-    if (strcmp(atend->status, "ativo")==0) {
-      exibe_cadastro_atend(atend);
+    FILE* fp;
+    Atendimento* atend;
+    atend = (Atendimento*) malloc(sizeof(Atendimento));
+    fp = fopen("atendimentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
     }
-  }
-  fclose(fp);
-  free(atend);
+    char cod [53] = "CODIGO DE ATENDIMENTO";
+    char data [12] = "AGENDAMENTO";
+    char responsavel [13] = "RESPONSAVEL";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-53s || %-12s || %-13s\n" , cod, data, responsavel);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(atend, sizeof(Atendimento), 1, fp)) {
+        if (strcmp(atend->status, "ativo")==0) {
+            exibe_cadastro_atend_tabela(atend);
+        }
+    }
+    fclose(fp);
+    free(atend);
 }
 
 void lista_atendp(void) //.h
