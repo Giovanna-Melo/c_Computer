@@ -172,7 +172,7 @@ void todos_clientes_pf (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("TODOS OS CLIENTES PF\n");
+    printf("TODOS OS CLIENTES PF\n\n");
     lista_pf();
     printf("Tecle ENTER para continuar");
     getchar();
@@ -182,7 +182,7 @@ void todos_clientes_pj (void)
 {
     system("clear||cls");
     printf("\n");	
-    printf("TODOS OS CLIENTES PJ\n");
+    printf("TODOS OS CLIENTES PJ\n\n");
     lista_pj();
     printf("Tecle ENTER para continuar");
     getchar();

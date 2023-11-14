@@ -154,7 +154,7 @@ void exibe_cadastro_tabela(const Cliente* cli) //.h
                 email_i[i]='\0';
             }
         }
-        
+
         printf ( "%-52s || %-4s || %-16s || %-258s\n" , nome_i , tipo_i, cpf_cnpj_i, email_i);
         printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
   }
@@ -526,42 +526,54 @@ void lista_all_cli(void) //.h
 
 void lista_pf(void) //.h
 {
-  FILE* fp;
-  Cliente* cli;
-  cli = (Cliente*) malloc(sizeof(Cliente));
-  fp = fopen("clientes.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(cli, sizeof(Cliente), 1, fp)) {
-    if ((strcmp(cli->tipo, "PF\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
-      exibe_cadastro(cli);
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
     }
-  }
-  fclose(fp);
-  free(cli);
+    char nome [52] = "NOME";
+    char cpf_cnpj [16] = "CPF/CNPJ";
+    char email [258] = "E-MAIL";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, email);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(cli, sizeof(Cliente), 1, fp)) {
+        if ((strcmp(cli->tipo, "PF\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
+            exibe_cadastro_tabela(cli);
+        }
+    }
+    fclose(fp);
+    free(cli);
 }
 
 void lista_pj(void) 
 { //.h
-  FILE* fp;
-  Cliente* cli;
-  cli = (Cliente*) malloc(sizeof(Cliente));
-  fp = fopen("clientes.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(cli, sizeof(Cliente), 1, fp)) {
-    if ((strcmp(cli->tipo, "PJ\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
-      exibe_cadastro(cli);
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
     }
-  }
-  fclose(fp);
-  free(cli);
+    char nome [52] = "NOME";
+    char cpf_cnpj [16] = "CPF/CNPJ";
+    char email [258] = "E-MAIL";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, email);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(cli, sizeof(Cliente), 1, fp)) {
+        if ((strcmp(cli->tipo, "PJ\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
+            exibe_cadastro_tabela(cli);
+        }
+    }
+    fclose(fp);
+    free(cli);
 }
 
 Cliente* tela_atualiza_cli(void)
