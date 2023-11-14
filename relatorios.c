@@ -203,7 +203,7 @@ void atendimentos_ord_mais_recentes (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("TODOS ATENDIMENTOS\n");
+    printf("TODOS ATENDIMENTOS\n\n");
     printf("ORDENAR: MAIS RECENTES\n");
     //lista_atend_rec(); //DESENVOLVER
     printf("Tecle ENTER para continuar");
@@ -215,7 +215,7 @@ void atendimentos_concluidos (void)
     system("clear||cls");
     printf("\n");
     printf("ATENDIMENTOS CONCLUIDOS\n");
-    printf("ORDENAR: MAIS ANTIGOS\n");
+    printf("ORDENAR: MAIS ANTIGOS\n\n");
     lista_atendc();
     printf("Tecle ENTER para continuar");
     getchar();
@@ -226,7 +226,7 @@ void atendimentos_pendentes (void)
     system("clear||cls");
     printf("\n");
     printf("ATENDIMENTOS PENDENTES\n");
-    printf("ORDENAR: MAIS ANTIGOS\n");
+    printf("ORDENAR: MAIS ANTIGOS\n\n");
     lista_atendp();
     printf("Tecle ENTER para continuar");
     getchar();

@@ -638,26 +638,6 @@ void le_codigoatend(char* codigo_atend)
     //fflush(stdin);
 }
 
-void lista_atendc(void) //.h
-{
-  FILE* fp;
-  Atendimento* atend;
-  atend = (Atendimento*) malloc(sizeof(Atendimento));
-  fp = fopen("atendimentos.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(atend, sizeof(Atendimento), 1, fp)) {
-    if ((strcmp(atend->situacao, "concluido\n") == 0) && (strcmp(atend->status, "ativo")==0)) {
-      exibe_cadastro_atend(atend);
-    }
-  }
-  fclose(fp);
-  free(atend);
-}
-
 void lista_atend_ant(void) //.h
 {
     FILE* fp;
@@ -686,22 +666,54 @@ void lista_atend_ant(void) //.h
 
 void lista_atendp(void) //.h
 {
-  FILE* fp;
-  Atendimento* atend;
-  atend = (Atendimento*) malloc(sizeof(Atendimento));
-  fp = fopen("atendimentos.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(atend, sizeof(Atendimento), 1, fp)) {
-    if ((strcmp(atend->situacao, "pendente") == 0) && (strcmp(atend->status, "ativo")==0)) {
-      exibe_cadastro_atend(atend);
+    FILE* fp;
+    Atendimento* atend;
+    atend = (Atendimento*) malloc(sizeof(Atendimento));
+    fp = fopen("atendimentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
     }
-  }
-  fclose(fp);
-  free(atend);
+    char cod [53] = "CODIGO DE ATENDIMENTO";
+    char data [12] = "AGENDAMENTO";
+    char responsavel [13] = "RESPONSAVEL";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-53s || %-12s || %-13s\n" , cod, data, responsavel);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(atend, sizeof(Atendimento), 1, fp)) {
+        if ((strcmp(atend->situacao, "pendente") == 0) && (strcmp(atend->status, "ativo")==0)) {
+            exibe_cadastro_atend_tabela(atend);
+        }
+    }
+    fclose(fp);
+    free(atend);
+}
+
+void lista_atendc(void) //.h
+{
+    FILE* fp;
+    Atendimento* atend;
+    atend = (Atendimento*) malloc(sizeof(Atendimento));
+    fp = fopen("atendimentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    char cod [53] = "CODIGO DE ATENDIMENTO";
+    char data [12] = "AGENDAMENTO";
+    char responsavel [13] = "RESPONSAVEL";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-53s || %-12s || %-13s\n" , cod, data, responsavel);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(atend, sizeof(Atendimento), 1, fp)) {
+        if ((strcmp(atend->situacao, "concluido\n") == 0) && (strcmp(atend->status, "ativo")==0)) {
+            exibe_cadastro_atend_tabela(atend);
+        }
+    }
+    fclose(fp);
+    free(atend);
 }
 
 Atendimento* tela_atualiza_atend(void)
