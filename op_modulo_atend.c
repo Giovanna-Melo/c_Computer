@@ -99,15 +99,6 @@ void exibe_cadastro_atend_tabela(const Atendimento* atend) //.h
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
         printf("\n Atendimento Inexistente \n");
     } else {
-        char  cod_i [ 53 ];
-        int tam_c;
-        tam_c  =  strlen (atend->codigo_atend);
-        strncpy ( cod_i , atend->codigo_atend, tam_c );
-        for (int i = 0; i < tam_c; i++){
-            if (cod_i[i]=='\n'){
-                cod_i[i]='\0';
-            }
-        }
 
         char  data_i [ 12 ];
         int tam_d;
@@ -129,7 +120,7 @@ void exibe_cadastro_atend_tabela(const Atendimento* atend) //.h
             }
         }
 
-        printf ( "%-53s || %-12s || %-13s\n" , cod_i , data_i, responsavel_i);
+        printf ( "%-53s || %-12s || %-13s\n" , atend->codigo_atend, data_i, responsavel_i);
         printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
   }
 }
