@@ -88,6 +88,55 @@ void exibe_cadastro_func(const Funcionario* func)
     }
 }
 
+void exibe_cadastro_func_tabela(const Funcionario* func)
+{
+    if ((func == NULL) || (strcmp(func->status, "inativo")==0)) {
+        printf("\n Funcionario Inexistente \n");
+    } else {
+        char  nome_i [ 52 ];
+        int tam_n;
+        tam_n  =  strlen (func->nome);
+        strncpy (nome_i, func->nome, tam_n);
+        for (int i = 0; i < tam_n; i++){
+            if (nome_i[i]=='\n'){
+                nome_i[i]='\0';
+            }
+        }
+
+        char  cpf_i [ 13 ];
+        int tam_c;
+        tam_c  =  strlen (func->cpf);
+        strncpy (cpf_i , func->cpf, tam_c);
+        for (int i = 0; i < tam_c; i++){
+            if (cpf_i[i]=='\n'){
+                cpf_i[i]='\0';
+            }
+        }
+
+        char  profissao_i [ 52 ];
+        int tam_p;
+        tam_p  =  strlen (func->profissao);
+        strncpy (profissao_i , func->profissao, tam_p);
+        for (int i = 0; i < tam_p; i++){
+            if (profissao_i[i]=='\n'){
+                profissao_i[i]='\0';
+            }
+        }
+
+        char  telefone_i [ 13 ];
+        int tam_t;
+        tam_t  =  strlen (func->telefone);
+        strncpy (telefone_i , func->telefone, tam_t);
+        for (int i = 0; i < tam_t; i++){
+            if (telefone_i[i]=='\n'){
+                telefone_i[i]='\0';
+            }
+        }
+        printf ( "%-52s || %-13s || %-52s ||%-13s\n" , nome_i, cpf_i, profissao_i, telefone_i);
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+  }
+}
+
 void grava_func(Funcionario* func) //.h
 {
     FILE* fp;
@@ -461,22 +510,28 @@ Funcionario* busca_resp_func(char* responsavel) //.h
 
 void lista_all_func(void) //.h
 {
-  FILE* fp;
-  Funcionario* func;
-  func = (Funcionario*) malloc(sizeof(Funcionario));
-  fp = fopen("funcionarios.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(func, sizeof(Funcionario), 1, fp)) {
-    if (strcmp(func->status, "ativo")==0) {
-      exibe_cadastro_func(func);
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
     }
-  }
-  fclose(fp);
-  free(func);
+    char nome [52] = "NOME";
+    char cpf [13] = "CPF";
+    char profissao [52] = "PROFISSAO";
+    char telefone [52] = "TELEFONE";
+    printf ( "%-52s || %-13s || %-52s ||%-13s\n" , nome, cpf, profissao, telefone);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+    while(fread(func, sizeof(Funcionario), 1, fp)) {
+        if (strcmp(func->status, "ativo")==0) {
+            exibe_cadastro_func_tabela(func);
+        }
+    }
+    fclose(fp);
+    free(func);
 }
 
 Funcionario* tela_atualiza_func(void)

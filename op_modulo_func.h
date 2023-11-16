@@ -47,4 +47,5 @@ void le_profissao(char* profissao);
 void le_salario(char* salario);
 void le_cpf(char* cpf);
 //RELATORIO
+void exibe_cadastro_func_tabela(const Funcionario* func);
 void lista_all_func(void);
