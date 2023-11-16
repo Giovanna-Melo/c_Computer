@@ -145,17 +145,17 @@ void exibe_cadastro_tabela(const Cliente* cli) //.h
             }
         }
 
-        char  email_i [ 258 ];
-        int tam_e;
-        tam_e  =  strlen ( cli->email );
-        strncpy ( email_i , cli->email, tam_e );
-        for (int i = 0; i < tam_e; i++){
-            if (email_i[i]=='\n'){
-                email_i[i]='\0';
+        char  telefone_i [ 13 ];
+        int tam_tel;
+        tam_tel  =  strlen (cli->telefone);
+        strncpy (telefone_i , cli->telefone, tam_tel);
+        for (int i = 0; i < tam_tel; i++){
+            if (telefone_i[i]=='\n'){
+                telefone_i[i]='\0';
             }
         }
 
-        printf ( "%-52s || %-4s || %-16s || %-258s\n" , nome_i , tipo_i, cpf_cnpj_i, email_i);
+        printf ( "%-52s || %-4s || %-16s || %-13s\n" , nome_i , tipo_i, cpf_cnpj_i, telefone_i);
         printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
   }
 }
@@ -511,9 +511,9 @@ void lista_all_cli(void) //.h
     }
     char nome [52] = "NOME";
     char cpf_cnpj [16] = "CPF/CNPJ";
-    char email [258] = "E-MAIL";
+    char telefone [13] = "TTELEFONE";
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, email);
+    printf ( "%-52s || TIPO || %-16s || %-13s\n" , nome, cpf_cnpj, telefone);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     while(fread(cli, sizeof(Cliente), 1, fp)) {
         if (strcmp(cli->status, "ativo")==0) {
