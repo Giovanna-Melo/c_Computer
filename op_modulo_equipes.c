@@ -54,6 +54,25 @@ void exibe_cadastro_eqp(const Equipe* eqp)
     }
 }
 
+void exibe_cadastro_eqp_tabela(const Equipe* eqp)
+{
+    if ((eqp == NULL) || (strcmp(eqp->status, "inativo")==0)) {
+        printf("\n Equipe Inexistente \n");
+    } else {
+        char  equipe_i [ 13 ];
+        int tam_e;
+        tam_e  =  strlen ( eqp->equipe );
+        strncpy ( equipe_i, eqp->equipe, tam_e );
+        for (int i = 0; i < tam_e; i++){
+            if (equipe_i[i]=='\n'){
+                equipe_i[i]='\0';
+            }
+        }
+        printf ( "%-13s || %-12d || %-10d\n" , equipe_i , eqp->qp, eqp->count);
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    }
+}
+
 void grava_equipe(Equipe* eqp) //.h
 {
     FILE* fp;
@@ -420,22 +439,28 @@ void le_chave_equipe(char* equipe)
 
 void lista_all_equipes(void) //.h
 {
-  FILE* fp;
-  Equipe* eqp;
-  eqp = (Equipe*) malloc(sizeof(Equipe));
-  fp = fopen("equipes.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(eqp, sizeof(Equipe), 1, fp)) {
-    if (strcmp(eqp->status, "ativo")==0) {
-      exibe_cadastro_eqp(eqp);
+    FILE* fp;
+    Equipe* eqp;
+    eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
     }
-  }
-  fclose(fp);
-  free(eqp);
+    char equipe [13] = "EQUIPE";
+    char qp [12] = "QUANTIDADE";
+    char count [10] = "CONTADOR";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-13s || %-12s || %-10s\n", equipe, qp, count);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(eqp, sizeof(Equipe), 1, fp)) {
+        if (strcmp(eqp->status, "ativo")==0) {
+            exibe_cadastro_eqp_tabela(eqp);
+        }
+    }
+    fclose(fp);
+    free(eqp);
 }
 
 Equipe* tela_atualiza_equipe(void)

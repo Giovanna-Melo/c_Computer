@@ -36,4 +36,5 @@ void le_quant_part(char* quant_part);
 void le_chave_equipe(char* equipe);
 void le_chave_func(char* cpf);
 //RELATORIO
+void exibe_cadastro_eqp_tabela(const Equipe* eqp);
 void lista_all_equipes(void);
