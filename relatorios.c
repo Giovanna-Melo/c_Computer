@@ -317,6 +317,7 @@ void funcionario_do_mes (void)
     system("clear||cls");
     printf("\n");
     printf("FUNCIONARIO DO MES\n");
+    lista_month_func();
     printf("Tecle ENTER para continuar");
     getchar();
 }

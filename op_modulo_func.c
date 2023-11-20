@@ -534,6 +534,74 @@ void lista_all_func(void) //.h
     free(func);
 }
 
+void lista_month_func(void) //.h
+{
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    int maior_contador_funcionario = comparar_contadores();
+    if (maior_contador_funcionario == 0) 
+    {
+        printf("\nCONTADORES ZERADOS\n");
+    } else {
+        char nome [52] = "NOME";
+        char cpf [13] = "CPF";
+        char profissao [52] = "PROFISSAO";
+        char telefone [52] = "TELEFONE";
+        printf ( "%-52s || %-13s || %-52s ||%-13s\n" , nome, cpf, profissao, telefone);
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+        while(fread(func, sizeof(Funcionario), 1, fp)) 
+        {
+            if (func->count==maior_contador_funcionario && (strcmp(func->status, "ativo")==0)) {
+                exibe_cadastro_func_tabela(func);
+            }
+        }
+    }
+    fclose(fp);
+    free(func);
+}
+//1702130553
+int comparar_contadores(void) //.h
+{
+    FILE* fp;
+    Funcionario* func;
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    //fseek(fp, 0, SEEK_END);
+    /*int num_funcionarios = ftell(fp) / sizeof(Funcionario);
+    printf("num func: %d", num_funcionarios);
+    //Compara contadores
+    int maior_count_func = 0;
+    for (int i = 0; i < num_funcionarios; i++) {*/
+    int maior_count_func=0;
+    while(fread(func, sizeof(Funcionario), 1, fp)) 
+    {
+        if ((strcmp(func->status, "ativo")==0))
+        {
+            int count = func->count;
+            if (count > maior_count_func) 
+            {
+                maior_count_func = count;
+            }
+        }
+    }
+    //}
+    fclose(fp);
+    free(func);
+    return maior_count_func;
+}
+
 Funcionario* tela_atualiza_func(void)
 {
     system("clear||cls");

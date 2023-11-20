@@ -49,3 +49,5 @@ void le_cpf(char* cpf);
 //RELATORIO
 void exibe_cadastro_func_tabela(const Funcionario* func);
 void lista_all_func(void);
+void lista_month_func(void);
+int comparar_contadores(void);
