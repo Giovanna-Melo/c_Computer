@@ -38,3 +38,5 @@ void le_chave_func(char* cpf);
 //RELATORIO
 void exibe_cadastro_eqp_tabela(const Equipe* eqp);
 void lista_all_equipes(void);
+void lista_month_eqp(void);
+int comparar_contadores_eqp(void);

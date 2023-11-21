@@ -463,6 +463,68 @@ void lista_all_equipes(void) //.h
     free(eqp);
 }
 
+
+void lista_month_eqp(void) //.h
+{
+    FILE* fp;
+    Equipe* eqp;
+    eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    int maior_contador_equipe = comparar_contadores_eqp();
+    if (maior_contador_equipe == 0) 
+    {
+        printf("\nCONTADORES ZERADOS\n");
+    } else {
+        char equipe [13] = "EQUIPE";
+        char qp [12] = "QUANTIDADE";
+        char count [10] = "CONTADOR";
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+        printf ( "%-13s || %-12s || %-10s\n", equipe, qp, count);
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+        while(fread(eqp, sizeof(Equipe), 1, fp)) 
+        {
+            if (eqp->count==maior_contador_equipe && (strcmp(eqp->status, "ativo")==0)) {
+                exibe_cadastro_eqp_tabela(eqp);
+            }
+        }
+    }
+    fclose(fp);
+    free(eqp);
+}
+
+int comparar_contadores_eqp(void) //.h
+{
+    FILE* fp;
+    Equipe* eqp;
+    eqp = (Equipe*) malloc(sizeof(Equipe));
+    fp = fopen("equipes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    int maior_count_eqp=0;
+    while(fread(eqp, sizeof(Equipe), 1, fp)) 
+    {
+        if ((strcmp(eqp->status, "ativo")==0))
+        {
+            int count = eqp->count;
+            if (count > maior_count_eqp) 
+            {
+                maior_count_eqp = count;
+            }
+        }
+    }
+    fclose(fp);
+    free(eqp);
+    return maior_count_eqp;
+}
+
 Equipe* tela_atualiza_equipe(void)
 {
     system("clear||cls");

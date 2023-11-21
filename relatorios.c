@@ -337,6 +337,7 @@ void equipe_do_mes (void)
     system("clear||cls");
     printf("\n");
     printf("EQUIPES DO MES\n");
+    lista_month_eqp();
     printf("Tecle ENTER para continuar");
     getchar();
 }
