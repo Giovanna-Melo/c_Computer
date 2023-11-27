@@ -52,9 +52,10 @@ void le_ordem(char* cpf_cnpj, char* ordem_s);
 void le_codigoatend(char* codigo_atend);
 //RELATORIO
 void exibe_cadastro_atend_tabela(const Atendimento* atend);
-void exibe_atendimentos_eqp(const Atendimento* atend);
-Atendimento* busca_atendimentos_eqp(void);
-void exibir_atendimentos_eqp(void);
+void exibir_atendimentos_eqp(const Atendimento* atend);
+void exibir_atendimentos_func(const Atendimento* atend);
+void exibe_atendimentos_eqp(void);
+void exibe_atendimentos_func(void);
 void lista_atend_ant(void);
 void lista_atendc(void);
 void lista_atendp(void);

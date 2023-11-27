@@ -348,6 +348,7 @@ void atendimentos_do_funcionario (void) //.h
     system("clear||cls");
     printf("\n");	
     printf("BUSCA DOS ATENDIMENTOS POR FUNCIONARIO\n\n");
+    exibe_atendimentos_func();
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -377,9 +378,7 @@ void atendimentos_da_equipe (void) //.h
     system("clear||cls");
     printf("\n");	
     printf("BUSCA DOS ATENDIMENTOS POR EQUIPE\n\n");
-    exibir_atendimentos_eqp();
-    //busca_atendimentos() //q contenham essa equipe;
-    //exibe_atendimentos_cli(); //abre o arquivo encontra o atendimento q corresponde e dentro abre clientes e procura o cli guarda o nome em variavel nome[55]=; free e fecha o arquvio cli print tudo de atend so o cli q vai printar o nome\n\n
+    exibe_atendimentos_eqp();
     printf("Tecle ENTER para continuar");
     getchar();
 }
