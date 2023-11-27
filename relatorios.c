@@ -29,6 +29,10 @@ void f_clientes(void)
 			case '3': 
             todos_clientes_pj();
             break;
+
+			case '4': 
+            atendimentos_do_cliente();
+            break;
         } 		
 	} while (op3 != '0');
 }
@@ -102,6 +106,10 @@ void f_funcionarios(void)
 
 			case '2':
             funcionario_do_mes();
+            break;
+
+			case '3': 
+            atendimentos_do_funcionario();
             break;            
 		} 		
 	} while (op3 != '0');
@@ -121,7 +129,11 @@ void f_equipes(void)
 
 			case '2': 	
             equipe_do_mes();
-            break;            
+            break; 
+
+			case '3': 
+            atendimentos_da_equipe();
+            break;           
 		} 		
 	} while (op3 != '0');
 }
@@ -188,6 +200,15 @@ void todos_clientes_pj (void)
     getchar();
 }
 
+void atendimentos_do_cliente (void) //.h
+{
+    system("clear||cls");
+    printf("\n");	
+    printf("BUSCA DOS ATENDIMENTOS POR CLIENTE\n\n");
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void atendimentos_ord_mais_antigos (void)
 {
     system("clear||cls");
@@ -205,7 +226,7 @@ void atendimentos_ord_mais_recentes (void)
     printf("\n");
     printf("TODOS ATENDIMENTOS\n\n");
     printf("ORDENAR: MAIS RECENTES\n");
-    //lista_atend_rec(); //DESENVOLVER
+    //lista_atend_rec(); //DESENVOLVER LISTA DINAMICA INVERSA
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -322,6 +343,15 @@ void funcionario_do_mes (void)
     getchar();
 }
 
+void atendimentos_do_funcionario (void) //.h
+{
+    system("clear||cls");
+    printf("\n");	
+    printf("BUSCA DOS ATENDIMENTOS POR FUNCIONARIO\n\n");
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
 void todas_equipes (void)
 {
     system("clear||cls");
@@ -338,6 +368,18 @@ void equipe_do_mes (void)
     printf("\n");
     printf("EQUIPES DO MES\n");
     lista_month_eqp();
+    printf("Tecle ENTER para continuar");
+    getchar();
+}
+
+void atendimentos_da_equipe (void) //.h
+{
+    system("clear||cls");
+    printf("\n");	
+    printf("BUSCA DOS ATENDIMENTOS POR EQUIPE\n\n");
+    exibir_atendimentos_eqp();
+    //busca_atendimentos() //q contenham essa equipe;
+    //exibe_atendimentos_cli(); //abre o arquivo encontra o atendimento q corresponde e dentro abre clientes e procura o cli guarda o nome em variavel nome[55]=; free e fecha o arquvio cli print tudo de atend so o cli q vai printar o nome\n\n
     printf("Tecle ENTER para continuar");
     getchar();
 }
@@ -362,7 +404,8 @@ char filtros_clientes(void)
     printf("| |                                                                       | | \n");
     printf("| |                1. TODOS OS CLIENTES                                   | | \n");
     printf("| |                2. TODOS OS CLIENTES PF                                | | \n"); 
-    printf("| |                3. TODOS OS CLIENTES PJ                                | | \n"); 
+    printf("| |                3. TODOS OS CLIENTES PJ                                | | \n");
+    printf("| |                4. ATENDIMENTOS DO CLIENTE                             | | \n");  
     printf("| |                0. VOLTAR                                              | | \n");
     printf("| |                                                                       | | \n");
     printf("| |                                                                       | | \n"); 
@@ -513,6 +556,7 @@ char filtros_func(void)
     printf("| |                                                                       | | \n");
     printf("| |                1. TODOS OS FUNCIONARIOS                               | | \n"); 
     printf("| |                2. FUNCIONARIO DO MES                                  | | \n");
+    printf("| |                3. ATENDIMENTOS DO FUNCIONARIO                         | | \n");
     printf("| |                0. VOLTAR                                              | | \n"); 
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n"); 
@@ -561,6 +605,7 @@ char filtros_equipes(void)
     printf("| |                                                                       | | \n");  
     printf("| |                1. TODAS AS EQUIPES                                    | | \n"); 
     printf("| |                2. EQUIPE DO MES                                       | | \n");
+    printf("| |                3. ATENDIMENTOS DA EQUIPE                              | | \n");
     printf("| |                0. VOLTAR                                              | | \n");
     printf("| |                                                                       | | \n"); 
     printf("| |                                                                       | | \n"); 

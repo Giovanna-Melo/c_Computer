@@ -125,6 +125,51 @@ void exibe_cadastro_atend_tabela(const Atendimento* atend) //.h
   }
 }
 
+void exibe_atendimentos_eqp(const Atendimento* atend) //.h
+{
+    if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
+        printf("\n Atendimento Inexistente \n");
+        printf("-------------------------------------------------------------------\n");
+    } else {
+        FILE* fp;
+        Cliente* cli;
+        cli = (Cliente*) malloc(sizeof(Cliente));
+        fp = fopen("clientes.dat", "rb");
+        if (fp == NULL) 
+        {
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
+        }
+        while(!feof(fp)) 
+        {
+            fread(cli, sizeof(Cliente), 1, fp);
+            int tam_cpf_cnpj_a;
+            tam_cpf_cnpj_a  =  strlen ( atend->cpf_cnpj );
+            if ((strncmp(cli->cpf_cnpj, atend->cpf_cnpj, tam_cpf_cnpj_a)==0) && (strcmp(cli->status, "inativo")!=0)) 
+            {
+                printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
+                printf("%s\n", atend->data_atend);
+                printf("Nome do cliente: %s\n", cli->nome);
+                printf("CPF/CNPJ: %s\n", atend->cpf_cnpj);
+                printf("Nome do equipamento: %s\n", atend->nome_eqp);
+                printf("Marca: %s\n", atend->marca);
+                printf("Modelo: %s\n", atend->modelo);
+                printf("Numero de serie: %s\n", atend->nserie);
+                printf("Observacoes: %s\n", atend->observacoes);
+                printf("Data de visita/entrega: %s\n", atend->data);
+                printf("Reponsavel: %s\n", atend->responsavel);
+                printf("Situacao: %s\n", atend->situacao);
+                printf("Ordem: %s\n\n", atend->ordem_s);
+                printf("Status: %s\n", atend->status);
+                printf("-------------------------------------------------------------------\n");
+            }
+        }
+        fclose(fp);
+        free(cli);
+    }
+}
+
 void grava_atend(Atendimento* atend) //.h
 {
     FILE* fp;
@@ -313,6 +358,13 @@ void exibe_atend(void)
     printf("Tecle ENTER para continuar");
     getchar();
     // liberar o espaço de memória da estrutura 
+    free(atend);
+}
+
+void exibir_atendimentos_eqp(void)
+{
+    Atendimento *atend = busca_atendimentos_eqp();
+    exibe_atendimentos_eqp(atend);
     free(atend);
 }
 
@@ -611,6 +663,33 @@ Atendimento* busca_atend_pec(char* codigop, char* codigoc) //.h //Informar no so
             return atend;
         }
         else if ((strcmp(atend->codigo_atend, codigoc)==0) && (strcmp(atend->status, "ativo")==0)) 
+        {
+            fclose(fp);
+            return atend;
+        }
+    }
+    fclose(fp);
+    return NULL;
+}
+
+Atendimento* busca_atendimentos_eqp(void) //.h
+{
+    FILE* fp;
+    Atendimento* atend;
+    char equipe[13];
+    le_chave_equipe(equipe);
+    atend = (Atendimento*) malloc(sizeof(Atendimento));
+    fp = fopen("atendimentos.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)) 
+    {
+        fread(atend, sizeof(Atendimento), 1, fp);
+        if ((strcmp(atend->responsavel, equipe)==0) && (strcmp(atend->status, "ativo")==0)) 
         {
             fclose(fp);
             return atend;
