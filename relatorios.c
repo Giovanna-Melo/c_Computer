@@ -205,6 +205,7 @@ void atendimentos_do_cliente (void) //.h
     system("clear||cls");
     printf("\n");	
     printf("BUSCA DOS ATENDIMENTOS POR CLIENTE\n\n");
+    exibe_atendimentos_cli();
     printf("Tecle ENTER para continuar");
     getchar();
 }

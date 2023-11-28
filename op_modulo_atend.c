@@ -232,6 +232,74 @@ void exibir_atendimentos_func(const Atendimento* atend) //.h
     }
 }
 
+void exibir_atendimentos_cli(const Atendimento* atend) //.h
+{
+    if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
+        printf("\n Atendimento Inexistente \n");
+        printf("-------------------------------------------------------------------\n");
+    } else {
+        char nome_responsavel [52] = "";
+        strncpy (nome_responsavel, atend->responsavel, strlen(atend->responsavel));
+        if (valida_strnum(nome_responsavel))
+        {
+            FILE* fpf;
+            Funcionario* func;
+            func = (Funcionario*) malloc(sizeof(Funcionario));
+            fpf = fopen("funcionarios.dat", "rb");
+            if (fpf == NULL) 
+            {
+                printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+                printf("Nao e possivel continuar este programa...\n");
+                exit(1);
+            }
+            while(!feof(fpf)) 
+            {
+                fread(func, sizeof(Funcionario), 1, fpf);
+                if ((strncmp(func->cpf, atend->responsavel, strlen(func->cpf))==0) && (strcmp(func->status, "inativo")!=0)) 
+                {
+                    strncpy (nome_responsavel, func->nome, strlen(func->nome));
+                }
+            }
+            fclose(fpf);
+            free(func);
+        } 
+        FILE* fpc;
+        Cliente* cli;
+        cli = (Cliente*) malloc(sizeof(Cliente));
+        fpc = fopen("clientes.dat", "rb");
+        if (fpc == NULL) 
+        {
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
+        }
+        while(!feof(fpc)) 
+        {
+            fread(cli, sizeof(Cliente), 1, fpc);
+            if ((strncmp(cli->cpf_cnpj, atend->cpf_cnpj, strlen (atend->cpf_cnpj))==0) && (strcmp(cli->status, "inativo")!=0)) 
+            {
+                printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
+                printf("%s\n", atend->data_atend);
+                printf("Nome do cliente: %s\n", cli->nome);
+                printf("CPF/CNPJ: %s\n", atend->cpf_cnpj);
+                printf("Nome do equipamento: %s\n", atend->nome_eqp);
+                printf("Marca: %s\n", atend->marca);
+                printf("Modelo: %s\n", atend->modelo);
+                printf("Numero de serie: %s\n", atend->nserie);
+                printf("Observacoes: %s\n", atend->observacoes);
+                printf("Data de visita/entrega: %s\n", atend->data);
+                printf("Reponsavel: %s\n", nome_responsavel);
+                printf("Situacao: %s\n", atend->situacao);
+                printf("Ordem: %s\n\n", atend->ordem_s);
+                printf("Status: %s\n", atend->status);
+                printf("-------------------------------------------------------------------\n");
+            }
+        }
+        fclose(fpc);
+        free(cli);
+    }
+}
+
 void grava_atend(Atendimento* atend) //.h
 {
     FILE* fp;
@@ -469,6 +537,31 @@ void exibe_atendimentos_func(void) //.h
         if ((strcmp(atend->responsavel, cpf)==0) && (strcmp(atend->status, "ativo")==0)) 
         {
             exibir_atendimentos_func(atend);
+        }
+    }
+    fclose(fp);
+    free(atend);
+}
+
+void exibe_atendimentos_cli(void) //.h
+{
+    FILE* fp;
+    Atendimento* atend;
+    char cpf_cnpj[16];
+    le_chave_cpf_cnpj(cpf_cnpj);
+    atend = (Atendimento*) malloc(sizeof(Atendimento));
+    fp = fopen("atendimentos.dat", "rb");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    while(fread(atend, sizeof(Atendimento), 1, fp)==1) 
+    {
+        if ((strncmp(atend->cpf_cnpj, cpf_cnpj, strlen(atend->cpf_cnpj))==0) && (strcmp(atend->status, "ativo")==0)) 
+        {
+            exibir_atendimentos_cli(atend);
         }
     }
     fclose(fp);
