@@ -658,9 +658,9 @@ void construir_codigo_atendimento(char* codigo_atend, const char* situacao, cons
     sprintf(codigo_atend, "%s%s%s", situacao, cpf_cnpj, ordem_s);
 }
 
-void le_nome_eqp(char* nome_eqp) 
+void le_nome_eqp(char* nome_eqp) //informar nas instruçoes q nn utilizem espaco entre as palavras em equipamento marca modelo afins
 {
-    printf("{}                       Nome do equipamento:                               {}\n");
+    printf("{}                       Nome do equipamento (desconsidere espacos):        {}\n");
     fgets(nome_eqp, 52, stdin);
     while (!valida_alphanum(nome_eqp)) //em utilidades
     {
@@ -671,7 +671,7 @@ void le_nome_eqp(char* nome_eqp)
 
 void le_marca(char* marca) 
 {
-    printf("{}                       Marca:                                             {}\n");
+    printf("{}                       Marca (desconsidere espacos):                      {}\n");
     fgets(marca, 22, stdin);
     while (!valida_alphanum(marca)) //em utilidades
     {
@@ -682,7 +682,7 @@ void le_marca(char* marca)
 
 void le_modelo(char* modelo) 
 {
-    printf("{}                       Modelo:                                            {}\n");
+    printf("{}                       Modelo (desconsidere espacos):                     {}\n");
     fgets(modelo, 32, stdin);
     while (!valida_alphanum(modelo)) //em utilidades
     {
@@ -693,7 +693,7 @@ void le_modelo(char* modelo)
 
 void le_nserie(char* nserie) 
 {
-    printf("{}                       Numero de serie:                                   {}\n");
+    printf("{}                       Numero de serie (desconsidere espacos):            {}\n");
     fgets(nserie, 22, stdin);
     while (!valida_alphanum(nserie)) //em utilidades
     {
