@@ -680,7 +680,32 @@ char confirma_zcont(void)
 //FUNCAO EM DESENVOLVIMENTO
 void mostra_zcont(void)
 {
+    zera_func_count();
+    zera_eqp_count();
     tela_mostra_zcont();
+}
+
+void zera_func_count(void) 
+{
+    FILE* fp;
+    Funcionario* func;
+    fp = fopen("funcionarios.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar este programa...\n");
+        exit(1);
+    }
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    while (fread(func, sizeof(Funcionario), 1, fp) == 1) 
+    {
+        fseek(fp, -sizeof(Funcionario), SEEK_CUR);
+        func->count = 0;
+        fwrite(func, sizeof(Funcionario), 1, fp);
+        fseek(fp, 0, SEEK_CUR);
+    }
+    fclose(fp);
+    free(func);
 }
 
 //TELA CONTADORES ZERADOS

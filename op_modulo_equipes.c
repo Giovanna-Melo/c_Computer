@@ -569,3 +569,27 @@ Equipe* tela_deleta_equipe(void)
     getchar();
     return eqp;
 }
+
+
+void zera_eqp_count(void) //.h
+{
+    FILE* fpe;
+    Equipe* eqp;
+    fpe = fopen("equipes.dat", "r+b");
+    if (fpe == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    eqp = (Equipe*) malloc(sizeof(Equipe));
+    while (fread(eqp, sizeof(Equipe), 1, fpe) == 1) 
+    {
+    fseek(fpe, -sizeof(Equipe), SEEK_CUR);
+    eqp->count=0; //mover p cima do fseek
+    fwrite(eqp, sizeof(Equipe), 1, fpe);
+    fseek(fpe, 0, SEEK_CUR);
+    }
+    fclose(fpe);
+    free(eqp);
+}

@@ -40,6 +40,7 @@ void z_cont(void);
 char confirma_zcont(void);
 //FUNCAO
 void mostra_zcont(void);
+void zera_func_count(void);
 //TELA
 void tela_mostra_zcont(void);
 //FUNCOES LEITURA COM VALIDACAO
