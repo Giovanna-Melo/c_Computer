@@ -511,7 +511,7 @@ void lista_all_cli(void) //.h
     }
     char nome [52] = "NOME";
     char cpf_cnpj [16] = "CPF/CNPJ";
-    char telefone [13] = "TTELEFONE";
+    char telefone [13] = "TELEFONE";
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf ( "%-52s || TIPO || %-16s || %-13s\n" , nome, cpf_cnpj, telefone);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -537,9 +537,9 @@ void lista_pf(void) //.h
     }
     char nome [52] = "NOME";
     char cpf_cnpj [16] = "CPF/CNPJ";
-    char email [258] = "E-MAIL";
+    char telefone [13] = "TELEFONE";
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, email);
+    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, telefone);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     while(fread(cli, sizeof(Cliente), 1, fp)) {
         if ((strcmp(cli->tipo, "PF\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
@@ -563,9 +563,9 @@ void lista_pj(void)
     }
     char nome [52] = "NOME";
     char cpf_cnpj [16] = "CPF/CNPJ";
-    char email [258] = "E-MAIL";
+    char telefone [13] = "TTELEFONE";
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, email);
+    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, telefone);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     while(fread(cli, sizeof(Cliente), 1, fp)) {
         if ((strcmp(cli->tipo, "PJ\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
