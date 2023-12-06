@@ -154,7 +154,7 @@ void atualizando_eqp_count(Equipe* eqp) //.h
         {
             if (strcmp(arqv_eqp->equipe, eqp->equipe)==0)
             {
-                fseek(fp, -sizeof(Funcionario), SEEK_CUR);
+                fseek(fp, -sizeof(Equipe), SEEK_CUR);
                 break;
             }
         } //Trecho do while desenvolvido pelo chatgpt
@@ -162,7 +162,7 @@ void atualizando_eqp_count(Equipe* eqp) //.h
     count_arq+=1;
     count = count_arq;
     eqp->count=count;
-    fwrite(eqp, sizeof(Funcionario), 1, fp);
+    fwrite(eqp, sizeof(Equipe), 1, fp);
     fclose(fp);
     free(arqv_eqp);
 }
