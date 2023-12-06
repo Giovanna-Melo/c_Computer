@@ -1,6 +1,7 @@
 ////////////MODULO ATEND/////////////
 //ESTRUTURA
-struct atendimento {
+struct atendimento 
+{
     char codigo_atend[53];
     char data_atend[20];
     char cpf_cnpj[16];

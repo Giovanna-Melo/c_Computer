@@ -110,7 +110,7 @@ void exibe_cadastro(const Cliente* cli)
   }
 }
 
-void exibe_cadastro_tabela(const Cliente* cli) //.h
+void exibe_cadastro_tabela(const Cliente* cli)
 {
   if ((cli == NULL) || (strcmp(cli->status, "inativo")==0)) {
     printf("\n Cliente Inexistente \n");
@@ -160,7 +160,7 @@ void exibe_cadastro_tabela(const Cliente* cli) //.h
   }
 }
 
-void grava_cliente(Cliente* cli) //.h
+void grava_cliente(Cliente* cli)
 {
     FILE* fp;
     fp = fopen("clientes.dat", "ab");
@@ -174,7 +174,7 @@ void grava_cliente(Cliente* cli) //.h
     fclose(fp);
 }
 
-void atualizando_cliente(Cliente* cli) //.h
+void atualizando_cliente(Cliente* cli)
 {
     FILE* fp;
     Cliente* arqv_cli;
@@ -205,28 +205,28 @@ void atualizando_cliente(Cliente* cli) //.h
     if (strcmp(resposta_email, "sim\n")==0)
     {
         le_email(email);
-        strncpy(cli->email, email, sizeof(cli->email));//, cli->email;
+        strncpy(cli->email, email, sizeof(cli->email));
     }
     printf("\nDeseja atualizar o telefone (sim/nao)?");
     fgets(resposta_tel, 5, stdin);
     if (strcmp(resposta_tel, "sim\n")==0)
     {
     le_telefone(telefone);
-    strncpy(cli->telefone, telefone, sizeof(cli->telefone));//, cli->telefone;
+    strncpy(cli->telefone, telefone, sizeof(cli->telefone));
     }
     printf("\nDeseja atualizar o endereco (sim/nao)?");
     fgets(resposta_ender, 5, stdin);
     if (strcmp(resposta_ender, "sim\n")==0)
     {
     le_endereco(endereco);
-    strncpy(cli->endereco, endereco, sizeof(cli->endereco));//, cli->endereco;
+    strncpy(cli->endereco, endereco, sizeof(cli->endereco));
     }
     fwrite(cli, sizeof(Cliente), 1, fp);
     fclose(fp);
     free(arqv_cli);
 }
 
-void deletando_cliente (Cliente* cli) //.h
+void deletando_cliente (Cliente* cli)
 {
     FILE* fp;
     Cliente* arq_cli;
@@ -267,18 +267,13 @@ void deletando_cliente (Cliente* cli) //.h
 
 void cadastro_cli(void)
 {
-    // função ainda em desenvolvimento
-    // ler os dados do cliente
+    //ler os dados do cliente
     Cliente *cli = tela_cadastro_cli();
     exibe_cadastro(cli);
-    printf("Tecle ENTER para continuar"); //mudar isso em todos os modulos e tirar o tipo resp de atendimento
+    printf("Tecle ENTER para continuar");
     getchar();
     grava_cliente(cli);
-
-    // gravar o registro no arquivo de clientes
-    //gravar_cliente(cli);
-
-    // liberar o espaço de memória da estrutura 
+    //liberar o espaco de memoria da estrutura 
     free(cli);
 }
 
@@ -288,8 +283,7 @@ void exibe_cli(void)
     Cliente *cli = tela_exibe_cli();
     exibe_cadastro(cli);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(cli);
 }
 
@@ -299,8 +293,7 @@ void atualiza_cli(void)
     atualizando_cliente(cli);
     exibe_cadastro(cli);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(cli);
 }
 
@@ -309,8 +302,7 @@ void deleta_cli(void)
     Cliente *cli = tela_deleta_cli();
     deletando_cliente(cli);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(cli);
 }
 
@@ -335,18 +327,18 @@ Cliente* tela_cadastro_cli(void)
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n");
     printf("{}                                                                          {}\n");
     le_nome(nome);
-    strncpy(cli->nome, nome, sizeof(cli->nome));//, cli->nome;
+    strncpy(cli->nome, nome, sizeof(cli->nome));
     le_tipo(tipo);
-    strncpy(cli->tipo, tipo, sizeof(cli->tipo));//, cli->tipo;
+    strncpy(cli->tipo, tipo, sizeof(cli->tipo));
     le_cpf_cnpj(cpf_cnpj);
-    strncpy(cli->cpf_cnpj, cpf_cnpj, sizeof(cli->cpf_cnpj));//, cli->cpf_cnpj;
+    strncpy(cli->cpf_cnpj, cpf_cnpj, sizeof(cli->cpf_cnpj));
     le_email(email);
-    strncpy(cli->email, email, sizeof(cli->email));//, cli->email;
+    strncpy(cli->email, email, sizeof(cli->email));
     le_telefone(telefone);
-    strncpy(cli->telefone, telefone, sizeof(cli->telefone));//, cli->telefone;
+    strncpy(cli->telefone, telefone, sizeof(cli->telefone));
     le_endereco(endereco);
-    strncpy(cli->endereco, endereco, sizeof(cli->endereco));//, cli->endereco;
-    strncpy(cli->status, status, sizeof(cli->status));//, cli->status;
+    strncpy(cli->endereco, endereco, sizeof(cli->endereco));
+    strncpy(cli->status, status, sizeof(cli->status));
     printf("{}                                                                          {}\n");
     printf("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}\n\n");
     return cli;
@@ -422,7 +414,7 @@ void le_endereco(char* endereco)
     } 
 }
 
-Cliente* tela_exibe_cli(void) //.h
+Cliente* tela_exibe_cli(void)
 {
     system("clear||cls");
     printf("\n");
@@ -439,7 +431,7 @@ Cliente* tela_exibe_cli(void) //.h
     return cli;
 }
 
-Cliente* busca_cliente(void) //.h
+Cliente* busca_cliente(void)
 {
     FILE* fp;
     Cliente* cli;
@@ -472,7 +464,7 @@ void le_chave_cpf_cnpj(char* cpf_cnpj)
     fgets(cpf_cnpj, 16, stdin);
 }
 
-int busca_chave_cli(char* cpf_cnpj) //.h
+int busca_chave_cli(char* cpf_cnpj)
 {
     FILE* fp;
     Cliente* cli;
@@ -498,7 +490,7 @@ int busca_chave_cli(char* cpf_cnpj) //.h
     return 0;
 }
 
-void lista_all_cli(void) //.h
+void lista_all_cli(void)
 {
     FILE* fp;
     Cliente* cli;
@@ -524,7 +516,7 @@ void lista_all_cli(void) //.h
     free(cli);
 }
 
-void lista_pf(void) //.h
+void lista_pf(void)
 {
     FILE* fp;
     Cliente* cli;
@@ -551,7 +543,7 @@ void lista_pf(void) //.h
 }
 
 void lista_pj(void) 
-{ //.h
+{
     FILE* fp;
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));

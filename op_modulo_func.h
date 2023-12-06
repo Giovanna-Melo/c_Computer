@@ -1,5 +1,6 @@
 ////////////MODULO FUNC/////////////
-struct funcionario {
+struct funcionario 
+{
     char nome[52]; //DECLARADO EM OP_MODULO_CLI
     int count;
     char cpf[13];

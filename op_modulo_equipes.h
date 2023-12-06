@@ -1,5 +1,6 @@
 ////////////MODULO EQUIPES/////////////
-struct equipe {
+struct equipe 
+{
     char equipe[13];
     int count;
     int qp;

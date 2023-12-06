@@ -5,8 +5,9 @@
 #include <stdbool.h>
 #include <time.h>
 #include "utilidades.h"
-#include "op_modulo_func.h" //mover para utilidades
-#include "op_modulo_equipes.h" //mover para utilidades
+#include "op_modulo_func.h"
+#include "op_modulo_equipes.h"
+
 //FUNCOES EM DESENVOLVIMENTO
 
 int eh_letra(char c) 
@@ -177,28 +178,28 @@ int valida_tipo(char* tipo)
 
 int valida_email(char* email)
 {
-// Encontre o índice do '@'
+// Encontre o indice do '@'
     char *at_symbol = strchr(email, '@');
     
-    // Verifique se existe '@' e se não é o primeiro caractere nem o último
+    // Verifique se existe '@' e se nao e o primeiro caractere nem o ultimo
     if (at_symbol == NULL || at_symbol == email || at_symbol[strlen(at_symbol) - 1] == '@') {
         return 0;
     }
 
-    // Verifique se a parte antes do '@' contém apenas caracteres permitidos
+    // Verifique se a parte antes do '@' contem apenas caracteres permitidos
     for (char* p = email; p < at_symbol; p++) {
         if (!eh_alphanum(*p) && *p != '.' && *p != '-' && *p != '_') {
             return 0;
         }
     }
 
-    // Verifique se a parte após o '@' contém pelo menos um '.'
+    // Verifique se a parte apos o '@' contem pelo menos um '.'
     char *after_at = at_symbol + 2;
     if (strchr(after_at, '.') == NULL) {
       return 0;
     }
 
-    // Verifique se após o '.' contém pelo menos um caracter
+    // Verifique se apos o '.' contem pelo menos um caracter
     int tam;
     tam = strlen(email);
     if (email [tam-2]=='.'){
@@ -220,7 +221,7 @@ int valida_tel(char* telefone)
   }
 }
 
-int valida_endereco(char* endereco) //Informar nas instrucoes q nn deve ter espaco
+int valida_endereco(char* endereco)
 {
   int tam;
   
@@ -233,9 +234,6 @@ int valida_endereco(char* endereco) //Informar nas instrucoes q nn deve ter espa
   return 1;
 }
 
-// Recebe um ano e verifica se o mesmo é bissexto
-// Retorna 1 se o ano é bissexto ou 0 caso contrário
-// 
 int eh_bissexto(int aa) {
   if ((aa % 4 == 0) && (aa % 100 != 0)) {
     return 1;
@@ -247,10 +245,6 @@ int eh_bissexto(int aa) {
 }
 // FUNCAO DESENVOLVIDA POR FLAVIUS GORGONIO
 
-//
-// Recebe uma data no formato (dd, mm, aaaa) e valida a mesma
-// Retorna 1 se a data é válida ou 0 caso contrário
-// 
 int valida_data(int dd, int mm, int aa) {
   int maiorDia;
   if (aa < 0 || mm < 1 || mm > 12)
@@ -388,12 +382,12 @@ char* date_time(void) {
     // Alocar espaço para a string de data/hora
     static char data_hora[20];
 
-    // Formatando a string de data para dia/mês/ano e hora:minutos:segundos
+    // Formatando a string de data para dia/mes/ano e hora:minutos:segundos
     strftime(data_hora, sizeof(data_hora), "%d/%m/%Y %H:%M:%S", info_tempo);
 
     return data_hora;
 }
-// TRECHO ADAPTADO DO CHAT GPT
+// TRECHO ADAPTADO DO CHATGPT
 
 int valida_responsavel(char* responsavel) 
 {
@@ -436,60 +430,3 @@ int valida_responsavel(char* responsavel)
     return 0;
   }
 }
-
-int valida_existe(char* responsavel)
-{
-  return 1;
-}
-
-/*
-int valida_existe_cli(char* cpf_cnpj)
-{
-    if (cpf_cnpj in (clientes)) {
-    return 1;
-  } else {
-    return 0;
-  }
-  return 1;
-}
-
-int valida_existe_func(char* cpf)
-{
-    if (cpf in (func)) {
-    return 1;
-  } else {
-    return 0;
-  }
-  return 1;
-}
-
-int valida_existe_atend(char* cod_atend)
-{
-    if (cod_atend in (atendimentos)) {
-    return 1;
-  } else {
-    return 0;
-  }
-  return 1;
-}
-
-int valida_existe_equipe(char* equipe)
-{
-    if (equipe in (equipes)) {
-    return 1;
-  } else {
-    return 0;
-  }
-  return 1;
-}
-
-int valida_existe_responsavel(char* responsavel)
-{
-    if (responsavel in (equipes)) {
-  return 1;
-  } else if (responsavel in (func)){
-  } else {
-    return 0;
-  } 
-  return 1;
-}*/

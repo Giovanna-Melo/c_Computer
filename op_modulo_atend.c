@@ -8,8 +8,8 @@
 #include "op_modulo_cli.h"
 #include "op_modulo_atend.h"
 #include "op_modulo_planos.h"
-#include "op_modulo_func.h" //mover para utilidades
-#include "op_modulo_equipes.h" //mover para utilidades
+#include "op_modulo_func.h"
+#include "op_modulo_equipes.h"
 #include "utilidades.h"
 
 void modulo_atend(void) 
@@ -72,7 +72,7 @@ char menu_atendimentos(void)
 } 
 
 //FUNCOES EM DESENVOLVIMENTO
-void exibe_cadastro_atend(const Atendimento* atend) //.h
+void exibe_cadastro_atend(const Atendimento* atend) 
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
         printf("\n Atendimento Inexistente \n");
@@ -94,13 +94,13 @@ void exibe_cadastro_atend(const Atendimento* atend) //.h
     }
 }
 
-void exibe_cadastro_atend_tabela(const Atendimento* atend) //.h
+void exibe_cadastro_atend_tabela(const Atendimento* atend) 
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
         printf("\n Atendimento Inexistente \n");
     } else {
 
-        char  data_i [ 12 ];
+        char  data_i [12];
         int tam_d;
         tam_d  =  strlen ( atend->data );
         strncpy ( data_i, atend->data, tam_d );
@@ -110,7 +110,7 @@ void exibe_cadastro_atend_tabela(const Atendimento* atend) //.h
             }
         }
 
-        char  responsavel_i [ 13 ];
+        char  responsavel_i [13];
         int tam_r;
         tam_r  =  strlen ( atend->responsavel );
         strncpy ( responsavel_i , atend->responsavel, tam_r );
@@ -125,7 +125,7 @@ void exibe_cadastro_atend_tabela(const Atendimento* atend) //.h
   }
 }
 
-void exibir_atendimentos_eqp(const Atendimento* atend) //.h
+void exibir_atendimentos_eqp(const Atendimento* atend)
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
         printf("\n Atendimento Inexistente \n");
@@ -170,7 +170,7 @@ void exibir_atendimentos_eqp(const Atendimento* atend) //.h
     }
 }
 
-void exibir_atendimentos_func(const Atendimento* atend) //.h
+void exibir_atendimentos_func(const Atendimento* atend)
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
         printf("\n Atendimento Inexistente \n");
@@ -232,7 +232,7 @@ void exibir_atendimentos_func(const Atendimento* atend) //.h
     }
 }
 
-void exibir_atendimentos_cli(const Atendimento* atend) //.h
+void exibir_atendimentos_cli(const Atendimento* atend)
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
         printf("\n Atendimento Inexistente \n");
@@ -300,7 +300,7 @@ void exibir_atendimentos_cli(const Atendimento* atend) //.h
     }
 }
 
-void grava_atend(Atendimento* atend) //.h
+void grava_atend(Atendimento* atend)
 {
     FILE* fp;
     fp = fopen("atendimentos.dat", "ab");
@@ -314,7 +314,7 @@ void grava_atend(Atendimento* atend) //.h
     fclose(fp);
 }
 
-void atualizando_atend(Atendimento* atend) //.h
+void atualizando_atend(Atendimento* atend)
 {
     FILE* fp;
     Atendimento* arqv_atend;
@@ -356,7 +356,7 @@ void atualizando_atend(Atendimento* atend) //.h
     if (strcmp(resposta_nome_eqp, "sim\n")==0)
     {
         le_nome_eqp(nome_eqp);
-        strncpy(atend->nome_eqp, nome_eqp, sizeof(atend->nome_eqp));//, cli->email;
+        strncpy(atend->nome_eqp, nome_eqp, sizeof(atend->nome_eqp));
     }
     printf("\nDeseja atualizar a marca (sim/nao)?");
     fgets(resposta_marca, 5, stdin);
@@ -430,7 +430,7 @@ void atualizando_atend(Atendimento* atend) //.h
     free(arqv_atend);
 }
 
-void deletando_atend (Atendimento* atend) //.h
+void deletando_atend (Atendimento* atend)
 {
     FILE* fp;
     Atendimento* arq_atend;
@@ -471,13 +471,11 @@ void deletando_atend (Atendimento* atend) //.h
 
 void cadastro_atend(void)
 {
-    // ler os dados do cliente
     Atendimento *atend = tela_cadastro_atend();
     exibe_cadastro_atend(atend);
     printf("Tecle ENTER para continuar");
     getchar();
-    grava_atend(atend);
-    // liberar o espaço de memória da estrutura 
+    grava_atend(atend); 
     free(atend);
 }
 
@@ -487,11 +485,10 @@ void exibe_atend(void)
     exibe_cadastro_atend(atend);
     printf("Tecle ENTER para continuar");
     getchar();
-    // liberar o espaço de memória da estrutura 
     free(atend);
 }
 
-void exibe_atendimentos_eqp(void) //.h
+void exibe_atendimentos_eqp(void)
 {
     FILE* fp;
     Atendimento* atend;
@@ -517,7 +514,7 @@ void exibe_atendimentos_eqp(void) //.h
     free(atend);
 }
 
-void exibe_atendimentos_func(void) //.h
+void exibe_atendimentos_func(void)
 {
     FILE* fp;
     Atendimento* atend;
@@ -543,7 +540,7 @@ void exibe_atendimentos_func(void) //.h
     free(atend);
 }
 
-void exibe_atendimentos_cli(void) //.h
+void exibe_atendimentos_cli(void)
 {
     FILE* fp;
     Atendimento* atend;
@@ -574,8 +571,7 @@ void atualiza_atend(void)
     atualizando_atend(atend);
     exibe_cadastro_atend(atend);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(atend);
 }
 
@@ -584,8 +580,7 @@ void deleta_atend(void)
     Atendimento *atend = tela_deleta_atend();
     deletando_atend(atend);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(atend);
 }
 
@@ -603,9 +598,6 @@ Atendimento* tela_cadastro_atend(void)
     char situacao[11] = "pendente";
     char ordem_s[25] = "1";
     char status[9] = "ativo";
-    //char codigo_atend[53];
-    //while ('pendente'+cpf/cnpj+ordem in cad_atend) {posico de ordem+=1};
-
     Atendimento *atend = (Atendimento*) malloc(sizeof(Atendimento));
 
     system("clear||cls");
@@ -653,12 +645,12 @@ Atendimento* tela_cadastro_atend(void)
     return atend;
 }
 
-// Função para construir o código de atendimento
+// Funcao para construir o codigo de atendimento
 void construir_codigo_atendimento(char* codigo_atend, const char* situacao, const char* cpf_cnpj, const char* ordem_s) {
     sprintf(codigo_atend, "%s%s%s", situacao, cpf_cnpj, ordem_s);
 }
 
-void le_nome_eqp(char* nome_eqp) //informar nas instruçoes q nn utilizem espaco entre as palavras em equipamento marca modelo afins
+void le_nome_eqp(char* nome_eqp) 
 {
     printf("{}                       Nome do equipamento (desconsidere espacos):        {}\n");
     fgets(nome_eqp, 52, stdin);
@@ -746,12 +738,10 @@ void le_responsavel(char* responsavel)
 {
     printf("{}                       Funcionario (CPF)/equipe responsavel:              {}\n");
     fgets(responsavel, 13, stdin);
-    //fflush(stdin);
     while (!valida_responsavel(responsavel)) //em utilidades
     {
         printf("{}                       Funcionario (CPF)/equipe responsavel:              {}\n");
         fgets(responsavel, 13, stdin);
-        //fflush(stdin);
     }
 }
 
@@ -766,10 +756,9 @@ void le_situacao(char* situacao)
     } 
 }
 
-void le_ordem(char* cpf_cnpj, char* ordem_s) //.h
+void le_ordem(char* cpf_cnpj, char* ordem_s)
 {
     int ordem = 1;
-    //char ordem_str [25];
     char situa_p [11] = "pendente";
     char situa_c [11] = "concluido";
     Atendimento* atend;
@@ -780,9 +769,6 @@ void le_ordem(char* cpf_cnpj, char* ordem_s) //.h
 
         construir_codigo_atendimento(codigop, situa_p, cpf_cnpj, ordem_s);
         construir_codigo_atendimento(codigoc, situa_c, cpf_cnpj, ordem_s);
-
-        //ordem+=1;
-        //sprintf (ordem_s, "%d", ordem);
         if (atend != NULL) 
         {
             free(atend);
@@ -793,12 +779,10 @@ void le_ordem(char* cpf_cnpj, char* ordem_s) //.h
             ordem+=1;
             sprintf (ordem_s, "%d", ordem);
         }
-        printf("codigo buscado estou em le ordem: %s", atend->codigo_atend); // nn chegou tirar
     } while(atend != NULL);
-    //sprintf (ordem_s, "%s", ordem_str);
 }
 
-Atendimento* tela_exibe_atend(void) //.h
+Atendimento* tela_exibe_atend(void)
 {
     system("clear||cls");
     printf("\n");
@@ -815,7 +799,7 @@ Atendimento* tela_exibe_atend(void) //.h
     return atend;
 }
 
-Atendimento* busca_atend(void) //.h
+Atendimento* busca_atend(void)
 {
     FILE* fp;
     Atendimento* atend;
@@ -842,7 +826,7 @@ Atendimento* busca_atend(void) //.h
     return NULL;
 }
 
-Atendimento* busca_atend_pec(char* codigop, char* codigoc) //.h //Informar no sobre q foi necessario criar um atendimento teste para q os arquivos estivessem disponiveis
+Atendimento* busca_atend_pec(char* codigop, char* codigoc)
 {
     FILE* fp;
     Atendimento* atend;
@@ -878,10 +862,9 @@ void le_codigoatend(char* codigo_atend)
     printf("{}                 para exibir (situacao+CPF/CNPJ+ordem):                   {}\n");
     fgets(codigo_atend, 53, stdin);
     codigo_atend[strcspn(codigo_atend, "\n")] = '\0';
-    //fflush(stdin);
 }
 
-void lista_atend_ant(void) //.h
+void lista_atend_ant(void)
 {
     FILE* fp;
     Atendimento* atend;
@@ -907,7 +890,7 @@ void lista_atend_ant(void) //.h
     free(atend);
 }
 
-void lista_atendp(void) //.h
+void lista_atendp(void)
 {
     FILE* fp;
     Atendimento* atend;
@@ -933,7 +916,7 @@ void lista_atendp(void) //.h
     free(atend);
 }
 
-void lista_atendc(void) //.h
+void lista_atendc(void)
 {
     FILE* fp;
     Atendimento* atend;

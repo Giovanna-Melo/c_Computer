@@ -106,8 +106,8 @@ void menu_criacao(void)
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")               Desenvolvido por: Giovanna Kailany de Melo                  (\n");
-    printf(")               Colaboradores:                                              (\n");
-    printf(")               Referencias:                                                (\n");
+    printf(")               Colaboradores: Flavius Gorgonio, Marlison Soares,           (\n");
+    printf(")                           Beatriz Costa e chatGPT                         (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
@@ -142,13 +142,15 @@ void menu_instrucoes(void)
     printf(")!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AVISO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(\n");
     printf(")        19/08/2023.: TELA DE DESENVOLVIMENTO SIMULTANEO AO PROJETO         (\n");
     printf(")                                                                           (\n");
-    printf(")          Padronize uma forma de escrita, atentando a nao inserir          (\n");//detalhar mais dps
-    printf(")          acentos em nenhum dado;                                          (\n");//detalhar mais dps
-    printf(")          Ha um limite de 11 caracteres para o nome da equipe;             (\n");//detalhar mais dps
-    printf(")          Ha um limite de 20 membros por equipe;                           (\n");//detalhar mais dps
-    printf(")          Por ter quantidade de integrantes definida no cadastro de        (\n");
+    printf(")          * Padronize uma forma de escrita, atentando a nao inserir        (\n");
+    printf(")          acentos em nenhum dado;                                          (\n");
+    printf(")          * Ha um limite de 11 caracteres para o nome da equipe;           (\n");
+    printf(")          * Ha um limite de 20 membros por equipe;                         (\n");
+    printf(")          * Por ter quantidade de integrantes definida no cadastro de      (\n");
     printf(")          equipe, so e possivel trocar um integrante por outro             (\n");
     printf(")          funcionario ou deletar a equipe inteira;                         (\n");
+    printf(")          * Ha um atendimento teste que nao deve ser apagado,              (\n");
+    printf(")          pois e vital para o funcionamento do arquivo.                    (\n");
     printf(")                                                                           (\n");    
     printf("|___________________________________________________________________________|\n\n");
     printf("Tecle ENTER para continuar");
@@ -156,8 +158,8 @@ void menu_instrucoes(void)
 }
 
 // NAVEGACAO
-
 // CLIENTES
+
 void op_clientes(void) 
 {
 	char op2;
@@ -174,6 +176,7 @@ void op_clientes(void)
 }
 
 // ATENDIMENTOS
+
 void op_atendimentos(void) 
 {
 	char op2;

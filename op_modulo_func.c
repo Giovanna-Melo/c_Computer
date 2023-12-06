@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>//tirar
+#include <string.h>
 #include "op_modulo_cli.h"
 #include "op_modulo_func.h"
 #include "op_modulo_equipes.h"
@@ -93,7 +93,7 @@ void exibe_cadastro_func_tabela(const Funcionario* func)
     if ((func == NULL) || (strcmp(func->status, "inativo")==0)) {
         printf("\n Funcionario Inexistente \n");
     } else {
-        char  nome_i [ 52 ];
+        char  nome_i [52];
         int tam_n;
         tam_n  =  strlen (func->nome);
         strncpy (nome_i, func->nome, tam_n);
@@ -103,7 +103,7 @@ void exibe_cadastro_func_tabela(const Funcionario* func)
             }
         }
 
-        char  cpf_i [ 13 ];
+        char  cpf_i [13];
         int tam_c;
         tam_c  =  strlen (func->cpf);
         strncpy (cpf_i , func->cpf, tam_c);
@@ -113,7 +113,7 @@ void exibe_cadastro_func_tabela(const Funcionario* func)
             }
         }
 
-        char  profissao_i [ 52 ];
+        char  profissao_i [52];
         int tam_p;
         tam_p  =  strlen (func->profissao);
         strncpy (profissao_i , func->profissao, tam_p);
@@ -123,7 +123,7 @@ void exibe_cadastro_func_tabela(const Funcionario* func)
             }
         }
 
-        char  telefone_i [ 13 ];
+        char  telefone_i [13];
         int tam_t;
         tam_t  =  strlen (func->telefone);
         strncpy (telefone_i , func->telefone, tam_t);
@@ -137,7 +137,7 @@ void exibe_cadastro_func_tabela(const Funcionario* func)
   }
 }
 
-void grava_func(Funcionario* func) //.h
+void grava_func(Funcionario* func)
 {
     FILE* fp;
     fp = fopen("funcionarios.dat", "ab");
@@ -151,7 +151,7 @@ void grava_func(Funcionario* func) //.h
     fclose(fp);
 }
 
-void atualizando_func(Funcionario* func) //.h
+void atualizando_func(Funcionario* func)
 {
     FILE* fp;
     Funcionario* arqv_func;
@@ -186,7 +186,7 @@ void atualizando_func(Funcionario* func) //.h
     if (strcmp(resposta_email, "sim\n")==0)
     {
         le_email(email);
-        strncpy(func->email, email, sizeof(func->email));//, cli->email;
+        strncpy(func->email, email, sizeof(func->email));
     }
     printf("\nDeseja atualizar o telefone (sim/nao)?");
     fgets(resposta_tel, 5, stdin);
@@ -221,7 +221,7 @@ void atualizando_func(Funcionario* func) //.h
     free(arqv_func);
 }
 
-void atualizando_func_count(Funcionario* func) //.h
+void atualizando_func_count(Funcionario* func)
 {
     FILE* fp;
     Funcionario* arqv_func;
@@ -251,7 +251,7 @@ void atualizando_func_count(Funcionario* func) //.h
     free(arqv_func);
 }
 
-void deletando_func (Funcionario* func) //.h
+void deletando_func (Funcionario* func)
 {
     FILE* fp;
     Funcionario* arq_func;
@@ -292,13 +292,13 @@ void deletando_func (Funcionario* func) //.h
 
 void cadastro_func(void)
 {
-    // ler os dados do funcionario
+    //ler os dados do funcionario
     Funcionario *func = tela_cadastro_func();
     exibe_cadastro_func(func);
     printf("Tecle ENTER para continuar");
     getchar();
     grava_func(func);
-    // liberar o espaço de memória da estrutura 
+    //liberar o espaco de memoria da estrutura 
     free(func);
 }
 
@@ -307,8 +307,7 @@ void exibe_func(void)
     Funcionario *func = tela_exibe_func();
     exibe_cadastro_func(func);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(func);
 }
 
@@ -318,8 +317,7 @@ void atualiza_func(void)
     atualizando_func(func);
     exibe_cadastro_func(func);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(func);
 }
 
@@ -328,8 +326,7 @@ void deleta_func(void)
     Funcionario *func = tela_deleta_func();
     deletando_func(func);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(func);
 }
 
@@ -412,7 +409,7 @@ void le_salario(char* salario)
     } 
 }
 
-Funcionario* tela_exibe_func(void) //.h
+Funcionario* tela_exibe_func(void)
 {
     system("clear||cls");
     printf("\n");
@@ -429,7 +426,7 @@ Funcionario* tela_exibe_func(void) //.h
     return func;
 }
 
-Funcionario* busca_func(void) //.h
+Funcionario* busca_func(void)
 {
     FILE* fp;
     Funcionario* func;
@@ -456,7 +453,7 @@ Funcionario* busca_func(void) //.h
     return NULL;
 }
 
-int busca_chave_func(char* cpf) //.h
+int busca_chave_func(char* cpf)
 {
     FILE* fp;
     Funcionario* func;
@@ -482,8 +479,8 @@ int busca_chave_func(char* cpf) //.h
     return 0;
 }
 
-//busca_resp_func
-Funcionario* busca_resp_func(char* responsavel) //.h
+//busca funcionario se for responsavel
+Funcionario* busca_resp_func(char* responsavel)
 {
     FILE* fp;
     Funcionario* func;
@@ -508,7 +505,7 @@ Funcionario* busca_resp_func(char* responsavel) //.h
     return NULL;
 }
 
-void lista_all_func(void) //.h
+void lista_all_func(void)
 {
     FILE* fp;
     Funcionario* func;
@@ -534,7 +531,7 @@ void lista_all_func(void) //.h
     free(func);
 }
 
-void lista_month_func(void) //.h
+void lista_month_func(void)
 {
     FILE* fp;
     Funcionario* func;
@@ -566,8 +563,8 @@ void lista_month_func(void) //.h
     fclose(fp);
     free(func);
 }
-//1702130553
-int comparar_contadores(void) //.h
+
+int comparar_contadores(void)
 {
     FILE* fp;
     Funcionario* func;
@@ -578,12 +575,6 @@ int comparar_contadores(void) //.h
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    //fseek(fp, 0, SEEK_END);
-    /*int num_funcionarios = ftell(fp) / sizeof(Funcionario);
-    printf("num func: %d", num_funcionarios);
-    //Compara contadores
-    int maior_count_func = 0;
-    for (int i = 0; i < num_funcionarios; i++) {*/
     int maior_count_func=0;
     while(fread(func, sizeof(Funcionario), 1, fp)) 
     {
@@ -596,7 +587,6 @@ int comparar_contadores(void) //.h
             }
         }
     }
-    //}
     fclose(fp);
     free(func);
     return maior_count_func;
@@ -702,7 +692,8 @@ void zera_func_count(void)
         fseek(fp, -sizeof(Funcionario), SEEK_CUR);
         func->count = 0;
         fwrite(func, sizeof(Funcionario), 1, fp);
-        fseek(fp, 0, SEEK_CUR);
+        //move o ponteiro para o proximo registro
+        fseek(fp, 0, SEEK_CUR); //sugerido pelo chatgpt
     }
     fclose(fp);
     free(func);

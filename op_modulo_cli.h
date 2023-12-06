@@ -1,6 +1,7 @@
 //////////MODULO CLIENTES//////////
 //ESTRUTURA
-struct cliente {
+struct cliente 
+{
     char nome[52];
     char tipo[4];
     char cpf_cnpj[16];

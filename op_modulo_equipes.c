@@ -59,7 +59,7 @@ void exibe_cadastro_eqp_tabela(const Equipe* eqp)
     if ((eqp == NULL) || (strcmp(eqp->status, "inativo")==0)) {
         printf("\n Equipe Inexistente \n");
     } else {
-        char  equipe_i [ 13 ];
+        char  equipe_i [13];
         int tam_e;
         tam_e  =  strlen ( eqp->equipe );
         strncpy ( equipe_i, eqp->equipe, tam_e );
@@ -73,7 +73,7 @@ void exibe_cadastro_eqp_tabela(const Equipe* eqp)
     }
 }
 
-void grava_equipe(Equipe* eqp) //.h
+void grava_equipe(Equipe* eqp)
 {
     FILE* fp;
     fp = fopen("equipes.dat", "ab");
@@ -87,11 +87,10 @@ void grava_equipe(Equipe* eqp) //.h
     fclose(fp);
 }
 
-void atualizando_equipe(Equipe* eqp) //.h
+void atualizando_equipe(Equipe* eqp)
 {
     FILE* fp;
     Equipe* arqv_eqp;
-    //char nome[52];
     char cpf[13];
     char resposta_membro[5];
     arqv_eqp = (Equipe*) malloc(sizeof(Equipe));
@@ -137,7 +136,7 @@ void atualizando_equipe(Equipe* eqp) //.h
     free(arqv_eqp);
 }
 
-void atualizando_eqp_count(Equipe* eqp) //.h
+void atualizando_eqp_count(Equipe* eqp)
 {
     FILE* fp;
     Equipe* arqv_eqp;
@@ -167,7 +166,7 @@ void atualizando_eqp_count(Equipe* eqp) //.h
     free(arqv_eqp);
 }
 
-void deletando_equipe (Equipe* eqp) //.h
+void deletando_equipe (Equipe* eqp)
 {
     FILE* fp;
     Equipe* arq_eqp;
@@ -208,13 +207,13 @@ void deletando_equipe (Equipe* eqp) //.h
 
 void cadastro_equipe(void)
 {
-    // ler os dados da equipe
+    //ler os dados da equipe
     Equipe *eqp = tela_cadastro_equipe();
     exibe_cadastro_eqp(eqp);
     printf("Tecle ENTER para continuar");
     getchar();
     grava_equipe(eqp);
-    // liberar o espaço de memória da estrutura 
+    //liberar o espaco de memoria da estrutura 
     free(eqp);
 }
 
@@ -223,8 +222,7 @@ void exibe_equipe(void)
     Equipe *eqp = tela_exibe_equipe();
     exibe_cadastro_eqp(eqp);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(eqp);
 }
 
@@ -236,8 +234,7 @@ void atualiza_equipe(void)
     atualizando_equipe(eqp);
     exibe_cadastro_eqp(eqp);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(eqp);
 }
 
@@ -246,8 +243,7 @@ void deleta_equipe(void)
     Equipe *eqp = tela_deleta_equipe();
     deletando_equipe(eqp);
     printf("Tecle ENTER para continuar");
-    getchar();
-    // liberar o espaço de memória da estrutura 
+    getchar(); 
     free(eqp);
 }
 
@@ -260,7 +256,6 @@ Equipe* tela_cadastro_equipe(void)
     int qp = 0;
     char nome[52];
     char cpf[13];
-    //Há limite de vinte participantes por equipe informar no modulo sobre
     char status[9] = "ativo";
 
     Equipe *eqp = (Equipe*) malloc(sizeof(Equipe));
@@ -301,7 +296,6 @@ Equipe* tela_cadastro_equipe(void)
     strncpy(eqp->status, status, sizeof(eqp->status));
     return eqp;
 }
-// fazer o scanf da quantidade para solicitar o nome e o cpf de tantos func
 
 void le_equipe(char* equipe) 
 {
@@ -335,7 +329,7 @@ void le_chave_func(char* cpf)
     fgets(cpf, 13, stdin);
 }
 
-Equipe* tela_exibe_equipe(void) //.h
+Equipe* tela_exibe_equipe(void)
 {
     system("clear||cls");
     printf("\n");
@@ -352,7 +346,7 @@ Equipe* tela_exibe_equipe(void) //.h
     return eqp;
 }
 
-Equipe* busca_equipe(void) //.h
+Equipe* busca_equipe(void)
 {
     FILE* fp;
     Equipe* eqp;
@@ -379,7 +373,7 @@ Equipe* busca_equipe(void) //.h
     return NULL;
 }
 
-int busca_chave_eqp(char* equipe) //.h
+int busca_chave_eqp(char* equipe)
 {
     FILE* fp;
     Equipe* eqp;
@@ -405,8 +399,8 @@ int busca_chave_eqp(char* equipe) //.h
     return 0;
 }
 
-//busca_resp_equipe
-Equipe* busca_resp_equipe(char* responsavel) //.h
+//busca equipe se for responsavel
+Equipe* busca_resp_equipe(char* responsavel)
 {
     FILE* fp;
     Equipe* eqp;
@@ -437,7 +431,7 @@ void le_chave_equipe(char* equipe)
     fgets(equipe, 13, stdin); 
 }
 
-void lista_all_equipes(void) //.h
+void lista_all_equipes(void)
 {
     FILE* fp;
     Equipe* eqp;
@@ -464,7 +458,7 @@ void lista_all_equipes(void) //.h
 }
 
 
-void lista_month_eqp(void) //.h
+void lista_month_eqp(void) 
 {
     FILE* fp;
     Equipe* eqp;
@@ -497,7 +491,7 @@ void lista_month_eqp(void) //.h
     free(eqp);
 }
 
-int comparar_contadores_eqp(void) //.h
+int comparar_contadores_eqp(void)
 {
     FILE* fp;
     Equipe* eqp;
@@ -542,17 +536,6 @@ Equipe* tela_atualiza_equipe(void)
     return eqp;
 }
 
-/*void le_cpf_atualin(char* cpf, char* equipe)  ORGANIZACAO DE IDEACAO
-{
-    printf("{}                       CPF (somente numeros):                             {}\n");
-    fgets(cpf, 13, stdin);
-    while (cpf not in equipe)
-    {
-        printf("{}                       Informe o CPF novamente:                           {}\n");
-        fgets(cpf, 13, stdin);
-    } 
-}*/
-
 Equipe* tela_deleta_equipe(void)
 {
     system("clear||cls");
@@ -571,7 +554,7 @@ Equipe* tela_deleta_equipe(void)
 }
 
 
-void zera_eqp_count(void) //.h
+void zera_eqp_count(void)
 {
     FILE* fpe;
     Equipe* eqp;
@@ -586,9 +569,10 @@ void zera_eqp_count(void) //.h
     while (fread(eqp, sizeof(Equipe), 1, fpe) == 1) 
     {
     fseek(fpe, -sizeof(Equipe), SEEK_CUR);
-    eqp->count=0; //mover p cima do fseek
+    eqp->count=0;
     fwrite(eqp, sizeof(Equipe), 1, fpe);
-    fseek(fpe, 0, SEEK_CUR);
+    //move o ponteiro para o proximo registro
+    fseek(fpe, 0, SEEK_CUR); //sugerido pelo chatgpt
     }
     fclose(fpe);
     free(eqp);

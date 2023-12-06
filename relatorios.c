@@ -200,7 +200,7 @@ void todos_clientes_pj (void)
     getchar();
 }
 
-void atendimentos_do_cliente (void) //.h
+void atendimentos_do_cliente (void)
 {
     system("clear||cls");
     printf("\n");	
@@ -344,7 +344,7 @@ void funcionario_do_mes (void)
     getchar();
 }
 
-void atendimentos_do_funcionario (void) //.h
+void atendimentos_do_funcionario (void)
 {
     system("clear||cls");
     printf("\n");	
@@ -374,7 +374,7 @@ void equipe_do_mes (void)
     getchar();
 }
 
-void atendimentos_da_equipe (void) //.h
+void atendimentos_da_equipe (void)
 {
     system("clear||cls");
     printf("\n");	
