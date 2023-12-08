@@ -96,7 +96,7 @@ void menu_criacao(void)
     printf(")     O c_Computer e um sistema de gestao para empresa de manutencao de     (\n");
     printf(")   computadores. Esse sistema foi desenvolvido em linguagem C e projeta    (\n");
     printf(")    o registro de clientes, atendimentos e funcionarios e a emissao de     (\n");
-    printf(")                                relatorios                                 (\n");
+    printf(")                                relatorios.                                 (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")     *Projeto submetido a avaliacao institucional, possuindo valor         (\n");
@@ -106,8 +106,8 @@ void menu_criacao(void)
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")               Desenvolvido por: Giovanna Kailany de Melo                  (\n");
-    printf(")               Colaboradores: Flavius Gorgonio, Marlison Soares,           (\n");
-    printf(")                           Beatriz Costa e chatGPT                         (\n");
+    printf(")               Colaboradores: Flavius Gorgonio, Marlison                   (\n");
+    printf(")               Soares, Beatriz Costa e chatGPT.                             (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
