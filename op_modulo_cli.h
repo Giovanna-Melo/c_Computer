@@ -1,5 +1,7 @@
 //////////MODULO CLIENTES//////////
 //ESTRUTURA
+typedef struct cliente Cliente;
+
 struct cliente 
 {
     char nome[52];
@@ -9,9 +11,8 @@ struct cliente
     char telefone[13];
     char endereco[102];
     char status[9];
+    Cliente* prox;
 };
-
-typedef struct cliente Cliente;
  
 void modulo_cli(void); 
 char menu_clientes(void);

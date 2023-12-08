@@ -493,13 +493,23 @@ int busca_chave_cli(char* cpf_cnpj)
 void lista_all_cli(void)
 {
     FILE* fp;
-    Cliente* cli;
-    cli = (Cliente*) malloc(sizeof(Cliente));
+    //Cliente* cli;
+    Cliente* novo_cli;
+    Cliente* lista;
     fp = fopen("clientes.dat", "rb");
-    if (fp == NULL) {
+    if (fp == NULL) 
+    {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
     exit(1);
+    }
+    lista = NULL;
+    novo_cli = (Cliente*) malloc(sizeof(Cliente));
+    if (novo_cli == NULL) 
+    {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1); 
     }
     char nome [52] = "NOME";
     char cpf_cnpj [16] = "CPF/CNPJ";
@@ -507,13 +517,46 @@ void lista_all_cli(void)
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf ( "%-52s || TIPO || %-16s || %-13s\n" , nome, cpf_cnpj, telefone);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
-    while(fread(cli, sizeof(Cliente), 1, fp)) {
-        if (strcmp(cli->status, "ativo")==0) {
-            exibe_cadastro_tabela(cli);
+    while(fread(novo_cli, sizeof(Cliente), 1, fp) == 1) 
+    {
+        novo_cli->prox = NULL;
+        if ((lista == NULL) || (strcmp(novo_cli->nome, lista->nome) < 0)) 
+        {
+            novo_cli->prox = lista;
+            lista = novo_cli;
+        } else {
+            Cliente* ant = lista;
+            Cliente* atual = lista->prox;
+            while ((atual != NULL) && strcmp(atual->nome, novo_cli->nome) < 0) 
+            {
+                ant = atual;
+                atual = atual->prox;
+            }
+            ant->prox = novo_cli;
+            novo_cli->prox = atual;
+        }
+        novo_cli = (Cliente*)malloc(sizeof(Cliente));
+        if (novo_cli == NULL) 
+        {
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
         }
     }
     fclose(fp);
-    free(cli);
+    novo_cli = lista;
+    while(novo_cli != NULL) 
+    {
+        exibe_cadastro_tabela(novo_cli);
+        novo_cli = novo_cli->prox;
+    }
+    novo_cli = lista;
+    while (lista != NULL) 
+    {
+        lista = lista->prox;
+        free(novo_cli);
+        novo_cli = lista;
+    }
 }
 
 void lista_pf(void)
