@@ -1,4 +1,6 @@
 ////////////MODULO FUNC/////////////
+typedef struct funcionario Funcionario;
+
 struct funcionario 
 {
     char nome[52]; //DECLARADO EM OP_MODULO_CLI
@@ -10,9 +12,8 @@ struct funcionario
     char profissao[52];
     char salario[10];
     char status[9];
+    Funcionario* prox;
 };
-
-typedef struct funcionario Funcionario;
 
 void modulo_func(void); 
 char menu_funcionarios(void);
