@@ -1,4 +1,6 @@
 ////////////MODULO EQUIPES/////////////
+typedef struct equipe Equipe;
+
 struct equipe 
 {
     char equipe[13];
@@ -7,9 +9,9 @@ struct equipe
     char nome[20][52];
     char cpf[20][13];
     char status[9];
+    Equipe* prox;
 };
 
-typedef struct equipe Equipe;
 //op_funcionarios já declarado no op_modulo_func
 void modulo_equipes(void); 
 //FUNCOES CRUD

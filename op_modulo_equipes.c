@@ -40,10 +40,10 @@ void modulo_equipes(void)
 //FUNCOES EM DESENVOLVIMENTO
 void exibe_cadastro_eqp(const Equipe* eqp)
 {
-    int qp = eqp->qp;
     if ((eqp == NULL) || (strcmp(eqp->status, "inativo")==0)) {
         printf("\n Equipe Inexistente \n");
     } else {
+        int qp = eqp->qp;
         printf("\n\nEquipe: %s", eqp->equipe);
         printf("Contador: %d\n\n", eqp->count);
         for (int i = 0; i < qp; i++){
@@ -434,13 +434,22 @@ void le_chave_equipe(char* equipe)
 void lista_all_equipes(void)
 {
     FILE* fp;
-    Equipe* eqp;
-    eqp = (Equipe*) malloc(sizeof(Equipe));
+    Equipe* nova_eqp;
+    Equipe* lista;
     fp = fopen("equipes.dat", "rb");
-    if (fp == NULL) {
+    if (fp == NULL) 
+    {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
+    }
+    lista = NULL;
+    nova_eqp = (Equipe*) malloc(sizeof(Equipe));
+    if (nova_eqp == NULL) 
+    {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1); 
     }
     char equipe [13] = "EQUIPE";
     char qp [12] = "QUANTIDADE";
@@ -448,15 +457,47 @@ void lista_all_equipes(void)
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf ( "%-13s || %-12s || %-10s\n", equipe, qp, count);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
-    while(fread(eqp, sizeof(Equipe), 1, fp)) {
-        if (strcmp(eqp->status, "ativo")==0) {
-            exibe_cadastro_eqp_tabela(eqp);
+    while(fread(nova_eqp, sizeof(Equipe), 1, fp) == 1) 
+    {
+        nova_eqp->prox = NULL;
+        if ((lista == NULL) || (strcmp(nova_eqp->equipe, lista->equipe) < 0)) 
+        {
+            nova_eqp->prox = lista;
+            lista = nova_eqp;
+        } else {
+            Equipe* ant = lista;
+            Equipe* atual = lista->prox;
+            while ((atual != NULL) && strcmp(atual->equipe, nova_eqp->equipe) < 0) 
+            {
+                ant = atual;
+                atual = atual->prox;
+            }
+            ant->prox = nova_eqp;
+            nova_eqp->prox = atual;
+        }
+        nova_eqp = (Equipe*) malloc(sizeof(Equipe));
+        if (nova_eqp == NULL) 
+        {
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
         }
     }
     fclose(fp);
-    free(eqp);
+    nova_eqp= lista;
+    while(nova_eqp != NULL) 
+    {
+        exibe_cadastro_eqp_tabela(nova_eqp);
+        nova_eqp = nova_eqp->prox;
+    }
+    nova_eqp = lista;
+    while (lista != NULL) 
+    {
+        lista = lista->prox;
+        free(nova_eqp);
+        nova_eqp = lista;
+    }
 }
-
 
 void lista_month_eqp(void) 
 {
