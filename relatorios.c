@@ -227,7 +227,7 @@ void atendimentos_ord_mais_recentes (void)
     printf("\n");
     printf("TODOS ATENDIMENTOS\n\n");
     printf("ORDENAR: MAIS RECENTES\n");
-    //lista_atend_rec(); //DESENVOLVER LISTA DINAMICA INVERSA
+    lista_atend_rec();
     printf("Tecle ENTER para continuar");
     getchar();
 }

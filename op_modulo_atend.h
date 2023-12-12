@@ -1,5 +1,7 @@
 ////////////MODULO ATEND/////////////
 //ESTRUTURA
+typedef struct atendimento Atendimento;
+
 struct atendimento 
 {
     char codigo_atend[53];
@@ -15,9 +17,8 @@ struct atendimento
     char situacao[11];
     char ordem_s[25];
     char status[9];
+    Atendimento* prox;
 };
-
-typedef struct atendimento Atendimento;
 
 void modulo_atend(void); 
 char menu_atendimentos(void);
@@ -60,5 +61,6 @@ void exibe_atendimentos_eqp(void);
 void exibe_atendimentos_func(void);
 void exibe_atendimentos_cli(void);
 void lista_atend_ant(void);
+void lista_atend_rec(void);
 void lista_atendc(void);
 void lista_atendp(void);

@@ -890,6 +890,59 @@ void lista_atend_ant(void)
     free(atend);
 }
 
+void lista_atend_rec(void)
+{
+    FILE* fp;
+    Atendimento* novo_atend;
+    Atendimento* lista;
+    fp = fopen("atendimentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    lista = NULL;
+    novo_atend = (Atendimento*) malloc(sizeof(Atendimento));
+    if (novo_atend == NULL) 
+    {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1); 
+    }
+    char cod [53] = "CODIGO DE ATENDIMENTO";
+    char data [12] = "AGENDAMENTO";
+    char responsavel [13] = "RESPONSAVEL";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf ( "%-53s || %-12s || %-13s\n" , cod, data, responsavel);
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
+    while(fread(novo_atend, sizeof(Atendimento), 1, fp) == 1) 
+    {
+        novo_atend->prox = lista;
+        lista = novo_atend;
+        novo_atend = (Atendimento*) malloc(sizeof(Atendimento));
+        if (novo_atend == NULL) 
+        {
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
+        }
+    }
+    fclose(fp);
+    novo_atend = lista;
+    while(novo_atend != NULL) 
+    {
+        exibe_cadastro_atend_tabela(novo_atend);
+        novo_atend = novo_atend->prox;
+    }
+    novo_atend = lista;
+    while (lista != NULL) 
+    {
+        lista = lista->prox;
+        free(novo_atend);
+        novo_atend = lista;
+    }
+}
+
 void lista_atendp(void)
 {
     FILE* fp;
