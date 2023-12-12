@@ -445,9 +445,8 @@ Cliente* busca_cliente(void)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(cli, sizeof(Cliente), 1, fp) == 1) 
     {
-        fread(cli, sizeof(Cliente), 1, fp);
         if ((strcmp(cli->cpf_cnpj, cpf_cnpj)==0) && (strcmp(cli->status, "inativo")!=0)) 
         {
             fclose(fp);
@@ -476,9 +475,8 @@ int busca_chave_cli(char* cpf_cnpj)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(cli, sizeof(Cliente), 1, fp) == 1) 
     {
-        fread(cli, sizeof(Cliente), 1, fp);
         if ((strcmp(cli->cpf_cnpj, cpf_cnpj)==0) && (strcmp(cli->status, "ativo")==0)) 
         {
             fclose(fp);

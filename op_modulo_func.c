@@ -440,9 +440,8 @@ Funcionario* busca_func(void)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(func, sizeof(Funcionario), 1, fp) == 1) 
     {
-        fread(func, sizeof(Funcionario), 1, fp);
         if ((strcmp(func->cpf, cpf)==0) && (strcmp(func->status, "inativo")!=0)) 
         {
             fclose(fp);
@@ -465,9 +464,8 @@ int busca_chave_func(char* cpf)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(func, sizeof(Funcionario), 1, fp) == 1) 
     {
-        fread(func, sizeof(Funcionario), 1, fp);
         if ((strcmp(func->cpf, cpf)==0) && (strcmp(func->status, "ativo")==0)) 
         {
             fclose(fp);
@@ -492,9 +490,8 @@ Funcionario* busca_resp_func(char* responsavel)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(func, sizeof(Funcionario), 1, fp) == 1) 
     {
-        fread(func, sizeof(Funcionario), 1, fp);
         if ((strcmp(func->cpf, responsavel)==0) && (strcmp(func->status, "ativo")==0)) 
         {
             fclose(fp);

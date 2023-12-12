@@ -131,42 +131,57 @@ void exibir_atendimentos_eqp(const Atendimento* atend)
         printf("\n Atendimento Inexistente \n");
         printf("-------------------------------------------------------------------\n");
     } else {
-        FILE* fp;
-        Cliente* cli;
-        cli = (Cliente*) malloc(sizeof(Cliente));
-        fp = fopen("clientes.dat", "rb");
-        if (fp == NULL) 
+        FILE* fpe;
+        Equipe* eqp;
+        eqp = (Equipe*) malloc(sizeof(Equipe));
+        fpe = fopen("equipes.dat", "rb");
+        if (fpe == NULL) 
         {
             printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
             printf("Nao e possivel continuar este programa...\n");
             exit(1);
         }
-        while(!feof(fp)) 
+        while(fread(eqp, sizeof(Equipe), 1, fpe) == 1) 
         {
-            fread(cli, sizeof(Cliente), 1, fp);
-            int tam_cpf_cnpj_a;
-            tam_cpf_cnpj_a  =  strlen ( atend->cpf_cnpj );
-            if ((strncmp(cli->cpf_cnpj, atend->cpf_cnpj, tam_cpf_cnpj_a)==0) && (strcmp(cli->status, "inativo")!=0)) 
+            if ((strncmp(eqp->equipe, atend->responsavel, strlen(eqp->equipe))==0) && (strcmp(eqp->status, "inativo")!=0)) 
             {
-                printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
-                printf("%s\n", atend->data_atend);
-                printf("Nome do cliente: %s\n", cli->nome);
-                printf("CPF/CNPJ: %s\n", atend->cpf_cnpj);
-                printf("Nome do equipamento: %s\n", atend->nome_eqp);
-                printf("Marca: %s\n", atend->marca);
-                printf("Modelo: %s\n", atend->modelo);
-                printf("Numero de serie: %s\n", atend->nserie);
-                printf("Observacoes: %s\n", atend->observacoes);
-                printf("Data de visita/entrega: %s\n", atend->data);
-                printf("Reponsavel: %s\n", atend->responsavel);
-                printf("Situacao: %s\n", atend->situacao);
-                printf("Ordem: %s\n\n", atend->ordem_s);
-                printf("Status: %s\n", atend->status);
-                printf("-------------------------------------------------------------------\n");
+                FILE* fp;
+                Cliente* cli;
+                cli = (Cliente*) malloc(sizeof(Cliente));
+                fp = fopen("clientes.dat", "rb");
+                if (fp == NULL) 
+                {
+                    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+                    printf("Nao e possivel continuar este programa...\n");
+                    exit(1);
+                }
+                while(fread(cli, sizeof(Cliente), 1, fp) == 1) 
+                {
+                    if ((strncmp(cli->cpf_cnpj, atend->cpf_cnpj, strlen ( atend->cpf_cnpj ))==0) && (strcmp(cli->status, "inativo")!=0)) 
+                    {
+                        printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
+                        printf("%s\n", atend->data_atend);
+                        printf("Nome do cliente: %s\n", cli->nome);
+                        printf("CPF/CNPJ: %s\n", atend->cpf_cnpj);
+                        printf("Nome do equipamento: %s\n", atend->nome_eqp);
+                        printf("Marca: %s\n", atend->marca);
+                        printf("Modelo: %s\n", atend->modelo);
+                        printf("Numero de serie: %s\n", atend->nserie);
+                        printf("Observacoes: %s\n", atend->observacoes);
+                        printf("Data de visita/entrega: %s\n", atend->data);
+                        printf("Reponsavel: %s\n", eqp->equipe);
+                        printf("Situacao: %s\n", atend->situacao);
+                        printf("Ordem: %s\n\n", atend->ordem_s);
+                        printf("Status: %s\n", atend->status);
+                        printf("-------------------------------------------------------------------\n");
+                    }
+                }
+                fclose(fp);
+                free(cli);
             }
         }
-        fclose(fp);
-        free(cli);
+        fclose(fpe);
+        free(eqp);
     }
 }
 
@@ -186,9 +201,8 @@ void exibir_atendimentos_func(const Atendimento* atend)
             printf("Nao e possivel continuar este programa...\n");
             exit(1);
         }
-        while(!feof(fpf)) 
+        while(fread(func, sizeof(Funcionario), 1, fpf) == 1) 
         {
-            fread(func, sizeof(Funcionario), 1, fpf);
             if ((strncmp(func->cpf, atend->responsavel, strlen(func->cpf))==0) && (strcmp(func->status, "inativo")!=0)) 
             {
                 FILE* fp;
@@ -201,9 +215,8 @@ void exibir_atendimentos_func(const Atendimento* atend)
                     printf("Nao e possivel continuar este programa...\n");
                     exit(1);
                 }
-                while(!feof(fp)) 
+                while(fread(cli, sizeof(Cliente), 1, fp) == 1) 
                 {
-                    fread(cli, sizeof(Cliente), 1, fp);
                     if ((strncmp(cli->cpf_cnpj, atend->cpf_cnpj, strlen ( atend->cpf_cnpj ))==0) && (strcmp(cli->status, "inativo")!=0)) 
                     {
                         printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
@@ -252,9 +265,8 @@ void exibir_atendimentos_cli(const Atendimento* atend)
                 printf("Nao e possivel continuar este programa...\n");
                 exit(1);
             }
-            while(!feof(fpf)) 
+            while( fread(func, sizeof(Funcionario), 1, fpf) == 1) 
             {
-                fread(func, sizeof(Funcionario), 1, fpf);
                 if ((strncmp(func->cpf, atend->responsavel, strlen(func->cpf))==0) && (strcmp(func->status, "inativo")!=0)) 
                 {
                     strncpy (nome_responsavel, func->nome, strlen(func->nome));
@@ -273,9 +285,8 @@ void exibir_atendimentos_cli(const Atendimento* atend)
             printf("Nao e possivel continuar este programa...\n");
             exit(1);
         }
-        while(!feof(fpc)) 
+        while(fread(cli, sizeof(Cliente), 1, fpc) == 1) 
         {
-            fread(cli, sizeof(Cliente), 1, fpc);
             if ((strncmp(cli->cpf_cnpj, atend->cpf_cnpj, strlen (atend->cpf_cnpj))==0) && (strcmp(cli->status, "inativo")!=0)) 
             {
                 printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
@@ -502,9 +513,8 @@ void exibe_atendimentos_eqp(void)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while( fread(atend, sizeof(Atendimento), 1, fp) == 1)
     {
-        fread(atend, sizeof(Atendimento), 1, fp);
         if ((strcmp(atend->responsavel, equipe)==0) && (strcmp(atend->status, "ativo")==0)) 
         {
             exibir_atendimentos_eqp(atend);
@@ -528,9 +538,8 @@ void exibe_atendimentos_func(void)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(atend, sizeof(Atendimento), 1, fp) == 1) 
     {
-        fread(atend, sizeof(Atendimento), 1, fp);
         if ((strcmp(atend->responsavel, cpf)==0) && (strcmp(atend->status, "ativo")==0)) 
         {
             exibir_atendimentos_func(atend);
@@ -813,9 +822,8 @@ Atendimento* busca_atend(void)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(atend, sizeof(Atendimento), 1, fp) == 1) 
     {
-        fread(atend, sizeof(Atendimento), 1, fp);
         if ((strcmp(atend->codigo_atend, codigo_atend)==0) && (strcmp(atend->status, "ativo")==0)) 
         {
             fclose(fp);
@@ -838,9 +846,8 @@ Atendimento* busca_atend_pec(char* codigop, char* codigoc)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(atend, sizeof(Atendimento), 1, fp) == 1) 
     {
-        fread(atend, sizeof(Atendimento), 1, fp);
         if ((strcmp(atend->codigo_atend, codigop)==0) && (strcmp(atend->status, "ativo")==0)) 
         {
             fclose(fp);

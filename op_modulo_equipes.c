@@ -360,9 +360,8 @@ Equipe* busca_equipe(void)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(eqp, sizeof(Equipe), 1, fp) == 1) 
     {
-        fread(eqp, sizeof(Equipe), 1, fp);
         if ((strcmp(eqp->equipe, equipe)==0) && (strcmp(eqp->status, "inativo")!=0)) 
         {
             fclose(fp);
@@ -385,9 +384,8 @@ int busca_chave_eqp(char* equipe)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(eqp, sizeof(Equipe), 1, fp) == 1) 
     {
-        fread(eqp, sizeof(Equipe), 1, fp);
         if ((strcmp(eqp->equipe, equipe)==0) && (strcmp(eqp->status, "ativo")==0)) 
         {
             fclose(fp);
@@ -412,9 +410,8 @@ Equipe* busca_resp_equipe(char* responsavel)
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    while(!feof(fp)) 
+    while(fread(eqp, sizeof(Equipe), 1, fp) == 1) 
     {
-        fread(eqp, sizeof(Equipe), 1, fp);
         if ((strcmp(eqp->equipe, responsavel)==0) && (strcmp(eqp->status, "ativo")==0)) 
         {
             fclose(fp);
