@@ -176,7 +176,7 @@ void todos_clientes (void)
     printf("\n");
     printf("TODOS OS CLIENTES\n\n");
     lista_all_cli();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -186,7 +186,7 @@ void todos_clientes_pf (void)
     printf("\n");
     printf("TODOS OS CLIENTES PF\n\n");
     lista_pf();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -196,7 +196,7 @@ void todos_clientes_pj (void)
     printf("\n");	
     printf("TODOS OS CLIENTES PJ\n\n");
     lista_pj();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -206,7 +206,7 @@ void atendimentos_do_cliente (void)
     printf("\n");	
     printf("BUSCA DOS ATENDIMENTOS POR CLIENTE\n\n");
     exibe_atendimentos_cli();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -217,7 +217,7 @@ void atendimentos_ord_mais_antigos (void)
     printf("TODOS ATENDIMENTOS\n");
     printf("ORDENAR: MAIS ANTIGOS\n\n");
     lista_atend_ant();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -228,7 +228,7 @@ void atendimentos_ord_mais_recentes (void)
     printf("TODOS ATENDIMENTOS\n");
     printf("ORDENAR: MAIS RECENTES\n\n");
     lista_atend_rec();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -239,7 +239,7 @@ void atendimentos_concluidos (void)
     printf("ATENDIMENTOS CONCLUIDOS\n");
     printf("ORDENAR: MAIS ANTIGOS\n\n");
     lista_atendc();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -250,7 +250,7 @@ void atendimentos_pendentes (void)
     printf("ATENDIMENTOS PENDENTES\n");
     printf("ORDENAR: MAIS ANTIGOS\n\n");
     lista_atendp();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -283,7 +283,7 @@ void em_desenvolvimento (void)
     printf(")                                      |   |                                (\n");
     printf("|                                     /     \\                               |\n");
     printf("_____________________________________________________________________________\n");
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -293,7 +293,7 @@ void planos_semanais (void)
     /*system("clear||cls");
     printf("\n");
     printf("PLANOS SEMANAIS\n");
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();*/
 }
 void planos_mensais (void)
@@ -302,7 +302,7 @@ void planos_mensais (void)
     /*system("clear||cls");
     printf("\n");
     printf("PLANOS MENSAIS\n");
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();*/
 }
 void planos_anuais (void)
@@ -311,7 +311,7 @@ void planos_anuais (void)
     /*system("clear||cls");
     printf("\n");
     printf("PLANOS ANUAIS\n");
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();*/
 }
 void planos_vencidos (void)
@@ -320,7 +320,7 @@ void planos_vencidos (void)
     /*system("clear||cls");
     printf("\n");
     printf("PLANOS VENCIDOS\n");
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();*/
 }
 
@@ -328,9 +328,9 @@ void todos_funcionarios (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("TODOS OS FUNCIONARIOS\n");
+    printf("TODOS OS FUNCIONARIOS\n\n");
     lista_all_func();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -338,9 +338,9 @@ void funcionario_do_mes (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("FUNCIONARIO DO MES\n");
+    printf("FUNCIONARIOS DO MES\n\n");
     lista_month_func();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -350,7 +350,7 @@ void atendimentos_do_funcionario (void)
     printf("\n");	
     printf("BUSCA DOS ATENDIMENTOS POR FUNCIONARIO\n\n");
     exibe_atendimentos_func();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -358,9 +358,9 @@ void todas_equipes (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("TODAS AS EQUIPES\n");
+    printf("TODAS AS EQUIPES\n\n");
     lista_all_equipes();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -368,9 +368,9 @@ void equipe_do_mes (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("EQUIPES DO MES\n");
+    printf("EQUIPES DO MES\n\n");
     lista_month_eqp();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
@@ -380,7 +380,7 @@ void atendimentos_da_equipe (void)
     printf("\n");	
     printf("BUSCA DOS ATENDIMENTOS POR EQUIPE\n\n");
     exibe_atendimentos_eqp();
-    printf("Tecle ENTER para continuar");
+    printf("\nTecle ENTER para continuar");
     getchar();
 }
 
