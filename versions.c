@@ -149,8 +149,6 @@ void menu_instrucoes(void)
     printf(")          * Por ter quantidade de integrantes definida no cadastro de      (\n");
     printf(")          equipe, so e possivel trocar um integrante por outro             (\n");
     printf(")          funcionario ou deletar a equipe inteira;                         (\n");
-    printf(")          * Ha um atendimento teste que nao deve ser apagado,              (\n");
-    printf(")          pois e vital para o funcionamento do arquivo.                    (\n");
     printf(")                                                                           (\n");    
     printf("|___________________________________________________________________________|\n\n");
     printf("Tecle ENTER para continuar");
