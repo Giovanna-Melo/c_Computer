@@ -57,7 +57,8 @@ void exibe_cadastro_eqp(const Equipe* eqp)
 void exibe_cadastro_eqp_tabela(const Equipe* eqp)
 {
     if ((eqp == NULL) || (strcmp(eqp->status, "inativo")==0)) {
-        printf("\n Equipe Inexistente \n");
+        printf("Equipe Inexistente \n");
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     } else {
         char  equipe_i [13];
         int tam_e;

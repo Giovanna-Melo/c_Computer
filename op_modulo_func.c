@@ -91,7 +91,8 @@ void exibe_cadastro_func(const Funcionario* func)
 void exibe_cadastro_func_tabela(const Funcionario* func)
 {
     if ((func == NULL) || (strcmp(func->status, "inativo")==0)) {
-        printf("\n Funcionario Inexistente \n");
+        printf("Funcionario Inexistente \n");
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     } else {
         char  nome_i [52];
         int tam_n;
@@ -133,7 +134,7 @@ void exibe_cadastro_func_tabela(const Funcionario* func)
             }
         }
         printf ( "%-52s || %-13s || %-52s ||%-13s\n" , nome_i, cpf_i, profissao_i, telefone_i);
-        printf("------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
   }
 }
 
@@ -526,8 +527,9 @@ void lista_all_func(void)
     char cpf [13] = "CPF";
     char profissao [52] = "PROFISSAO";
     char telefone [52] = "TELEFONE";
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf ( "%-52s || %-13s || %-52s ||%-13s\n" , nome, cpf, profissao, telefone);
-    printf("------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     while(fread(novo_func, sizeof(Funcionario), 1, fp) == 1) 
     {
         novo_func->prox = NULL;
@@ -590,8 +592,9 @@ void lista_month_func(void)
         char cpf [13] = "CPF";
         char profissao [52] = "PROFISSAO";
         char telefone [52] = "TELEFONE";
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
         printf ( "%-52s || %-13s || %-52s ||%-13s\n" , nome, cpf, profissao, telefone);
-        printf("------------------------------------------------------------------------------------------------------------------------------------------\n\n");
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
         while(fread(func, sizeof(Funcionario), 1, fp)) 
         {
             if (func->count==maior_contador_funcionario && (strcmp(func->status, "ativo")==0)) {

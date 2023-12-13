@@ -225,8 +225,8 @@ void atendimentos_ord_mais_recentes (void)
 {
     system("clear||cls");
     printf("\n");
-    printf("TODOS ATENDIMENTOS\n\n");
-    printf("ORDENAR: MAIS RECENTES\n");
+    printf("TODOS ATENDIMENTOS\n");
+    printf("ORDENAR: MAIS RECENTES\n\n");
     lista_atend_rec();
     printf("Tecle ENTER para continuar");
     getchar();

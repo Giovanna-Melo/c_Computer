@@ -75,7 +75,7 @@ char menu_atendimentos(void)
 void exibe_cadastro_atend(const Atendimento* atend) 
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
-        printf("\n Atendimento Inexistente \n");
+        printf("\n Atendimento Inexistente\n");
     } else {
         printf("\n Atendimento Cadastrado  \n");
         printf("\n\nCodigo de atendimento: %s\n\n", atend->codigo_atend);
@@ -97,7 +97,8 @@ void exibe_cadastro_atend(const Atendimento* atend)
 void exibe_cadastro_atend_tabela(const Atendimento* atend) 
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
-        printf("\n Atendimento Inexistente \n");
+        printf("Atendimento Inexistente \n");
+        printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     } else {
 
         char  data_i [12];
@@ -128,7 +129,7 @@ void exibe_cadastro_atend_tabela(const Atendimento* atend)
 void exibir_atendimentos_eqp(const Atendimento* atend)
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
-        printf("\n Atendimento Inexistente \n");
+        printf("Atendimento Inexistente \n");
         printf("-------------------------------------------------------------------\n");
     } else {
         FILE* fpe;
@@ -188,7 +189,7 @@ void exibir_atendimentos_eqp(const Atendimento* atend)
 void exibir_atendimentos_func(const Atendimento* atend)
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
-        printf("\n Atendimento Inexistente \n");
+        printf("Atendimento Inexistente \n");
         printf("-------------------------------------------------------------------\n");
     } else {
         FILE* fpf;
@@ -248,7 +249,7 @@ void exibir_atendimentos_func(const Atendimento* atend)
 void exibir_atendimentos_cli(const Atendimento* atend)
 {
     if ((atend == NULL) || (strcmp(atend->status, "inativo")==0)) {
-        printf("\n Atendimento Inexistente \n");
+        printf("Atendimento Inexistente \n");
         printf("-------------------------------------------------------------------\n");
     } else {
         char nome_responsavel [52] = "";

@@ -113,7 +113,8 @@ void exibe_cadastro(const Cliente* cli)
 void exibe_cadastro_tabela(const Cliente* cli)
 {
   if ((cli == NULL) || (strcmp(cli->status, "inativo")==0)) {
-    printf("\n Cliente Inexistente \n");
+    printf("Cliente Inexistente \n");
+    printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
   } else {
         char  nome_i [ 52 ];
         int tam_n;
@@ -572,7 +573,7 @@ void lista_pf(void)
     char cpf_cnpj [16] = "CPF/CNPJ";
     char telefone [13] = "TELEFONE";
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, telefone);
+    printf ( "%-52s || TIPO || %-16s || %-13s\n" , nome, cpf_cnpj, telefone);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     while(fread(cli, sizeof(Cliente), 1, fp)) {
         if ((strcmp(cli->tipo, "PF\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
@@ -598,7 +599,7 @@ void lista_pj(void)
     char cpf_cnpj [16] = "CPF/CNPJ";
     char telefone [13] = "TTELEFONE";
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
-    printf ( "%-52s || TIPO || %-16s || %-258s\n" , nome, cpf_cnpj, telefone);
+    printf ( "%-52s || TIPO || %-16s || %-13s\n" , nome, cpf_cnpj, telefone);
     printf("------------------------------------------------------------------------------------------------------------------------------------------\n");
     while(fread(cli, sizeof(Cliente), 1, fp)) {
         if ((strcmp(cli->tipo, "PJ\n") == 0) && (strcmp(cli->status, "ativo")==0)) {
