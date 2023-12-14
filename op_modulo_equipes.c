@@ -94,47 +94,52 @@ void atualizando_equipe(Equipe* eqp)
     Equipe* arqv_eqp;
     char cpf[13];
     char resposta_membro[5];
-    arqv_eqp = (Equipe*) malloc(sizeof(Equipe));
-    fp = fopen("equipes.dat", "r+b");
-    if (fp == NULL) 
+    if (eqp == NULL) 
     {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Nao e possivel continuar este programa...\n");
-        exit(1);
-    }
-    while (fread(arqv_eqp, sizeof(Equipe), 1, fp) == 1)
+        printf("Ops! A equipe informada nao existe!\n");
+    } else {
+        arqv_eqp = (Equipe*) malloc(sizeof(Equipe));
+        fp = fopen("equipes.dat", "r+b");
+        if (fp == NULL) 
         {
-            if (strcmp(arqv_eqp->equipe, eqp->equipe)==0)
-            {
-                fseek(fp, -sizeof(Equipe), SEEK_CUR);
-                break;
-            }
-        } //Trecho do while desenvolvido pelo chatgpt
-    int qp = eqp->qp;
-    for (int i = 0; i < qp; i++) 
-    {
-    printf("Nome: %s",eqp->nome[i]);
-    printf("Nome: %s",eqp->cpf[i]);
-    printf("\nDeseja atualizar o membro (sim/nao)?");
-    fgets(resposta_membro, 5, stdin);
-        if (strcmp(resposta_membro, "sim\n")==0)
-        {
-            Funcionario* func = busca_func();
-            while(func==NULL)
-            {
-                printf("Funcionario nao cadastrado\n");
-                printf("Informe novamente\n");
-                func = busca_func();
-            }
-            strncpy(cpf, func->cpf, sizeof(cpf));
-            strncpy(eqp->nome[i], func->nome, sizeof(eqp->nome[i]));
-            free(func);
-            strncpy(eqp->cpf[i], cpf, sizeof(eqp->cpf[i]));
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
         }
+        while (fread(arqv_eqp, sizeof(Equipe), 1, fp) == 1)
+            {
+                if (strcmp(arqv_eqp->equipe, eqp->equipe)==0)
+                {
+                    fseek(fp, -sizeof(Equipe), SEEK_CUR);
+                    break;
+                }
+            } //Trecho do while desenvolvido pelo chatgpt
+        int qp = eqp->qp;
+        for (int i = 0; i < qp; i++) 
+        {
+        printf("Nome: %s",eqp->nome[i]);
+        printf("Nome: %s",eqp->cpf[i]);
+        printf("\nDeseja atualizar o membro (sim/nao)?");
+        fgets(resposta_membro, 5, stdin);
+            if (strcmp(resposta_membro, "sim\n")==0)
+            {
+                Funcionario* func = busca_func();
+                while(func==NULL)
+                {
+                    printf("Funcionario nao cadastrado\n");
+                    printf("Informe novamente\n");
+                    func = busca_func();
+                }
+                strncpy(cpf, func->cpf, sizeof(cpf));
+                strncpy(eqp->nome[i], func->nome, sizeof(eqp->nome[i]));
+                free(func);
+                strncpy(eqp->cpf[i], cpf, sizeof(eqp->cpf[i]));
+            }
+        }
+        fwrite(eqp, sizeof(Equipe), 1, fp);
+        fclose(fp);
+        free(arqv_eqp);
     }
-    fwrite(eqp, sizeof(Equipe), 1, fp);
-    fclose(fp);
-    free(arqv_eqp);
 }
 
 void atualizando_eqp_count(Equipe* eqp)
@@ -230,8 +235,6 @@ void exibe_equipe(void)
 void atualiza_equipe(void)
 {
     Equipe *eqp = tela_atualiza_equipe();
-    exibe_cadastro_eqp(eqp);
-    printf("------------------------------------------------------------------------------\n");
     atualizando_equipe(eqp);
     exibe_cadastro_eqp(eqp);
     printf("Tecle ENTER para continuar");

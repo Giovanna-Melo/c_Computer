@@ -166,60 +166,65 @@ void atualizando_func(Funcionario* func)
     char resposta_ender[5];
     char resposta_prof[5];
     char resposta_sal[5];
-    arqv_func = (Funcionario*) malloc(sizeof(Funcionario));
-    fp = fopen("funcionarios.dat", "r+b");
-    if (fp == NULL) 
+    if (func == NULL) 
     {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Nao e possivel continuar este programa...\n");
-        exit(1);
-    }
-    while (fread(arqv_func, sizeof(Funcionario), 1, fp) == 1)
+        printf("Ops! O funcionario informado nao existe!\n");
+    } else {
+        arqv_func = (Funcionario*) malloc(sizeof(Funcionario));
+        fp = fopen("funcionarios.dat", "r+b");
+        if (fp == NULL) 
         {
-            if (strcmp(arqv_func->cpf, func->cpf)==0)
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
+        }
+        while (fread(arqv_func, sizeof(Funcionario), 1, fp) == 1)
             {
-                fseek(fp, -sizeof(Funcionario), SEEK_CUR);
-                break;
-            }
-        } //Trecho do while desenvolvido pelo chatgpt
-    printf("\nDeseja atualizar o e-mail (sim/nao)?");
-    fgets(resposta_email, 5, stdin);
-    if (strcmp(resposta_email, "sim\n")==0)
-    {
-        le_email(email);
-        strncpy(func->email, email, sizeof(func->email));
+                if (strcmp(arqv_func->cpf, func->cpf)==0)
+                {
+                    fseek(fp, -sizeof(Funcionario), SEEK_CUR);
+                    break;
+                }
+            } //Trecho do while desenvolvido pelo chatgpt
+        printf("\nDeseja atualizar o e-mail (sim/nao)?");
+        fgets(resposta_email, 5, stdin);
+        if (strcmp(resposta_email, "sim\n")==0)
+        {
+            le_email(email);
+            strncpy(func->email, email, sizeof(func->email));
+        }
+        printf("\nDeseja atualizar o telefone (sim/nao)?");
+        fgets(resposta_tel, 5, stdin);
+        if (strcmp(resposta_tel, "sim\n")==0)
+        {
+            le_telefone(telefone);
+            strncpy(func->telefone, telefone, sizeof(func->telefone));
+        }
+        printf("\nDeseja atualizar o endereco (sim/nao)?");
+        fgets(resposta_ender, 5, stdin);
+        if (strcmp(resposta_ender, "sim\n")==0)
+        {
+            le_endereco(endereco);
+            strncpy(func->endereco, endereco, sizeof(func->endereco));
+        }
+        printf("\nDeseja atualizar a profissao (sim/nao)?");
+        fgets(resposta_prof, 5, stdin);
+        if (strcmp(resposta_prof, "sim\n")==0)
+        {
+            le_profissao(profissao);
+            strncpy(func->profissao, profissao, sizeof(func->profissao));
+        }
+        printf("\nDeseja atualizar o salario (sim/nao)?");
+        fgets(resposta_sal, 5, stdin);
+        if (strcmp(resposta_sal, "sim\n")==0)
+        {
+            le_salario(salario);
+            strncpy(func->salario, salario, sizeof(func->salario));
+        }
+        fwrite(func, sizeof(Funcionario), 1, fp);
+        fclose(fp);
+        free(arqv_func);
     }
-    printf("\nDeseja atualizar o telefone (sim/nao)?");
-    fgets(resposta_tel, 5, stdin);
-    if (strcmp(resposta_tel, "sim\n")==0)
-    {
-        le_telefone(telefone);
-        strncpy(func->telefone, telefone, sizeof(func->telefone));
-    }
-    printf("\nDeseja atualizar o endereco (sim/nao)?");
-    fgets(resposta_ender, 5, stdin);
-    if (strcmp(resposta_ender, "sim\n")==0)
-    {
-        le_endereco(endereco);
-        strncpy(func->endereco, endereco, sizeof(func->endereco));
-    }
-    printf("\nDeseja atualizar a profissao (sim/nao)?");
-    fgets(resposta_prof, 5, stdin);
-    if (strcmp(resposta_prof, "sim\n")==0)
-    {
-        le_profissao(profissao);
-        strncpy(func->profissao, profissao, sizeof(func->profissao));
-    }
-    printf("\nDeseja atualizar o salario (sim/nao)?");
-    fgets(resposta_sal, 5, stdin);
-    if (strcmp(resposta_sal, "sim\n")==0)
-    {
-        le_salario(salario);
-        strncpy(func->salario, salario, sizeof(func->salario));
-    }
-    fwrite(func, sizeof(Funcionario), 1, fp);
-    fclose(fp);
-    free(arqv_func);
 }
 
 void atualizando_func_count(Funcionario* func)

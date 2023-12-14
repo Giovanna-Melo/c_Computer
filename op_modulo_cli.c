@@ -185,46 +185,51 @@ void atualizando_cliente(Cliente* cli)
     char resposta_email[5];
     char resposta_tel[5];
     char resposta_ender[5];
-    arqv_cli = (Cliente*) malloc(sizeof(Cliente));
-    fp = fopen("clientes.dat", "r+b");
-    if (fp == NULL) 
+    if (cli == NULL) 
     {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Nao e possivel continuar este programa...\n");
-        exit(1);
-    }
-    while (fread(arqv_cli, sizeof(Cliente), 1, fp) == 1)
+        printf("Ops! O cliente informado nao existe!\n");
+    } else {
+        arqv_cli = (Cliente*) malloc(sizeof(Cliente));
+        fp = fopen("clientes.dat", "r+b");
+        if (fp == NULL) 
         {
-            if (strcmp(arqv_cli->cpf_cnpj, cli->cpf_cnpj)==0)
+            printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+            printf("Nao e possivel continuar este programa...\n");
+            exit(1);
+        }
+        while (fread(arqv_cli, sizeof(Cliente), 1, fp) == 1)
             {
-                fseek(fp, -sizeof(Cliente), SEEK_CUR);
-                break;
-            }
-        } //Trecho do while desenvolvido pelo chatgpt
-    printf("\nDeseja atualizar o e-mail (sim/nao)?");
-    fgets(resposta_email, 5, stdin);
-    if (strcmp(resposta_email, "sim\n")==0)
-    {
-        le_email(email);
-        strncpy(cli->email, email, sizeof(cli->email));
+                if (strcmp(arqv_cli->cpf_cnpj, cli->cpf_cnpj)==0)
+                {
+                    fseek(fp, -sizeof(Cliente), SEEK_CUR);
+                    break;
+                }
+            } //Trecho do while desenvolvido pelo chatgpt
+        printf("\nDeseja atualizar o e-mail (sim/nao)?");
+        fgets(resposta_email, 5, stdin);
+        if (strcmp(resposta_email, "sim\n")==0)
+        {
+            le_email(email);
+            strncpy(cli->email, email, sizeof(cli->email));
+        }
+        printf("\nDeseja atualizar o telefone (sim/nao)?");
+        fgets(resposta_tel, 5, stdin);
+        if (strcmp(resposta_tel, "sim\n")==0)
+        {
+        le_telefone(telefone);
+        strncpy(cli->telefone, telefone, sizeof(cli->telefone));
+        }
+        printf("\nDeseja atualizar o endereco (sim/nao)?");
+        fgets(resposta_ender, 5, stdin);
+        if (strcmp(resposta_ender, "sim\n")==0)
+        {
+        le_endereco(endereco);
+        strncpy(cli->endereco, endereco, sizeof(cli->endereco));
+        }
+        fwrite(cli, sizeof(Cliente), 1, fp);
+        fclose(fp);
+        free(arqv_cli);
     }
-    printf("\nDeseja atualizar o telefone (sim/nao)?");
-    fgets(resposta_tel, 5, stdin);
-    if (strcmp(resposta_tel, "sim\n")==0)
-    {
-    le_telefone(telefone);
-    strncpy(cli->telefone, telefone, sizeof(cli->telefone));
-    }
-    printf("\nDeseja atualizar o endereco (sim/nao)?");
-    fgets(resposta_ender, 5, stdin);
-    if (strcmp(resposta_ender, "sim\n")==0)
-    {
-    le_endereco(endereco);
-    strncpy(cli->endereco, endereco, sizeof(cli->endereco));
-    }
-    fwrite(cli, sizeof(Cliente), 1, fp);
-    fclose(fp);
-    free(arqv_cli);
 }
 
 void deletando_cliente (Cliente* cli)
