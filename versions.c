@@ -96,7 +96,7 @@ void menu_criacao(void)
     printf(")     O c_Computer e um sistema de gestao para empresa de manutencao de     (\n");
     printf(")   computadores. Esse sistema foi desenvolvido em linguagem C e projeta    (\n");
     printf(")    o registro de clientes, atendimentos e funcionarios e a emissao de     (\n");
-    printf(")                                relatorios.                                 (\n");
+    printf(")                                relatorios.                                (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")     *Projeto submetido a avaliacao institucional, possuindo valor         (\n");
@@ -107,7 +107,7 @@ void menu_criacao(void)
     printf(")                                                                           (\n");
     printf(")               Desenvolvido por: Giovanna Kailany de Melo                  (\n");
     printf(")               Colaboradores: Flavius Gorgonio, Marlison                   (\n");
-    printf(")               Soares, Beatriz Costa e chatGPT.                             (\n");
+    printf(")               Soares, Beatriz Costa e chatGPT.                            (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
     printf(")                                                                           (\n");
@@ -144,6 +144,8 @@ void menu_instrucoes(void)
     printf(")                                                                           (\n");
     printf(")          * Padronize uma forma de escrita, atentando a nao inserir        (\n");
     printf(")          acentos em nenhum dado;                                          (\n");
+    printf(")          * Para realizar um atendimento e necessario ja ter cadastrado    (\n");
+    printf(")          o cliente, bem como algum funcionario ou equipe;                 (\n");
     printf(")          * Ha um limite de 11 caracteres para o nome da equipe;           (\n");
     printf(")          * Ha um limite de 20 membros por equipe;                         (\n");
     printf(")          * Por ter quantidade de integrantes definida no cadastro de      (\n");
