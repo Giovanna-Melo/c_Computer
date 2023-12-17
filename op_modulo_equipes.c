@@ -118,7 +118,7 @@ void atualizando_equipe(Equipe* eqp)
         for (int i = 0; i < qp; i++) 
         {
         printf("Nome: %s",eqp->nome[i]);
-        printf("Nome: %s",eqp->cpf[i]);
+        printf("CPF: %s",eqp->cpf[i]);
         printf("\nDeseja atualizar o membro (sim/nao)?");
         fgets(resposta_membro, 5, stdin);
             if (strcmp(resposta_membro, "sim\n")==0)
@@ -284,18 +284,20 @@ Equipe* tela_cadastro_equipe(void)
     printf("Quantidade de participantes: %s\n\n", quant_part);
     for (int i = 0; i < qp; i++) 
     {
-    le_nome(nome); //JA DECLARADO NO OP_MODULO_CLI
-    strncpy(eqp->nome[i], nome, sizeof(eqp->nome[i]));
-    Funcionario* func = busca_func();
-    while(func==NULL)
-    {
-        printf("Funcionario nao cadastrado\n");
-        printf("Informe novamente\n");
-        func = busca_func();
-    }
-    strncpy(cpf, func->cpf, sizeof(cpf));
-    free(func);
-    strncpy(eqp->cpf[i], cpf, sizeof(eqp->cpf[i]));
+        Funcionario* func = busca_func();
+        while(func==NULL)
+        {
+            printf("Funcionario nao cadastrado\n");
+            printf("Informe novamente\n");
+            func = busca_func();
+        }
+        strncpy(cpf, func->cpf, sizeof(cpf));
+        strncpy(nome, func->nome, sizeof(nome));
+        free(func);
+        printf("{}                       Nome:                                              {}\n");
+        printf("%s", nome);
+        strncpy(eqp->cpf[i], cpf, sizeof(eqp->cpf[i]));
+        strncpy(eqp->nome[i], nome, sizeof(eqp->nome[i]));
     }
     strncpy(eqp->status, status, sizeof(eqp->status));
     return eqp;
